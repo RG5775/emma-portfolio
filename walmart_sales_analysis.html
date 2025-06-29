@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Walmart Sales Analysis</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <style>
         .project {
             text-align: center;
@@ -30,8 +31,8 @@
             font-weight: 600;
         }
         .dashboard-outer {
-            width: 1300px;
-            height: 1000px;
+            width: 1400px;
+            min-height: 1000px;
             margin: 40px auto 0 auto;
             display: flex;
             align-items: center;
@@ -45,6 +46,29 @@
             height: 1000px;
             border: none;
             display: block;
+        }
+        main {
+            padding-top: 2rem;
+        }
+        .dashboard-highlight {
+            margin: 3rem auto 2rem auto;
+            max-width: 1400px;
+            text-align: center;
+        }
+        .dashboard-icon {
+            font-size: 2.2rem;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+        .dashboard-desc {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: none;}
         }
     </style>
 </head>
@@ -67,6 +91,20 @@
         </ul>
     </nav>
 
+    <section class="dashboard-highlight">
+        <h2><span class="dashboard-icon"></span> Interactive Power BI Dashboard</h2>
+        <p class="dashboard-desc">Dive right in! Explore Walmart's sales with this interactive dashboard I built from scratch.</p>
+        <div class="dashboard-outer">
+            <iframe 
+                title="Walmart_Dashboard (1)" 
+                src="https://app.powerbi.com/view?r=eyJrIjoiZjhhMTcwOTUtODQ5NS00ODZlLWFlMWItMmU0NTA3YjcxMGYxIiwidCI6ImU0ODc5YmVmLTk2NTEtNGE4Ni04YzQwLWJmNDZmZTY0ZDc4MiJ9" 
+                frameborder="0" 
+                allowFullScreen="true"
+                class="powerbi-iframe">
+            </iframe>
+        </div>
+    </section>
+
     <main>
         <section class="project">
             <h2>Project Overview</h2>
@@ -87,22 +125,7 @@
                 </ul>
             </div>
         </section>
-        
     </main>
-    <!-- Dashboard moved outside main for perfect centering -->
-    <section>
-        <h2 style="text-align:center;">Interactive Power BI Dashboard</h2>
-        <p style="text-align:center;">Explore the interactive dashboard below for insights into Walmart's sales performance:</p>
-        <div class="dashboard-outer">
-            <iframe 
-                title="Walmart_Dashboard (1)" 
-                src="https://app.powerbi.com/view?r=eyJrIjoiZjhhMTcwOTUtODQ5NS00ODZlLWFlMWItMmU0NTA3YjcxMGYxIiwidCI6ImU0ODc5YmVmLTk2NTEtNGE4Ni04YzQwLWJmNDZmZTY0ZDc4MiJ9" 
-                frameborder="0" 
-                allowFullScreen="true"
-                class="powerbi-iframe">
-            </iframe>
-        </div>
-    </section>
 
     <footer>
         <p>&copy; 2025 Jieren LI</p>
