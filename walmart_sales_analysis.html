@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walmart Sales Analysis</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .project {
+            text-align: center;
+            background-color: var(--secondary-color);
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            padding: 2rem;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        .tech-tag {
+            background-color: var(--light-gray);
+            color: var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .dashboard-outer {
+            width: 1300px;
+            height: 1000px;
+            margin: 40px auto 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            box-shadow: none;
+            border: none;
+        }
+        .powerbi-iframe {
+            width: 1300px;
+            height: 1000px;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Walmart Sales Analysis</h1>
+        <p>Data Visualization | Power BI</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+                <a href="skills_and_projects.html" class="dropbtn">My Work</a>
+                <div class="dropdown-content">
+                    <a href="walmart_sales_analysis.html">Walmart Sales Analysis</a>
+                </div>
+            </li>
+            <li><a href="about.html">About Me</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="project">
+            <h2>Project Overview</h2>
+            <p style="max-width: 700px; margin: 0 auto 2rem auto; text-align: center;">This project provides a comprehensive analysis of Walmart sales data to uncover revenue patterns, product performance, and market trends across different regions and time periods. The analysis was performed using Power BI for interactive data visualization and insights.</p>
+            <div class="tech-stack" style="justify-content: center; margin-bottom: 2rem;">
+                <span class="tech-tag">Power BI</span>
+                <span class="tech-tag">Data Analysis</span>
+                <span class="tech-tag">Data Visualization</span>
+                <span class="tech-tag">SQL</span>
+                <span class="tech-tag">Excel</span>
+            </div>
+            <div style="text-align: left; max-width: 700px; margin: 0 auto;">
+                <h3 style="margin-bottom: 1rem; text-align: center;">Key Features</h3>
+                <ul style="margin-left: 1.5rem;">
+                    <li>Global Retail Sales Dashboard displays the overall sales performance of Walmart over time</li>
+                    <li>Store Comparison Dashboard compares the sales performance of different stores</li>
+                    <li>Custom interactive filters for user-driven exploration</li>
+                </ul>
+            </div>
+        </section>
+        
+    </main>
+    <!-- Dashboard moved outside main for perfect centering -->
+    <section>
+        <h2 style="text-align:center;">Interactive Power BI Dashboard</h2>
+        <p style="text-align:center;">Explore the interactive dashboard below for insights into Walmart's sales performance:</p>
+        <div class="dashboard-outer">
+            <iframe 
+                title="Walmart_Dashboard (1)" 
+                src="https://app.powerbi.com/view?r=eyJrIjoiZjhhMTcwOTUtODQ5NS00ODZlLWFlMWItMmU0NTA3YjcxMGYxIiwidCI6ImU0ODc5YmVmLTk2NTEtNGE4Ni04YzQwLWJmNDZmZTY0ZDc4MiJ9" 
+                frameborder="0" 
+                allowFullScreen="true"
+                class="powerbi-iframe">
+            </iframe>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Jieren LI</p>
+    </footer>
+</body>
+</html> 
