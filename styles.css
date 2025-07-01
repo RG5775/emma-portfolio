@@ -358,6 +358,10 @@ nav ul li.dropdown:hover .dropdown-content {
 
 /* Mobile Responsiveness - Mobile phones */
 @media screen and (max-width: 480px) {
+    :root {
+        --cube-size-mobile: 85vw;
+        --cube-size-mobile-max: 280px;
+    }
     header {
         padding: 2rem 1rem;
     }
@@ -502,12 +506,28 @@ nav ul li.dropdown:hover .dropdown-content {
     }
 
     .cube-container {
-        width: 90vw;
-        max-width: 250px;
-        height: 90vw;
-        max-height: 250px;
-        margin: 0 auto 1rem auto;
+        width: var(--cube-size-mobile);
+        height: var(--cube-size-mobile);
+        max-width: var(--cube-size-mobile-max);
+        max-height: var(--cube-size-mobile-max);
+        margin: 0 auto 0.5rem auto;
+        perspective: 600px;
     }
+
+    .cube-face {
+        width: var(--cube-size-mobile);
+        height: var(--cube-size-mobile);
+        max-width: var(--cube-size-mobile-max);
+        max-height: var(--cube-size-mobile-max);
+        border-radius: 16px;
+    }
+
+    .cube-face.front { transform: translateZ(calc(var(--cube-size-mobile-max) / 2)); }
+    .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
+    .cube-face.right { transform: rotateY(90deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
+    .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
 }
 
 /* Very small screens */
@@ -583,13 +603,13 @@ nav ul li.dropdown:hover .dropdown-content {
     position: absolute;
     width: 400px;
     height: 400px;
-    border-radius: 20px;
+    border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    box-shadow: none;
+    border: none;
     backdrop-filter: blur(10px);
 }
 
@@ -732,39 +752,37 @@ nav ul li.dropdown:hover .dropdown-content {
 /* Mobile Responsiveness for 3D Banner */
 @media screen and (max-width: 768px) {
     .banner-container {
-        padding: 2rem 1rem;
+        padding: 1rem 0.5rem;
+        margin: 0;
     }
 
     .cube-container {
         width: 300px;
         height: 300px;
-        margin: 0 auto 2rem auto;
+        margin: 0 auto 1rem auto;
+        perspective: 800px;
     }
 
     .cube-face {
         width: 300px;
         height: 300px;
-        border-radius: 15px;
+        border-radius: 0;
     }
 
-    .cube-face.front {
-        transform: translateZ(150px);
-    }
-
-    .cube-face.right {
-        transform: rotateY(90deg) translateZ(150px);
-    }
-
-    .cube-face.left {
-        transform: rotateY(-90deg) translateZ(150px);
-    }
+    .cube-face.front { transform: translateZ(150px); }
+    .cube-face.back { transform: rotateY(180deg) translateZ(150px); }
+    .cube-face.right { transform: rotateY(90deg) translateZ(150px); }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(150px); }
+    .cube-face.top { transform: rotateX(90deg) translateZ(150px); }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(150px); }
 
     .role-content h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .time-indicator {
         font-size: 1rem;
+        margin-bottom: 0.5rem;
     }
 
     .role-description {
@@ -773,71 +791,72 @@ nav ul li.dropdown:hover .dropdown-content {
 
     .timeline-navigation {
         gap: 1.5rem;
-    }
-
-    .timeline-btn {
-        padding: 0.8rem;
-    }
-
-    .interaction-hint {
-        font-size: 0.8rem;
-        padding: 10px 16px;
-        bottom: -50px;
+        margin-top: 1rem;
     }
 }
 
 @media screen and (max-width: 480px) {
     .banner-container {
-        padding: 1rem 0.5rem;
+        padding: 0.5rem 0.25rem;
+        margin: 0;
+    }
+
+    #interactive-banner {
+        padding: 0;
+        margin: 0;
     }
 
     .cube-container {
-        width: 90vw;
-        max-width: 250px;
-        height: 90vw;
-        max-height: 250px;
-        margin: 0 auto 1rem auto;
+        width: var(--cube-size-mobile);
+        height: var(--cube-size-mobile);
+        max-width: var(--cube-size-mobile-max);
+        max-height: var(--cube-size-mobile-max);
+        margin: 0 auto 0.5rem auto;
+        perspective: 600px;
     }
 
     .cube-face {
-        width: 250px;
-        height: 250px;
-        border-radius: 12px;
+        width: var(--cube-size-mobile);
+        height: var(--cube-size-mobile);
+        max-width: var(--cube-size-mobile-max);
+        max-height: var(--cube-size-mobile-max);
+        border-radius: 16px;
     }
 
-    .cube-face.front {
-        transform: translateZ(125px);
-    }
+    .cube-face.front { transform: translateZ(calc(var(--cube-size-mobile-max) / 2)); }
+    .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
+    .cube-face.right { transform: rotateY(90deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
+    .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
 
-    .cube-face.right {
-        transform: rotateY(90deg) translateZ(125px);
-    }
-
-    .cube-face.left {
-        transform: rotateY(-90deg) translateZ(125px);
+    .role-content {
+        padding: 0.5rem;
     }
 
     .role-content h2 {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
+        margin-bottom: 0.25rem;
     }
 
     .time-indicator {
         font-size: 0.9rem;
+        margin-bottom: 0.25rem;
     }
 
     .role-description {
         font-size: 0.85rem;
+        line-height: 1.3;
     }
 
     .timeline-navigation {
         gap: 1rem;
-        flex-wrap: wrap;
+        margin-top: 0.5rem;
+        padding: 0 0.5rem;
     }
 
     .timeline-btn {
-        padding: 0.6rem;
-        flex: 1;
-        min-width: 80px;
+        padding: 0.5rem;
     }
 
     .timeline-label {
@@ -845,8 +864,8 @@ nav ul li.dropdown:hover .dropdown-content {
     }
 
     .interaction-hint {
+        bottom: -30px;
         font-size: 0.75rem;
-        padding: 8px 12px;
-        bottom: -40px;
+        padding: 6px 12px;
     }
 }
