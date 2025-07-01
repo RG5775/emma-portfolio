@@ -496,6 +496,18 @@ nav ul li.dropdown:hover .dropdown-content {
         padding: 1.5rem 1rem;
         font-size: 0.85rem;
     }
+    
+    .banner-container {
+        padding: 1rem 0.5rem;
+    }
+
+    .cube-container {
+        width: 90vw;
+        max-width: 250px;
+        height: 90vw;
+        max-height: 250px;
+        margin: 0 auto 1rem auto;
+    }
 }
 
 /* Very small screens */
@@ -582,32 +594,32 @@ nav ul li.dropdown:hover .dropdown-content {
 }
 
 .cube-face.front {
-    background: #b39ddb;
+    background: linear-gradient(135deg, #b39ddb 0%, #7ea7d8 100%);
     transform: translateZ(200px);
 }
 
 .cube-face.back {
-    background: #ce93d8;
+    background: linear-gradient(135deg, #9c27b0 0%, #f48fb1 100%);
     transform: rotateY(180deg) translateZ(200px);
 }
 
 .cube-face.right {
-    background: #7986cb;
+    background: linear-gradient(135deg, #5c6bc0 0%, #26a69a 100%);
     transform: rotateY(90deg) translateZ(200px);
 }
 
 .cube-face.left {
-    background: #9575cd;
+    background: linear-gradient(135deg, #9575cd 0%, #f3e5f5 100%);
     transform: rotateY(-90deg) translateZ(200px);
 }
 
 .cube-face.top {
-    background: #f3e5f5;
+    background: linear-gradient(135deg, #7ea7d8 0%, #b39ddb 100%);
     transform: rotateX(90deg) translateZ(200px);
 }
 
 .cube-face.bottom {
-    background: #d1c4e9;
+    background: linear-gradient(135deg, #673ab7 0%, #64b5f6 100%);
     transform: rotateX(-90deg) translateZ(200px);
 }
 
@@ -776,12 +788,15 @@ nav ul li.dropdown:hover .dropdown-content {
 
 @media screen and (max-width: 480px) {
     .banner-container {
-        padding: 1.5rem 1rem;
+        padding: 1rem 0.5rem;
     }
 
     .cube-container {
-        width: 250px;
-        height: 250px;
+        width: 90vw;
+        max-width: 250px;
+        height: 90vw;
+        max-height: 250px;
+        margin: 0 auto 1rem auto;
     }
 
     .cube-face {
