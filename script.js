@@ -2,30 +2,45 @@
 
 // Interactive 3D Cube Functionality
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM Content Loaded - Initializing 3D Cube');
+    
     const cubeContainer = document.querySelector('.cube-container');
     const cube = document.getElementById('cube');
     const timelineButtons = document.querySelectorAll('.timeline-btn');
     const interactionHint = document.getElementById('interactionHint');
     
+    console.log('Elements found:', {
+        cubeContainer: !!cubeContainer,
+        cube: !!cube,
+        timelineButtons: timelineButtons.length,
+        interactionHint: !!interactionHint
+    });
+    
     // Check if elements exist before proceeding
     if (!cube || !cubeContainer) {
-        console.log('3D cube elements not found');
+        console.error('3D cube elements not found');
         return;
     }
     
-    let currentRotation = 0; // Current Y rotation
+    let currentRotationY = 0; // Current Y rotation
+    let currentRotationX = 0; // Current X rotation
     let isDragging = false;
     let startX = 0;
-    let startRotation = 0;
+    let startY = 0;
+    let startRotationY = 0;
+    let startRotationX = 0;
     
     // Initialize
     updateDisplay();
+    console.log('3D Cube initialized successfully');
     
     // Timeline button functionality
     timelineButtons.forEach(button => {
         button.addEventListener('click', function() {
             const targetRotation = parseInt(this.dataset.rotation);
-            currentRotation = targetRotation;
+            currentRotationY = targetRotation;
+            currentRotationX = 0; // Reset X rotation when using buttons
+            console.log('Timeline button clicked:', targetRotation);
             updateDisplay();
             updateActiveButton();
         });
@@ -35,9 +50,12 @@ document.addEventListener('DOMContentLoaded', function() {
     cube.addEventListener('mousedown', function(e) {
         isDragging = true;
         startX = e.clientX;
-        startRotation = currentRotation;
+        startY = e.clientY;
+        startRotationY = currentRotationY;
+        startRotationX = currentRotationX;
         cube.style.cursor = 'grabbing';
         hideInteractionHint();
+        console.log('Drag started');
         e.preventDefault();
     });
     
@@ -45,18 +63,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!isDragging) return;
         
         const deltaX = e.clientX - startX;
+        const deltaY = e.clientY - startY;
         const rotationSpeed = 0.5; // Adjust sensitivity
-        const newRotation = startRotation + (deltaX * rotationSpeed);
         
-        // Snap to nearest face (0, 90, -90)
-        let snappedRotation = newRotation;
-        if (Math.abs(newRotation - 0) < 30) snappedRotation = 0;
-        else if (Math.abs(newRotation - 90) < 30) snappedRotation = 90;
-        else if (Math.abs(newRotation + 90) < 30) snappedRotation = -90;
-        else if (newRotation > 60) snappedRotation = 90;
-        else if (newRotation < -60) snappedRotation = -90;
+        currentRotationY = startRotationY + (deltaX * rotationSpeed);
+        currentRotationX = Math.max(-45, Math.min(45, startRotationX - (deltaY * rotationSpeed)));
         
-        currentRotation = snappedRotation;
         updateDisplay();
     });
     
@@ -64,19 +76,27 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isDragging) {
             isDragging = false;
             cube.style.cursor = 'grab';
+            
+            // Snap to nearest main rotation
+            snapToNearestFace();
             updateActiveButton();
             showInteractionHint();
+            console.log('Drag ended');
         }
     });
     
     // Touch functionality for mobile
     let startTouchX = 0;
+    let startTouchY = 0;
     
     cube.addEventListener('touchstart', function(e) {
         isDragging = true;
         startTouchX = e.touches[0].clientX;
-        startRotation = currentRotation;
+        startTouchY = e.touches[0].clientY;
+        startRotationY = currentRotationY;
+        startRotationX = currentRotationX;
         hideInteractionHint();
+        console.log('Touch started');
         e.preventDefault();
     });
     
@@ -84,18 +104,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!isDragging) return;
         
         const deltaX = e.touches[0].clientX - startTouchX;
+        const deltaY = e.touches[0].clientY - startTouchY;
         const rotationSpeed = 0.3; // Less sensitive on mobile
-        const newRotation = startRotation + (deltaX * rotationSpeed);
         
-        // Snap to nearest face
-        let snappedRotation = newRotation;
-        if (Math.abs(newRotation - 0) < 45) snappedRotation = 0;
-        else if (Math.abs(newRotation - 90) < 45) snappedRotation = 90;
-        else if (Math.abs(newRotation + 90) < 45) snappedRotation = -90;
-        else if (newRotation > 45) snappedRotation = 90;
-        else if (newRotation < -45) snappedRotation = -90;
+        currentRotationY = startRotationY + (deltaX * rotationSpeed);
+        currentRotationX = Math.max(-45, Math.min(45, startRotationX - (deltaY * rotationSpeed)));
         
-        currentRotation = snappedRotation;
         updateDisplay();
         
         e.preventDefault();
@@ -103,8 +117,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     cube.addEventListener('touchend', function() {
         isDragging = false;
+        snapToNearestFace();
         updateActiveButton();
         showInteractionHint();
+        console.log('Touch ended');
     });
     
     // Show/hide interaction hint
@@ -113,29 +129,53 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Keyboard navigation
     document.addEventListener('keydown', function(e) {
-        if (e.target.closest('#interactive-banner')) {
+        if (e.target.closest('#interactive-banner') || e.key.startsWith('Arrow')) {
             if (e.key === 'ArrowRight') {
-                if (currentRotation === 0) currentRotation = 90;
-                else if (currentRotation === -90) currentRotation = 0;
+                currentRotationY += 90;
+                currentRotationX = 0;
                 updateDisplay();
                 updateActiveButton();
+                console.log('Keyboard: Right arrow');
             } else if (e.key === 'ArrowLeft') {
-                if (currentRotation === 0) currentRotation = -90;
-                else if (currentRotation === 90) currentRotation = 0;
+                currentRotationY -= 90;
+                currentRotationX = 0;
                 updateDisplay();
                 updateActiveButton();
+                console.log('Keyboard: Left arrow');
+            } else if (e.key === 'ArrowUp') {
+                currentRotationX = Math.max(-90, currentRotationX - 90);
+                updateDisplay();
+                console.log('Keyboard: Up arrow');
+            } else if (e.key === 'ArrowDown') {
+                currentRotationX = Math.min(90, currentRotationX + 90);
+                updateDisplay();
+                console.log('Keyboard: Down arrow');
             }
+            e.preventDefault();
         }
     });
     
     function updateDisplay() {
-        cube.style.transform = `rotateY(${currentRotation}deg)`;
+        cube.style.transform = `rotateX(${currentRotationX}deg) rotateY(${currentRotationY}deg)`;
+        console.log(`Cube rotated to: X=${currentRotationX}, Y=${currentRotationY}`);
+    }
+    
+    function snapToNearestFace() {
+        // Snap Y rotation to nearest main face
+        const snapAngles = [0, 90, -90, 180, -180];
+        let closestAngle = snapAngles.reduce((prev, curr) => {
+            return Math.abs(curr - currentRotationY) < Math.abs(prev - currentRotationY) ? curr : prev;
+        });
+        
+        currentRotationY = closestAngle;
+        currentRotationX = 0; // Reset X rotation when snapping
+        updateDisplay();
     }
     
     function updateActiveButton() {
         timelineButtons.forEach(button => {
             const buttonRotation = parseInt(button.dataset.rotation);
-            button.classList.toggle('active', buttonRotation === currentRotation);
+            button.classList.toggle('active', buttonRotation === currentRotationY);
         });
     }
     

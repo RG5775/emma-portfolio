@@ -588,6 +588,13 @@ nav ul li.dropdown:hover .dropdown-content {
     transform: translateZ(200px);
 }
 
+.cube-face.back {
+    background: linear-gradient(135deg, 
+        rgba(120, 120, 180, 0.9) 0%, 
+        rgba(160, 160, 200, 0.8) 100%);
+    transform: rotateY(180deg) translateZ(200px);
+}
+
 .cube-face.right {
     background: linear-gradient(135deg, 
         rgba(102, 153, 204, 0.9) 0%, 
@@ -600,6 +607,20 @@ nav ul li.dropdown:hover .dropdown-content {
         rgba(102, 204, 153, 0.9) 0%, 
         rgba(162, 230, 200, 0.8) 100%);
     transform: rotateY(-90deg) translateZ(200px);
+}
+
+.cube-face.top {
+    background: linear-gradient(135deg, 
+        rgba(204, 153, 102, 0.9) 0%, 
+        rgba(230, 180, 130, 0.8) 100%);
+    transform: rotateX(90deg) translateZ(200px);
+}
+
+.cube-face.bottom {
+    background: linear-gradient(135deg, 
+        rgba(180, 120, 180, 0.9) 0%, 
+        rgba(200, 160, 200, 0.8) 100%);
+    transform: rotateX(-90deg) translateZ(200px);
 }
 
 .role-content {
