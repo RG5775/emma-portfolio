@@ -360,7 +360,6 @@ nav ul li.dropdown:hover .dropdown-content {
 @media screen and (max-width: 480px) {
     :root {
         --cube-size-mobile: 85vw;
-        --cube-size-mobile-max: 280px;
     }
     header {
         padding: 2rem 1rem;
@@ -508,8 +507,6 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-container {
         width: var(--cube-size-mobile);
         height: var(--cube-size-mobile);
-        max-width: var(--cube-size-mobile-max);
-        max-height: var(--cube-size-mobile-max);
         margin: 0 auto 0.5rem auto;
         perspective: 600px;
     }
@@ -517,17 +514,15 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-face {
         width: var(--cube-size-mobile);
         height: var(--cube-size-mobile);
-        max-width: var(--cube-size-mobile-max);
-        max-height: var(--cube-size-mobile-max);
         border-radius: 16px;
     }
 
-    .cube-face.front { transform: translateZ(calc(var(--cube-size-mobile-max) / 2)); }
-    .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
-    .cube-face.right { transform: rotateY(90deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
-    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
-    .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
-    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
+    .cube-face.front { transform: translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.right { transform: rotateY(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
 }
 
 /* Very small screens */
@@ -603,7 +598,7 @@ nav ul li.dropdown:hover .dropdown-content {
     position: absolute;
     width: 400px;
     height: 400px;
-    border-radius: 0;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -809,8 +804,6 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-container {
         width: var(--cube-size-mobile);
         height: var(--cube-size-mobile);
-        max-width: var(--cube-size-mobile-max);
-        max-height: var(--cube-size-mobile-max);
         margin: 0 auto 0.5rem auto;
         perspective: 600px;
     }
@@ -818,17 +811,15 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-face {
         width: var(--cube-size-mobile);
         height: var(--cube-size-mobile);
-        max-width: var(--cube-size-mobile-max);
-        max-height: var(--cube-size-mobile-max);
         border-radius: 16px;
     }
 
-    .cube-face.front { transform: translateZ(calc(var(--cube-size-mobile-max) / 2)); }
-    .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
-    .cube-face.right { transform: rotateY(90deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
-    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
-    .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
-    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-mobile-max) / 2)); }
+    .cube-face.front { transform: translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.right { transform: rotateY(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
 
     .role-content {
         padding: 0.5rem;
