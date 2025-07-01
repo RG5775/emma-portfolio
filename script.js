@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     
-    let currentRotationY = 0; // Current Y rotation
+    let currentRotationY = 45; // Start at edge between accountant (left) and data analyst (front)
     let currentRotationX = 0; // Current X rotation
     let isDragging = false;
     let startX = 0;
@@ -64,10 +64,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const deltaX = e.clientX - startX;
         const deltaY = e.clientY - startY;
-        const rotationSpeed = 0.5; // Adjust sensitivity
+        const rotationSpeed = 0.8; // More responsive
+        const deadzone = 2;
+        if (Math.abs(deltaX) < deadzone && Math.abs(deltaY) < deadzone) return;
         
         currentRotationY = startRotationY + (deltaX * rotationSpeed);
-        currentRotationX = Math.max(-45, Math.min(45, startRotationX - (deltaY * rotationSpeed)));
+        currentRotationX = Math.max(-90, Math.min(90, startRotationX - (deltaY * rotationSpeed)));
         
         updateDisplay();
     });
@@ -76,9 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isDragging) {
             isDragging = false;
             cube.style.cursor = 'grab';
-            
-            // Snap to nearest main rotation
-            snapToNearestFace();
             updateActiveButton();
             showInteractionHint();
             console.log('Drag ended');
@@ -105,10 +104,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const deltaX = e.touches[0].clientX - startTouchX;
         const deltaY = e.touches[0].clientY - startTouchY;
-        const rotationSpeed = 0.3; // Less sensitive on mobile
+        const rotationSpeed = 0.2; // More responsive on mobile
+        const deadzone = 2;
+        if (Math.abs(deltaX) < deadzone && Math.abs(deltaY) < deadzone) return;
         
         currentRotationY = startRotationY + (deltaX * rotationSpeed);
-        currentRotationX = Math.max(-45, Math.min(45, startRotationX - (deltaY * rotationSpeed)));
+        currentRotationX = Math.max(-90, Math.min(90, startRotationX - (deltaY * rotationSpeed)));
         
         updateDisplay();
         
@@ -117,7 +118,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     cube.addEventListener('touchend', function() {
         isDragging = false;
-        snapToNearestFace();
         updateActiveButton();
         showInteractionHint();
         console.log('Touch ended');
@@ -158,18 +158,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateDisplay() {
         cube.style.transform = `rotateX(${currentRotationX}deg) rotateY(${currentRotationY}deg)`;
         console.log(`Cube rotated to: X=${currentRotationX}, Y=${currentRotationY}`);
-    }
-    
-    function snapToNearestFace() {
-        // Snap Y rotation to nearest main face
-        const snapAngles = [0, 90, -90, 180, -180];
-        let closestAngle = snapAngles.reduce((prev, curr) => {
-            return Math.abs(curr - currentRotationY) < Math.abs(prev - currentRotationY) ? curr : prev;
-        });
-        
-        currentRotationY = closestAngle;
-        currentRotationX = 0; // Reset X rotation when snapping
-        updateDisplay();
     }
     
     function updateActiveButton() {

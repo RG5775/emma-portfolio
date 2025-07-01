@@ -582,44 +582,32 @@ nav ul li.dropdown:hover .dropdown-content {
 }
 
 .cube-face.front {
-    background: linear-gradient(135deg, 
-        rgba(153, 102, 204, 0.9) 0%, 
-        rgba(200, 162, 200, 0.8) 100%);
+    background: #b39ddb;
     transform: translateZ(200px);
 }
 
 .cube-face.back {
-    background: linear-gradient(135deg, 
-        rgba(120, 120, 180, 0.9) 0%, 
-        rgba(160, 160, 200, 0.8) 100%);
+    background: #ce93d8;
     transform: rotateY(180deg) translateZ(200px);
 }
 
 .cube-face.right {
-    background: linear-gradient(135deg, 
-        rgba(102, 153, 204, 0.9) 0%, 
-        rgba(162, 200, 230, 0.8) 100%);
+    background: #7986cb;
     transform: rotateY(90deg) translateZ(200px);
 }
 
 .cube-face.left {
-    background: linear-gradient(135deg, 
-        rgba(102, 204, 153, 0.9) 0%, 
-        rgba(162, 230, 200, 0.8) 100%);
+    background: #9575cd;
     transform: rotateY(-90deg) translateZ(200px);
 }
 
 .cube-face.top {
-    background: linear-gradient(135deg, 
-        rgba(204, 153, 102, 0.9) 0%, 
-        rgba(230, 180, 130, 0.8) 100%);
+    background: #f3e5f5;
     transform: rotateX(90deg) translateZ(200px);
 }
 
 .cube-face.bottom {
-    background: linear-gradient(135deg, 
-        rgba(180, 120, 180, 0.9) 0%, 
-        rgba(200, 160, 200, 0.8) 100%);
+    background: #d1c4e9;
     transform: rotateX(-90deg) translateZ(200px);
 }
 
