@@ -138,32 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
         slider.style.left = (progress * maxLeft) + 'px';
     }
     
-    // Auto-cycle functionality (optional)
-    let autoTimeout;
-    
-    function startAutoSlide() {
-        autoTimeout = setTimeout(() => {
-            if (!isDragging && !isHovering) {
-                currentIndex = (currentIndex + 1) % 3;
-                updateDisplay();
-                startAutoSlide();
-            } else {
-                startAutoSlide();
-            }
-        }, 5000); // Change every 5 seconds
-    }
-    
-    function stopAutoSlide() {
-        clearTimeout(autoTimeout);
-    }
-    
-    // Start auto-slide
-    startAutoSlide();
-    
-    // Pause auto-slide on interaction
-    bannerWrapper.addEventListener('mouseenter', stopAutoSlide);
-    bannerWrapper.addEventListener('mouseleave', startAutoSlide);
-    bannerWrapper.addEventListener('touchstart', stopAutoSlide);
+    // Auto-cycle functionality disabled per user request
     
     // Keyboard navigation
     document.addEventListener('keydown', function(e) {
