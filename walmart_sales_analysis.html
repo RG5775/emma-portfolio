@@ -31,8 +31,9 @@
             font-weight: 600;
         }
         .dashboard-outer {
-            width: 1400px;
-            min-height: 1000px;
+            width: 100%;
+            max-width: 1400px;
+            min-height: 600px;
             margin: 40px auto 0 auto;
             display: flex;
             align-items: center;
@@ -40,15 +41,19 @@
             background: none;
             box-shadow: none;
             border: none;
+            padding: 0 1rem;
         }
         .powerbi-iframe {
-            width: 1300px;
-            height: 1000px;
+            width: 100%;
+            max-width: 1300px;
+            height: 800px;
             border: none;
             display: block;
         }
         main {
-            padding-top: 2rem;
+            padding: 2rem 2rem 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
         .dashboard-highlight {
             margin: 3rem auto 2rem auto;
@@ -70,6 +75,82 @@
             from { opacity: 0; transform: translateY(40px);}
             to { opacity: 1; transform: none;}
         }
+
+        /* Mobile Responsiveness for Dashboard */
+                 @media screen and (max-width: 768px) {
+             .dashboard-outer {
+                 margin: 20px auto 0 auto;
+                 padding: 0 0.5rem;
+                 min-height: 400px;
+             }
+             .powerbi-iframe {
+                 height: 600px;
+             }
+             .dashboard-highlight {
+                 margin: 2rem auto 1rem auto;
+                 padding: 0 1rem;
+             }
+             .dashboard-desc {
+                 font-size: 1.1rem;
+                 margin-bottom: 1.5rem;
+             }
+             .dashboard-icon {
+                 font-size: 2rem;
+             }
+             main {
+                 padding: 2rem 1rem 3rem 1rem;
+             }
+         }
+
+                 @media screen and (max-width: 480px) {
+             .dashboard-outer {
+                 margin: 15px auto 0 auto;
+                 padding: 0 0.25rem;
+                 min-height: 300px;
+             }
+             .powerbi-iframe {
+                 height: 500px;
+             }
+             .dashboard-highlight {
+                 margin: 1.5rem auto 1rem auto;
+                 padding: 0 0.5rem;
+             }
+             .dashboard-highlight h2 {
+                 font-size: 1.8rem;
+                 line-height: 1.3;
+             }
+             .dashboard-desc {
+                 font-size: 1rem;
+                 margin-bottom: 1rem;
+             }
+             .dashboard-icon {
+                 font-size: 1.8rem;
+                 margin-right: 0.3rem;
+             }
+             main {
+                 padding: 1.5rem 1rem 2.5rem 1rem;
+             }
+         }
+
+                 @media screen and (max-width: 320px) {
+             .dashboard-outer {
+                 margin: 10px auto 0 auto;
+                 padding: 0;
+                 min-height: 250px;
+             }
+             .powerbi-iframe {
+                 height: 400px;
+             }
+             .dashboard-highlight h2 {
+                 font-size: 1.6rem;
+             }
+             .dashboard-desc {
+                 font-size: 0.95rem;
+             }
+             main {
+                 padding: 1rem 0.8rem 2rem 0.8rem;
+             }
+         }
     </style>
 </head>
 <body>
