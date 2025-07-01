@@ -26,26 +26,50 @@
         </ul>
     </nav>
 
-    <!-- Interactive Banner Section -->
+    <!-- Interactive 3D Banner Section -->
     <section id="interactive-banner">
         <div class="banner-container">
-            <div class="banner-image-wrapper">
-                <div class="banner-image accounting-pro active" id="image1" data-role="Accounting Professional"></div>
-                <div class="banner-image data-analyst" id="image2" data-role="Data Analyst"></div>
-                <div class="banner-image data-scientist" id="image3" data-role="Data Scientist"></div>
-                <div class="banner-slider" id="slider"></div>
-                <div class="drag-handle" id="dragHandle">
-                    <div class="drag-handle-line"></div>
-                    <div class="drag-handle-arrows">
-                        <span class="arrow-left">◀</span>
-                        <span class="arrow-right">▶</span>
+            <div class="cube-container" id="cubeContainer">
+                <div class="cube" id="cube">
+                    <div class="cube-face front" data-role="accountant">
+                        <div class="role-content">
+                            <h2>Accountant</h2>
+                            <span class="time-indicator">(current)</span>
+                            <div class="role-description">Building strong financial foundations</div>
+                        </div>
+                    </div>
+                    <div class="cube-face right" data-role="data-analyst">
+                        <div class="role-content">
+                            <h2>Data Analyst</h2>
+                            <span class="time-indicator">(transitioning)</span>
+                            <div class="role-description">Bridging numbers with insights</div>
+                        </div>
+                    </div>
+                    <div class="cube-face left" data-role="data-scientist">
+                        <div class="role-content">
+                            <h2>Data Scientist</h2>
+                            <span class="time-indicator">(future)</span>
+                            <div class="role-description">Innovating through data intelligence</div>
+                        </div>
                     </div>
                 </div>
+                <div class="interaction-hint" id="interactionHint">
+                    <span>🖱️ Click and drag to explore my career journey</span>
+                </div>
             </div>
-            <div class="banner-labels">
-                <span class="role-label accounting-label active">Accounting Professional</span>
-                <span class="role-label analyst-label">Data Analyst</span>
-                <span class="role-label scientist-label">Data Scientist</span>
+            <div class="timeline-navigation">
+                <button class="timeline-btn active" data-rotation="0">
+                    <span class="timeline-dot"></span>
+                    <span class="timeline-label">Current</span>
+                </button>
+                <button class="timeline-btn" data-rotation="90">
+                    <span class="timeline-dot"></span>
+                    <span class="timeline-label">Transitioning</span>
+                </button>
+                <button class="timeline-btn" data-rotation="-90">
+                    <span class="timeline-dot"></span>
+                    <span class="timeline-label">Future</span>
+                </button>
             </div>
         </div>
     </section>

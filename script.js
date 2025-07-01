@@ -1,48 +1,43 @@
 // Future JavaScript code goes here 
 
-// Interactive Banner Functionality
+// Interactive 3D Cube Functionality
 document.addEventListener('DOMContentLoaded', function() {
-    const bannerWrapper = document.querySelector('.banner-image-wrapper');
-    const images = document.querySelectorAll('.banner-image');
-    const labels = document.querySelectorAll('.role-label');
-    const slider = document.getElementById('slider');
+    const cubeContainer = document.querySelector('.cube-container');
+    const cube = document.getElementById('cube');
+    const timelineButtons = document.querySelectorAll('.timeline-btn');
+    const interactionHint = document.getElementById('interactionHint');
     
-    let currentIndex = 0;
+    // Check if elements exist before proceeding
+    if (!cube || !cubeContainer) {
+        console.log('3D cube elements not found');
+        return;
+    }
+    
+    let currentRotation = 0; // Current Y rotation
     let isDragging = false;
     let startX = 0;
-    let isHovering = false;
-    let hoverTimeout;
+    let startRotation = 0;
     
     // Initialize
     updateDisplay();
     
-    // Hover functionality
-    bannerWrapper.addEventListener('mouseenter', function() {
-        if (!isDragging) {
-            isHovering = true;
-            hoverTimeout = setTimeout(() => {
-                if (isHovering && currentIndex === 0) {
-                    currentIndex = 1; // Switch to Data Analyst on hover
-                    updateDisplay();
-                }
-            }, 300); // Short delay before transition
-        }
-    });
-    
-    bannerWrapper.addEventListener('mouseleave', function() {
-        isHovering = false;
-        clearTimeout(hoverTimeout);
-        if (!isDragging && currentIndex === 1) {
-            currentIndex = 0; // Back to Accounting Professional
+    // Timeline button functionality
+    timelineButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const targetRotation = parseInt(this.dataset.rotation);
+            currentRotation = targetRotation;
             updateDisplay();
-        }
+            updateActiveButton();
+        });
     });
     
     // Mouse drag functionality
-    bannerWrapper.addEventListener('mousedown', function(e) {
+    cube.addEventListener('mousedown', function(e) {
         isDragging = true;
         startX = e.clientX;
-        bannerWrapper.style.cursor = 'grabbing';
+        startRotation = currentRotation;
+        cube.style.cursor = 'grabbing';
+        hideInteractionHint();
         e.preventDefault();
     });
     
@@ -50,111 +45,140 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!isDragging) return;
         
         const deltaX = e.clientX - startX;
-        const threshold = 50;
+        const rotationSpeed = 0.5; // Adjust sensitivity
+        const newRotation = startRotation + (deltaX * rotationSpeed);
         
-        if (deltaX > threshold && currentIndex < 2) {
-            currentIndex++;
-            updateDisplay();
-            startX = e.clientX;
-        } else if (deltaX < -threshold && currentIndex > 0) {
-            currentIndex--;
-            updateDisplay();
-            startX = e.clientX;
-        }
+        // Snap to nearest face (0, 90, -90)
+        let snappedRotation = newRotation;
+        if (Math.abs(newRotation - 0) < 30) snappedRotation = 0;
+        else if (Math.abs(newRotation - 90) < 30) snappedRotation = 90;
+        else if (Math.abs(newRotation + 90) < 30) snappedRotation = -90;
+        else if (newRotation > 60) snappedRotation = 90;
+        else if (newRotation < -60) snappedRotation = -90;
         
-        // Update slider position during drag
-        const progress = Math.max(0, Math.min(1, (e.clientX - bannerWrapper.getBoundingClientRect().left) / bannerWrapper.offsetWidth));
-        updateSliderPosition(progress);
+        currentRotation = snappedRotation;
+        updateDisplay();
     });
     
     document.addEventListener('mouseup', function() {
         if (isDragging) {
             isDragging = false;
-            bannerWrapper.style.cursor = 'grab';
-            // Reset slider to proper position
-            updateSliderPosition(currentIndex / 2);
+            cube.style.cursor = 'grab';
+            updateActiveButton();
+            showInteractionHint();
         }
     });
     
-    // Touch events for mobile
-    let startTouch = 0;
+    // Touch functionality for mobile
+    let startTouchX = 0;
     
-    bannerWrapper.addEventListener('touchstart', function(e) {
+    cube.addEventListener('touchstart', function(e) {
         isDragging = true;
-        startTouch = e.touches[0].clientX;
+        startTouchX = e.touches[0].clientX;
+        startRotation = currentRotation;
+        hideInteractionHint();
         e.preventDefault();
     });
     
-    bannerWrapper.addEventListener('touchmove', function(e) {
+    cube.addEventListener('touchmove', function(e) {
         if (!isDragging) return;
         
-        const deltaX = e.touches[0].clientX - startTouch;
-        const threshold = 30;
+        const deltaX = e.touches[0].clientX - startTouchX;
+        const rotationSpeed = 0.3; // Less sensitive on mobile
+        const newRotation = startRotation + (deltaX * rotationSpeed);
         
-        if (deltaX > threshold && currentIndex < 2) {
-            currentIndex++;
-            updateDisplay();
-            startTouch = e.touches[0].clientX;
-        } else if (deltaX < -threshold && currentIndex > 0) {
-            currentIndex--;
-            updateDisplay();
-            startTouch = e.touches[0].clientX;
-        }
+        // Snap to nearest face
+        let snappedRotation = newRotation;
+        if (Math.abs(newRotation - 0) < 45) snappedRotation = 0;
+        else if (Math.abs(newRotation - 90) < 45) snappedRotation = 90;
+        else if (Math.abs(newRotation + 90) < 45) snappedRotation = -90;
+        else if (newRotation > 45) snappedRotation = 90;
+        else if (newRotation < -45) snappedRotation = -90;
+        
+        currentRotation = snappedRotation;
+        updateDisplay();
         
         e.preventDefault();
     });
     
-    bannerWrapper.addEventListener('touchend', function() {
+    cube.addEventListener('touchend', function() {
         isDragging = false;
+        updateActiveButton();
+        showInteractionHint();
     });
     
-    // Label click functionality
-    labels.forEach((label, index) => {
-        label.addEventListener('click', function() {
-            currentIndex = index;
-            updateDisplay();
-        });
-    });
-    
-    // Update display function
-    function updateDisplay() {
-        // Update images
-        images.forEach((img, index) => {
-            img.classList.toggle('active', index === currentIndex);
-        });
-        
-        // Update labels
-        labels.forEach((label, index) => {
-            label.classList.toggle('active', index === currentIndex);
-        });
-        
-        // Update slider position
-        updateSliderPosition(currentIndex / 2);
-    }
-    
-    // Update slider position
-    function updateSliderPosition(progress) {
-        const maxLeft = bannerWrapper.offsetWidth - 4; // 4px is slider width
-        slider.style.left = (progress * maxLeft) + 'px';
-    }
-    
-    // Auto-cycle functionality disabled per user request
+    // Show/hide interaction hint
+    cubeContainer.addEventListener('mouseenter', showInteractionHint);
+    cubeContainer.addEventListener('mouseleave', hideInteractionHint);
     
     // Keyboard navigation
     document.addEventListener('keydown', function(e) {
         if (e.target.closest('#interactive-banner')) {
-            if (e.key === 'ArrowRight' && currentIndex < 2) {
-                currentIndex++;
+            if (e.key === 'ArrowRight') {
+                if (currentRotation === 0) currentRotation = 90;
+                else if (currentRotation === -90) currentRotation = 0;
                 updateDisplay();
-            } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
-                currentIndex--;
+                updateActiveButton();
+            } else if (e.key === 'ArrowLeft') {
+                if (currentRotation === 0) currentRotation = -90;
+                else if (currentRotation === 90) currentRotation = 0;
                 updateDisplay();
+                updateActiveButton();
             }
         }
     });
     
-    // Resize handler
-    window.addEventListener('resize', function() {
-        updateSliderPosition(currentIndex / 2);
-    });
+    function updateDisplay() {
+        cube.style.transform = `rotateY(${currentRotation}deg)`;
+    }
+    
+    function updateActiveButton() {
+        timelineButtons.forEach(button => {
+            const buttonRotation = parseInt(button.dataset.rotation);
+            button.classList.toggle('active', buttonRotation === currentRotation);
+        });
+    }
+    
+    function showInteractionHint() {
+        if (!isDragging && interactionHint) {
+            interactionHint.style.opacity = '0.8';
+        }
+    }
+    
+    function hideInteractionHint() {
+        if (interactionHint) {
+            interactionHint.style.opacity = '0';
+        }
+    }
+    
+    // Optional auto-rotate demo (disabled by default)
+    let autoRotateTimeout;
+    
+    function startAutoRotateDemo() {
+        autoRotateTimeout = setTimeout(() => {
+            if (!isDragging) {
+                // Cycle through positions for demo
+                const rotations = [0, 90, -90];
+                const currentIndex = rotations.indexOf(currentRotation);
+                const nextIndex = (currentIndex + 1) % rotations.length;
+                currentRotation = rotations[nextIndex];
+                updateDisplay();
+                updateActiveButton();
+                startAutoRotateDemo();
+            } else {
+                startAutoRotateDemo();
+            }
+        }, 4000); // Change every 4 seconds
+    }
+    
+    function stopAutoRotateDemo() {
+        clearTimeout(autoRotateTimeout);
+    }
+    
+    // Uncomment to enable auto-rotate demo
+    // startAutoRotateDemo();
+    
+    // Stop auto-rotate on user interaction
+    cubeContainer.addEventListener('mousedown', stopAutoRotateDemo);
+    cubeContainer.addEventListener('touchstart', stopAutoRotateDemo);
 }); 
