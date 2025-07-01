@@ -8,6 +8,10 @@
     --light-gray: #e8e0f2;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Lato', sans-serif;
     margin: 0;
@@ -112,6 +116,13 @@ section h2 {
     margin: 0 auto 2rem auto;
 }
 
+.cta-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .cta-button {
     background-color: transparent;
     color: var(--primary-color);
@@ -122,6 +133,7 @@ section h2 {
     font-weight: 700;
     font-size: 1rem;
     transition: background-color 0.3s, color 0.3s;
+    white-space: nowrap;
 }
 
 .cta-button:hover {
@@ -190,8 +202,11 @@ footer {
     padding: 2rem;
     background-color: var(--secondary-color);
     border: 1px solid #eee;
-    text-align: left;
+    text-align: center;
     border-radius: 8px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .education-item h3, .experience-item h3 {
@@ -202,6 +217,49 @@ footer {
     margin-bottom: 1rem;
     font-size: 1rem;
     color: #555;
+}
+
+/* Certificate card styles */
+.certificate-card {
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    border: 1px solid #eee;
+    border-radius: 16px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.certificate-image {
+    flex: 0 0 380px;
+    margin-right: 2rem;
+}
+
+.certificate-image img {
+    width: 100%;
+    max-width: 380px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.certificate-info {
+    flex: 1;
+    text-align: left;
+}
+
+.certificate-btn {
+    display: inline-block;
+    margin-top: 1.2rem;
+    padding: 12px 28px;
+    background: #9966cc;
+    color: #fff;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background 0.2s;
 }
 
 /* Dropdown styles */
@@ -244,4 +302,230 @@ nav ul li .dropdown-content a:hover {
 }
 nav ul li.dropdown:hover .dropdown-content {
     display: block;
+}
+
+/* Mobile Responsiveness - Tablets and small laptops */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 2.5rem 1rem;
+    }
+    
+    header h1 {
+        font-size: 2.5rem;
+    }
+    
+    header p {
+        font-size: 1.1rem;
+    }
+    
+    nav ul li a {
+        padding: 0.8rem 1rem;
+        font-size: 0.75rem;
+    }
+    
+    main {
+        padding: 2.5rem 1rem;
+        max-width: 100%;
+    }
+    
+    section h2 {
+        font-size: 2rem;
+    }
+    
+    .certificate-card {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+    }
+    
+    .certificate-image {
+        flex: 0 0 300px;
+        margin-right: 1.5rem;
+    }
+    
+    .certificate-image img {
+        max-width: 300px;
+    }
+    
+    .project {
+        padding: 1.5rem;
+    }
+    
+    #skills li {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile Responsiveness - Mobile phones */
+@media screen and (max-width: 480px) {
+    header {
+        padding: 2rem 1rem;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+    
+    header p {
+        font-size: 1rem;
+    }
+    
+    nav ul li {
+        display: block;
+        width: 100%;
+    }
+    
+    nav ul li a {
+        padding: 1rem;
+        border-bottom: 1px solid #eee;
+        font-size: 0.8rem;
+    }
+    
+    nav ul li:last-child a {
+        border-bottom: none;
+    }
+    
+    nav ul li .dropdown-content {
+        position: static;
+        display: none;
+        box-shadow: none;
+        background-color: #f0f0f0;
+        border-radius: 0;
+        margin-top: 0;
+    }
+    
+    nav ul li.dropdown:hover .dropdown-content {
+        display: block;
+    }
+    
+    main {
+        padding: 2rem 1rem;
+    }
+    
+    section {
+        margin-bottom: 2.5rem;
+    }
+    
+    section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    #about p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .cta-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+    
+    .cta-button {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+        width: 80%;
+        max-width: 250px;
+        text-align: center;
+    }
+    
+    .certificate-card {
+        flex-direction: column;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        text-align: center;
+    }
+    
+    .certificate-image {
+        flex: none;
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+        width: 100%;
+    }
+    
+    .certificate-image img {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .certificate-info {
+        text-align: center;
+    }
+    
+    .certificate-btn {
+        margin-top: 1rem;
+        padding: 12px 24px;
+        font-size: 0.9rem;
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+    }
+    
+    .project {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .project h3 a {
+        font-size: 1.3rem;
+        line-height: 1.3;
+    }
+    
+    .project p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    
+    #skills ul {
+        gap: 0.8rem;
+    }
+    
+    #skills li {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .education-item, .experience-item {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    footer {
+        padding: 1.5rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Very small screens */
+@media screen and (max-width: 320px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    main {
+        padding: 1.5rem 0.8rem;
+    }
+    
+    section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .cta-button {
+        width: 90%;
+        font-size: 0.85rem;
+    }
+    
+    .certificate-card,
+    .project,
+    .education-item,
+    .experience-item {
+        padding: 1rem;
+    }
+    
+    #skills li {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
 }
