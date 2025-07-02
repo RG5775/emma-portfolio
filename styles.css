@@ -615,6 +615,7 @@ nav ul li.dropdown:hover .dropdown-content {
     overflow: hidden;
     position: relative;
     z-index: 0;
+    padding-top: 100px; /* Additional spacing for desktop */
 }
 
 .banner-container {
@@ -630,7 +631,7 @@ nav ul li.dropdown:hover .dropdown-content {
     position: relative;
     width: 400px;
     height: 400px;
-    margin: 0 auto 3rem auto;
+    margin: 500px auto 3rem auto; /* Added 500px top margin for desktop */
     perspective: 1000px;
     z-index: 2; /* keep this below nav if needed */
 }
@@ -806,16 +807,10 @@ nav ul li.dropdown:hover .dropdown-content {
         margin: 0;
     }
 
-    /* Commented out - using new media query for phones instead
     .cube-container {
-        width: 300px;
-        height: 300px;
-        margin: 0 auto 1rem auto;
-        perspective: 800px;
-        transform: scale(0.7);
-        margin-top: 100px;
-        z-index: 0;
-    } */
+        /* Add 500px to tablet view as well */
+        margin-top: 600px !important; /* 100px + 500px additional */
+    }
 
     .cube-face {
         width: 300px;
@@ -940,7 +935,7 @@ nav ul li.dropdown:hover .dropdown-content {
     width: 200px;
     height: 200px;
     /* Center it and add spacing from nav/text */
-    margin: 600px auto 600px auto; /* Same distance top and bottom */
+    margin: 1100px auto 600px auto; /* Added 500px more to top margin */
     /* Ensure it's not covering other content */
     position: relative !important;
     /* Option 2: scale down instead of setting fixed size */
