@@ -940,7 +940,7 @@ nav ul li.dropdown:hover .dropdown-content {
     width: 200px;
     height: 200px;
     /* Center it and add spacing from nav/text */
-    margin: 100px auto 1rem auto;
+    margin: 300px auto 1rem auto;
     /* Ensure it's not covering other content */
     position: relative !important;
     /* Option 2: scale down instead of setting fixed size */
