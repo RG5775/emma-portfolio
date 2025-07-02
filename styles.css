@@ -47,6 +47,8 @@ header p {
 nav {
     background-color: transparent;
     border-bottom: 1px solid #eee;
+    position: relative;
+    z-index: 100;
 }
 
 nav ul {
@@ -359,7 +361,7 @@ nav ul li.dropdown:hover .dropdown-content {
 /* Mobile Responsiveness - Mobile phones */
 @media screen and (max-width: 480px) {
     :root {
-        --cube-size-mobile: 85vw;
+        --cube-size-mobile: 70vw;
     }
     header {
         padding: 2rem 1rem;
@@ -383,6 +385,9 @@ nav ul li.dropdown:hover .dropdown-content {
         padding: 1rem;
         border-bottom: 1px solid #eee;
         font-size: 0.8rem;
+        white-space: nowrap;
+        overflow: visible;
+        text-align: center;
     }
     
     nav ul li:last-child a {
@@ -404,6 +409,7 @@ nav ul li.dropdown:hover .dropdown-content {
     
     main {
         padding: 2rem 1rem;
+        margin-top: 2rem;
     }
     
     section {
@@ -501,7 +507,9 @@ nav ul li.dropdown:hover .dropdown-content {
     }
     
     .banner-container {
-        padding: 1rem 0.5rem;
+        padding: 0.5rem 0.25rem;
+        margin: 0;
+        margin-bottom: 2rem;
     }
 
     .cube-container {
@@ -509,6 +517,7 @@ nav ul li.dropdown:hover .dropdown-content {
         height: var(--cube-size-mobile);
         margin: 0 auto 0.5rem auto;
         perspective: 600px;
+        margin-bottom: 4rem;
     }
 
     .cube-face {
@@ -564,6 +573,8 @@ nav ul li.dropdown:hover .dropdown-content {
     margin: 0;
     background: linear-gradient(135deg, #f5f0ff 0%, #e8e0f2 100%);
     perspective: 1000px;
+    overflow: hidden;
+    position: relative;
 }
 
 .banner-container {
@@ -794,18 +805,23 @@ nav ul li.dropdown:hover .dropdown-content {
     .banner-container {
         padding: 0.5rem 0.25rem;
         margin: 0;
+        margin-bottom: 2rem;
     }
 
     #interactive-banner {
         padding: 0;
         margin: 0;
+        margin-bottom: 2rem;
     }
 
     .cube-container {
         width: var(--cube-size-mobile);
         height: var(--cube-size-mobile);
-        margin: 0 auto 0.5rem auto;
+        margin: 0 auto;
         perspective: 600px;
+        margin-bottom: 2rem;
+        overflow: visible;
+        position: relative;
     }
 
     .cube-face {
@@ -855,8 +871,11 @@ nav ul li.dropdown:hover .dropdown-content {
     }
 
     .interaction-hint {
-        bottom: -30px;
+        position: relative;
+        bottom: auto;
+        margin-top: 1rem;
         font-size: 0.75rem;
         padding: 6px 12px;
+        display: inline-block;
     }
 }
