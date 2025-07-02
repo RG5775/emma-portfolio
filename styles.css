@@ -103,6 +103,11 @@ main {
     background-color: var(--secondary-color);
 }
 
+.main-content {
+    position: relative;
+    z-index: 5;
+}
+
 section {
     margin: 0;
     background-color: var(--secondary-color);
@@ -315,6 +320,16 @@ nav ul li.dropdown:hover .dropdown-content {
 
 /* Mobile Responsiveness - Tablets and small laptops */
 @media screen and (max-width: 768px) {
+    nav {
+        z-index: 10; /* make sure nav stays on top */
+        position: relative;
+    }
+    
+    .hero-banner, .main-content {
+        position: relative;
+        z-index: 5;
+    }
+    
     header {
         padding: 2.5rem 1rem;
     }
@@ -375,7 +390,7 @@ nav ul li.dropdown:hover .dropdown-content {
         position: sticky;
         top: 0;
         background-color: var(--secondary-color);
-        z-index: 9999;
+        z-index: 10;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     
@@ -592,7 +607,7 @@ nav ul li.dropdown:hover .dropdown-content {
     perspective: 1000px;
     overflow: hidden;
     position: relative;
-    z-index: 1;
+    z-index: 0;
 }
 
 .banner-container {
@@ -610,7 +625,7 @@ nav ul li.dropdown:hover .dropdown-content {
     height: 400px;
     margin: 0 auto 3rem auto;
     perspective: 1000px;
-    z-index: 1;
+    z-index: 2; /* keep this below nav if needed */
 }
 
 .cube {
@@ -789,6 +804,9 @@ nav ul li.dropdown:hover .dropdown-content {
         height: 300px;
         margin: 0 auto 1rem auto;
         perspective: 800px;
+        transform: scale(0.7); /* shrink cube */
+        margin-top: 100px;     /* push it down */
+        z-index: 0;            /* move cube behind nav */
     }
 
     .cube-face {
@@ -844,6 +862,9 @@ nav ul li.dropdown:hover .dropdown-content {
         margin-bottom: 2rem;
         overflow: visible;
         position: relative;
+        transform: scale(0.6); /* shrink cube even more on mobile */
+        margin-top: 80px;     /* push it down */
+        z-index: 0;           /* ensure cube stays behind */
     }
 
     .cube-face {
