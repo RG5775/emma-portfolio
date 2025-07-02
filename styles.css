@@ -992,7 +992,7 @@ nav ul li.dropdown:hover .dropdown-content {
   
   /* Add padding to the banner container on mobile */
   .banner-container {
-    padding-top: 2rem;
+    padding-top: 0.5rem;
   }
   
   /* Make sure the interaction hint is visible */
