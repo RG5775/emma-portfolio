@@ -30,6 +30,8 @@ header {
     color: var(--secondary-color);
     padding: 4rem 2rem;
     text-align: center;
+    position: relative;
+    z-index: 100;
 }
 
 header h1 {
@@ -45,10 +47,10 @@ header p {
 }
 
 nav {
-    background-color: transparent;
+    background-color: var(--secondary-color);
     border-bottom: 1px solid #eee;
     position: relative;
-    z-index: 100;
+    z-index: 1000;
 }
 
 nav ul {
@@ -96,15 +98,20 @@ main {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
+    position: relative;
+    z-index: 10;
+    background-color: var(--secondary-color);
 }
 
 section {
     margin: 0;
-    background-color: transparent;
+    background-color: var(--secondary-color);
     padding: 0;
     border: none;
     box-shadow: none;
     margin-bottom: 4rem;
+    position: relative;
+    z-index: 10;
 }
 
 section h2 {
@@ -277,7 +284,7 @@ nav ul li .dropdown-content {
     left: 0;
     top: 100%;
     min-width: 200px;
-    z-index: 1;
+    z-index: 1001;
     background-color: var(--secondary-color);
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
     border-radius: 0 0 8px 8px;
@@ -363,6 +370,15 @@ nav ul li.dropdown:hover .dropdown-content {
     :root {
         --cube-size-mobile: 70vw;
     }
+    
+    nav {
+        position: sticky;
+        top: 0;
+        background-color: var(--secondary-color);
+        z-index: 9999;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
     header {
         padding: 2rem 1rem;
     }
@@ -401,6 +417,7 @@ nav ul li.dropdown:hover .dropdown-content {
         background-color: #f0f0f0;
         border-radius: 0;
         margin-top: 0;
+        z-index: 9999;
     }
     
     nav ul li.dropdown:hover .dropdown-content {
@@ -575,6 +592,7 @@ nav ul li.dropdown:hover .dropdown-content {
     perspective: 1000px;
     overflow: hidden;
     position: relative;
+    z-index: 1;
 }
 
 .banner-container {
@@ -582,6 +600,8 @@ nav ul li.dropdown:hover .dropdown-content {
     margin: 0 auto;
     padding: 4rem 2rem;
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 .cube-container {
@@ -590,6 +610,7 @@ nav ul li.dropdown:hover .dropdown-content {
     height: 400px;
     margin: 0 auto 3rem auto;
     perspective: 1000px;
+    z-index: 1;
 }
 
 .cube {
@@ -599,6 +620,7 @@ nav ul li.dropdown:hover .dropdown-content {
     transform-style: preserve-3d;
     transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
     cursor: grab;
+    z-index: 1;
 }
 
 .cube:active {
