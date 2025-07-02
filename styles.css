@@ -108,6 +108,13 @@ main {
     z-index: 5;
 }
 
+/* Base styling for the cube wrapper */
+.cube-wrapper {
+    position: relative;
+    z-index: 1;
+    margin-top: 0; /* default for desktop */
+}
+
 section {
     margin: 0;
     background-color: var(--secondary-color);
@@ -799,15 +806,16 @@ nav ul li.dropdown:hover .dropdown-content {
         margin: 0;
     }
 
+    /* Commented out - using new media query for phones instead
     .cube-container {
         width: 300px;
         height: 300px;
         margin: 0 auto 1rem auto;
         perspective: 800px;
-        transform: scale(0.7); /* shrink cube */
-        margin-top: 100px;     /* push it down */
-        z-index: 0;            /* move cube behind nav */
-    }
+        transform: scale(0.7);
+        margin-top: 100px;
+        z-index: 0;
+    } */
 
     .cube-face {
         width: 300px;
@@ -854,6 +862,7 @@ nav ul li.dropdown:hover .dropdown-content {
         margin-bottom: 2rem;
     }
 
+    /* Commented out - using new media query for phones instead
     .cube-container {
         width: var(--cube-size-mobile);
         height: var(--cube-size-mobile);
@@ -862,10 +871,10 @@ nav ul li.dropdown:hover .dropdown-content {
         margin-bottom: 2rem;
         overflow: visible;
         position: relative;
-        transform: scale(0.6); /* shrink cube even more on mobile */
-        margin-top: 80px;     /* push it down */
-        z-index: 0;           /* ensure cube stays behind */
-    }
+        transform: scale(0.6);
+        margin-top: 80px;
+        z-index: 0;
+    } */
 
     .cube-face {
         width: var(--cube-size-mobile);
@@ -921,4 +930,81 @@ nav ul li.dropdown:hover .dropdown-content {
         padding: 6px 12px;
         display: inline-block;
     }
+}
+
+/* Media query for phones/small screens */
+@media (max-width: 600px) {
+  /* 1. Resize/scale down the 3D cube */
+  .cube-container {
+    /* Option 1: explicitly smaller dimensions */
+    width: 200px;
+    height: 200px;
+    /* Center it and add spacing from nav/text */
+    margin: 100px auto 1rem auto;
+    /* Ensure it's not covering other content */
+    position: relative !important;
+    /* Option 2: scale down instead of setting fixed size */
+    transform: scale(0.8);
+    transform-origin: top center;
+  }
+  .cube-container .cube-face {
+    /* If using explicit dimensions, ensure faces match container */
+    width: 200px;
+    height: 200px;
+    /* Update transforms for smaller cube */
+    transform: translateZ(100px);
+  }
+  
+  .cube-container .cube-face.front { transform: translateZ(100px); }
+  .cube-container .cube-face.back { transform: rotateY(180deg) translateZ(100px); }
+  .cube-container .cube-face.right { transform: rotateY(90deg) translateZ(100px); }
+  .cube-container .cube-face.left { transform: rotateY(-90deg) translateZ(100px); }
+  .cube-container .cube-face.top { transform: rotateX(90deg) translateZ(100px); }
+  .cube-container .cube-face.bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+  /* 2. Ensure nav bar is on top of the cube */
+  nav {
+    position: relative;
+    z-index: 9999;  /* high value to overlay the cube */
+  }
+
+  /* 3. Ensure hero text and indicators appear above cube */
+  .hero-intro, /* e.g., class for intro text section */
+  .timeline-navigation { /* class for the Current/Transitioning/Future label container */
+    position: relative;
+    z-index: 9999;
+  }
+
+  /* Add some spacing so indicators aren't overlapped by the cube */
+  .timeline-navigation {
+    margin-top: 1rem;
+    text-align: center;  /* center the labels under the cube */
+  }
+  
+  /* Ensure the cube wrapper doesn't interfere */
+  .cube-wrapper {
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Make sure the interaction hint is visible */
+  .interaction-hint {
+    position: relative;
+    z-index: 10;
+    margin-top: 1rem;
+  }
+  
+  /* Adjust text sizes for smaller cube */
+  .cube-container .role-content h2 {
+    font-size: 1.2rem;
+  }
+  
+  .cube-container .time-indicator {
+    font-size: 0.8rem;
+  }
+  
+  .cube-container .role-description {
+    font-size: 0.75rem;
+    padding: 0 0.5rem;
+  }
 }
