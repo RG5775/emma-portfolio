@@ -30,6 +30,8 @@ header {
     color: var(--secondary-color);
     padding: 4rem 2rem;
     text-align: center;
+    position: relative;
+    z-index: 100;
 }
 
 header h1 {
@@ -45,8 +47,10 @@ header p {
 }
 
 nav {
-    background-color: transparent;
+    background-color: var(--secondary-color);
     border-bottom: 1px solid #eee;
+    position: relative;
+    z-index: 1000;
 }
 
 nav ul {
@@ -94,15 +98,32 @@ main {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
+    position: relative;
+    z-index: 10;
+    background-color: var(--secondary-color);
+}
+
+.main-content {
+    position: relative;
+    z-index: 5;
+}
+
+/* Base styling for the cube wrapper */
+.cube-wrapper {
+    position: relative;
+    z-index: 1;
+    margin-top: 0; /* default for desktop */
 }
 
 section {
     margin: 0;
-    background-color: transparent;
+    background-color: var(--secondary-color);
     padding: 0;
     border: none;
     box-shadow: none;
     margin-bottom: 4rem;
+    position: relative;
+    z-index: 10;
 }
 
 section h2 {
@@ -275,7 +296,7 @@ nav ul li .dropdown-content {
     left: 0;
     top: 100%;
     min-width: 200px;
-    z-index: 1;
+    z-index: 1001;
     background-color: var(--secondary-color);
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
     border-radius: 0 0 8px 8px;
@@ -306,6 +327,16 @@ nav ul li.dropdown:hover .dropdown-content {
 
 /* Mobile Responsiveness - Tablets and small laptops */
 @media screen and (max-width: 768px) {
+    nav {
+        z-index: 10; /* make sure nav stays on top */
+        position: relative;
+    }
+    
+    .hero-banner, .main-content {
+        position: relative;
+        z-index: 5;
+    }
+    
     header {
         padding: 2.5rem 1rem;
     }
@@ -359,8 +390,17 @@ nav ul li.dropdown:hover .dropdown-content {
 /* Mobile Responsiveness - Mobile phones */
 @media screen and (max-width: 480px) {
     :root {
-        --cube-size-mobile: 85vw;
+        --cube-size-mobile: 70vw;
     }
+    
+    nav {
+        position: sticky;
+        top: 0;
+        background-color: var(--secondary-color);
+        z-index: 10;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
     header {
         padding: 2rem 1rem;
     }
@@ -383,6 +423,9 @@ nav ul li.dropdown:hover .dropdown-content {
         padding: 1rem;
         border-bottom: 1px solid #eee;
         font-size: 0.8rem;
+        white-space: nowrap;
+        overflow: visible;
+        text-align: center;
     }
     
     nav ul li:last-child a {
@@ -396,6 +439,7 @@ nav ul li.dropdown:hover .dropdown-content {
         background-color: #f0f0f0;
         border-radius: 0;
         margin-top: 0;
+        z-index: 9999;
     }
     
     nav ul li.dropdown:hover .dropdown-content {
@@ -404,6 +448,7 @@ nav ul li.dropdown:hover .dropdown-content {
     
     main {
         padding: 2rem 1rem;
+        margin-top: 2rem;
     }
     
     section {
@@ -501,7 +546,9 @@ nav ul li.dropdown:hover .dropdown-content {
     }
     
     .banner-container {
-        padding: 1rem 0.5rem;
+        padding: 0.5rem 0.25rem;
+        margin: 0;
+        margin-bottom: 2rem;
     }
 
     .cube-container {
@@ -509,6 +556,7 @@ nav ul li.dropdown:hover .dropdown-content {
         height: var(--cube-size-mobile);
         margin: 0 auto 0.5rem auto;
         perspective: 600px;
+        margin-bottom: 4rem;
     }
 
     .cube-face {
@@ -564,6 +612,10 @@ nav ul li.dropdown:hover .dropdown-content {
     margin: 0;
     background: linear-gradient(135deg, #f5f0ff 0%, #e8e0f2 100%);
     perspective: 1000px;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    padding-top: 100px; /* Additional spacing for desktop */
 }
 
 .banner-container {
@@ -571,14 +623,17 @@ nav ul li.dropdown:hover .dropdown-content {
     margin: 0 auto;
     padding: 4rem 2rem;
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 .cube-container {
     position: relative;
     width: 400px;
     height: 400px;
-    margin: 0 auto 3rem auto;
+    margin: 500px auto 3rem auto; /* Added 500px top margin for desktop */
     perspective: 1000px;
+    z-index: 2; /* keep this below nav if needed */
 }
 
 .cube {
@@ -588,6 +643,7 @@ nav ul li.dropdown:hover .dropdown-content {
     transform-style: preserve-3d;
     transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
     cursor: grab;
+    z-index: 1;
 }
 
 .cube:active {
@@ -752,10 +808,8 @@ nav ul li.dropdown:hover .dropdown-content {
     }
 
     .cube-container {
-        width: 300px;
-        height: 300px;
-        margin: 0 auto 1rem auto;
-        perspective: 800px;
+        /* Add 500px to tablet view as well */
+        margin-top: 600px !important; /* 100px + 500px additional */
     }
 
     .cube-face {
@@ -794,19 +848,28 @@ nav ul li.dropdown:hover .dropdown-content {
     .banner-container {
         padding: 0.5rem 0.25rem;
         margin: 0;
+        margin-bottom: 2rem;
     }
 
     #interactive-banner {
         padding: 0;
         margin: 0;
+        margin-bottom: 2rem;
     }
 
+    /* Commented out - using new media query for phones instead
     .cube-container {
         width: var(--cube-size-mobile);
         height: var(--cube-size-mobile);
-        margin: 0 auto 0.5rem auto;
+        margin: 0 auto;
         perspective: 600px;
-    }
+        margin-bottom: 2rem;
+        overflow: visible;
+        position: relative;
+        transform: scale(0.6);
+        margin-top: 80px;
+        z-index: 0;
+    } */
 
     .cube-face {
         width: var(--cube-size-mobile);
@@ -855,8 +918,111 @@ nav ul li.dropdown:hover .dropdown-content {
     }
 
     .interaction-hint {
-        bottom: -30px;
+        position: relative;
+        bottom: auto;
+        margin-top: 1rem;
         font-size: 0.75rem;
         padding: 6px 12px;
+        display: inline-block;
     }
+}
+
+/* Media query for phones/small screens */
+@media (max-width: 600px) {
+  /* 1. Resize/scale down the 3D cube */
+  .cube-container {
+    /* Option 1: explicitly smaller dimensions */
+    width: 200px;
+    height: 200px;
+    /* Center it and add spacing from nav/text */
+    margin: 1100px auto 600px auto; /* Added 500px more to top margin */
+    /* Ensure it's not covering other content */
+    position: relative !important;
+    /* Option 2: scale down instead of setting fixed size */
+    transform: scale(0.8);
+    transform-origin: top center;
+  }
+  .cube-container .cube-face {
+    /* If using explicit dimensions, ensure faces match container */
+    width: 200px;
+    height: 200px;
+    /* Update transforms for smaller cube */
+    transform: translateZ(100px);
+  }
+  
+  .cube-container .cube-face.front { transform: translateZ(100px); }
+  .cube-container .cube-face.back { transform: rotateY(180deg) translateZ(100px); }
+  .cube-container .cube-face.right { transform: rotateY(90deg) translateZ(100px); }
+  .cube-container .cube-face.left { transform: rotateY(-90deg) translateZ(100px); }
+  .cube-container .cube-face.top { transform: rotateX(90deg) translateZ(100px); }
+  .cube-container .cube-face.bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+  /* 2. Ensure nav bar is on top of the cube */
+  nav {
+    position: relative;
+    z-index: 9999;  /* high value to overlay the cube */
+  }
+  
+  /* Add spacing to the interactive banner section */
+  #interactive-banner {
+    margin-top: 80px; /* Push the entire section down */
+    padding-top: 40px;
+    padding-bottom: 80px; /* Add bottom padding to match */
+  }
+
+  /* 3. Ensure hero text and indicators appear above cube */
+  .hero-intro, /* e.g., class for intro text section */
+  .timeline-navigation { /* class for the Current/Transitioning/Future label container */
+    position: relative;
+    z-index: 9999;
+  }
+
+  /* Add some spacing so indicators aren't overlapped by the cube */
+  .timeline-navigation {
+    margin-top: 1rem;
+    text-align: center;  /* center the labels under the cube */
+  }
+  
+  /* Ensure the cube wrapper doesn't interfere */
+  .cube-wrapper {
+    position: relative;
+    z-index: 1;
+    padding-top: 0; /* Removed since we have large margins */
+  }
+  
+  /* Add padding to the banner container on mobile */
+  .banner-container {
+    padding-top: 2rem;
+  }
+  
+  /* Make sure the interaction hint is visible */
+  .interaction-hint {
+    position: relative;
+    z-index: 10;
+    margin-top: 1rem;
+  }
+  
+  /* Adjust text sizes for smaller cube */
+  .cube-container .role-content h2 {
+    font-size: 1.2rem;
+  }
+  
+  .cube-container .time-indicator {
+    font-size: 0.8rem;
+  }
+  
+  .cube-container .role-description {
+    font-size: 0.75rem;
+    padding: 0 0.5rem;
+  }
+  
+  /* Ensure main content has proper spacing from cube */
+  .main-content {
+    margin-top: 0; /* Reset since cube has bottom margin */
+  }
+  
+  /* Timeline navigation spacing */
+  .timeline-navigation {
+    margin-bottom: 100px; /* Add space below timeline buttons */
+  }
 }
