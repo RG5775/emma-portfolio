@@ -940,7 +940,7 @@ nav ul li.dropdown:hover .dropdown-content {
     width: 200px;
     height: 200px;
     /* Center it and add spacing from nav/text */
-    margin: 450px auto 1rem auto;
+    margin: 600px auto 600px auto; /* Same distance top and bottom */
     /* Ensure it's not covering other content */
     position: relative !important;
     /* Option 2: scale down instead of setting fixed size */
@@ -970,8 +970,9 @@ nav ul li.dropdown:hover .dropdown-content {
   
   /* Add spacing to the interactive banner section */
   #interactive-banner {
-    margin-top: 50px; /* Push the entire section down */
-    padding-top: 20px;
+    margin-top: 80px; /* Push the entire section down */
+    padding-top: 40px;
+    padding-bottom: 80px; /* Add bottom padding to match */
   }
 
   /* 3. Ensure hero text and indicators appear above cube */
@@ -991,7 +992,7 @@ nav ul li.dropdown:hover .dropdown-content {
   .cube-wrapper {
     position: relative;
     z-index: 1;
-    padding-top: 50px; /* Additional spacing from navigation */
+    padding-top: 0; /* Removed since we have large margins */
   }
   
   /* Add padding to the banner container on mobile */
@@ -1018,5 +1019,15 @@ nav ul li.dropdown:hover .dropdown-content {
   .cube-container .role-description {
     font-size: 0.75rem;
     padding: 0 0.5rem;
+  }
+  
+  /* Ensure main content has proper spacing from cube */
+  .main-content {
+    margin-top: 0; /* Reset since cube has bottom margin */
+  }
+  
+  /* Timeline navigation spacing */
+  .timeline-navigation {
+    margin-bottom: 100px; /* Add space below timeline buttons */
   }
 }
