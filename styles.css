@@ -546,7 +546,7 @@ nav ul li.dropdown:hover .dropdown-content {
     }
     
     .banner-container {
-        padding: 0.5rem 0.25rem;
+        padding: 3rem 0.25rem;
         margin: 0;
         margin-bottom: 2rem;
     }
@@ -783,7 +783,7 @@ nav ul li.dropdown:hover .dropdown-content {
 /* Mobile Responsiveness for 3D Banner */
 @media screen and (max-width: 768px) {
     .banner-container {
-        padding: 1rem 0.5rem;
+        padding: 3rem 0.5rem;
         margin: 0;
     }
     .cube-face {
@@ -818,7 +818,7 @@ nav ul li.dropdown:hover .dropdown-content {
 
 @media screen and (max-width: 480px) {
     .banner-container {
-        padding: 0.5rem 0.25rem;
+        padding: 3rem 0.25rem;
         margin: 0;
         margin-bottom: 2rem;
     }
@@ -945,7 +945,7 @@ nav ul li.dropdown:hover .dropdown-content {
   
   /* Add padding to the banner container on mobile */
   .banner-container {
-    padding-top: 0.5rem;
+    padding-top: 3rem;
   }
   
   /* Make sure the interaction hint is visible */
@@ -992,7 +992,7 @@ nav ul li.dropdown:hover .dropdown-content {
 }
 .banner-container {
   margin: 0 auto;
-  padding: 1.5rem 1rem;
+  padding: 3rem 1rem;
 }
 #interactive-banner {
   padding-top: 2rem;
