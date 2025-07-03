@@ -319,34 +319,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Optional auto-rotate demo (disabled by default)
-    let autoRotateTimeout;
-    
-    function startAutoRotateDemo() {
-        autoRotateTimeout = setTimeout(() => {
-            if (!isDragging) {
-                // Cycle through positions for demo
-                const rotations = [0, 90, -90];
-                const currentIndex = rotations.indexOf(currentRotation);
-                const nextIndex = (currentIndex + 1) % rotations.length;
-                currentRotation = rotations[nextIndex];
-                updateDisplay();
-                updateActiveButton();
-                startAutoRotateDemo();
-            } else {
-                startAutoRotateDemo();
-            }
-        }, 4000); // Change every 4 seconds
-    }
-    
-    function stopAutoRotateDemo() {
-        clearTimeout(autoRotateTimeout);
-    }
-    
-    // Uncomment to enable auto-rotate demo
-    // startAutoRotateDemo();
-    
-    // Stop auto-rotate on user interaction
-    cubeContainer.addEventListener('mousedown', stopAutoRotateDemo);
-    cubeContainer.addEventListener('touchstart', stopAutoRotateDemo);
+
 }); 
