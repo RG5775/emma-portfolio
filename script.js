@@ -34,6 +34,9 @@ document.addEventListener('DOMContentLoaded', function() {
     updateDisplay();
     console.log('3D Cube initialized successfully');
     
+    // Add hover effects to individual faces
+    addFaceHoverEffects();
+    
     // Timeline button functionality
     timelineButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -55,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
         startRotationX = currentRotationX;
         cube.style.cursor = 'grabbing';
         hideInteractionHint();
+        resetAllFaces(); // Reset faces when dragging starts
         console.log('Drag started');
         e.preventDefault();
     });
@@ -95,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         startRotationY = currentRotationY;
         startRotationX = currentRotationX;
         hideInteractionHint();
+        resetAllFaces(); // Reset faces when touch dragging starts
         console.log('Touch started');
         e.preventDefault();
     });
@@ -156,42 +161,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     function updateDisplay() {
-        // Calculate which face is most forward based on rotation
-        const normalizedRotationY = ((currentRotationY % 360) + 360) % 360;
-        const normalizedRotationX = ((currentRotationX % 360) + 360) % 360;
-        
-        // Determine the front face based on Y rotation (primary)
-        let frontFace = 'front';
-        if (normalizedRotationY >= 315 || normalizedRotationY < 45) {
-            frontFace = 'front';
-        } else if (normalizedRotationY >= 45 && normalizedRotationY < 135) {
-            frontFace = 'right';
-        } else if (normalizedRotationY >= 135 && normalizedRotationY < 225) {
-            frontFace = 'back';
-        } else if (normalizedRotationY >= 225 && normalizedRotationY < 315) {
-            frontFace = 'left';
-        }
-        
-        // Check if top or bottom face is more forward based on X rotation
-        if (normalizedRotationX >= 45 && normalizedRotationX < 135) {
-            frontFace = 'top';
-        } else if (normalizedRotationX >= 225 && normalizedRotationX < 315) {
-            frontFace = 'bottom';
-        }
-        
-        // Get cube size for calculating 1/3 movement distance
+        // Get cube size for positioning
         const cubeElement = document.querySelector('.cube-face');
         const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 260;
-        const moveDistance = cubeSize / 3;
+        const halfSize = cubeSize / 2;
         
-        // Reset all faces to default positions and apply front face movement
+        // Set all faces to their default attached positions
         const faces = ['front', 'back', 'right', 'left', 'top', 'bottom'];
         faces.forEach(face => {
             const faceElement = cube.querySelector(`.cube-face.${face}`);
             if (faceElement) {
-                // Reset to default position first
                 let baseTransform = '';
-                const halfSize = cubeSize / 2;
                 
                 switch(face) {
                     case 'front':
@@ -214,37 +194,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         break;
                 }
                 
-                // Add extra movement if this is the front face
-                if (face === frontFace) {
-                    switch(face) {
-                        case 'front':
-                            baseTransform = `translateZ(${halfSize + moveDistance}px)`;
-                            break;
-                        case 'back':
-                            baseTransform = `rotateY(180deg) translateZ(${halfSize + moveDistance}px)`;
-                            break;
-                        case 'right':
-                            baseTransform = `rotateY(90deg) translateZ(${halfSize + moveDistance}px)`;
-                            break;
-                        case 'left':
-                            baseTransform = `rotateY(-90deg) translateZ(${halfSize + moveDistance}px)`;
-                            break;
-                        case 'top':
-                            baseTransform = `rotateX(90deg) translateZ(${halfSize + moveDistance}px)`;
-                            break;
-                        case 'bottom':
-                            baseTransform = `rotateX(-90deg) translateZ(${halfSize + moveDistance}px)`;
-                            break;
-                    }
-                }
-                
                 faceElement.style.transform = baseTransform;
             }
         });
         
         // Apply the overall cube rotation
         cube.style.transform = `rotateX(${currentRotationX}deg) rotateY(${currentRotationY}deg)`;
-        console.log(`Cube rotated to: X=${currentRotationX}, Y=${currentRotationY}, Front face: ${frontFace}`);
+        console.log(`Cube rotated to: X=${currentRotationX}, Y=${currentRotationY}`);
     }
     
     function updateActiveButton() {
@@ -264,6 +220,103 @@ document.addEventListener('DOMContentLoaded', function() {
         if (interactionHint) {
             interactionHint.style.opacity = '0';
         }
+    }
+    
+    function addFaceHoverEffects() {
+        const faces = ['front', 'back', 'right', 'left', 'top', 'bottom'];
+        
+        faces.forEach(faceName => {
+            const faceElement = cube.querySelector(`.cube-face.${faceName}`);
+            if (faceElement) {
+                faceElement.addEventListener('mouseenter', function() {
+                    if (!isDragging) {
+                        moveFaceForward(faceName);
+                    }
+                });
+                
+                faceElement.addEventListener('mouseleave', function() {
+                    if (!isDragging) {
+                        resetFacePosition(faceName);
+                    }
+                });
+            }
+        });
+    }
+    
+    function moveFaceForward(faceName) {
+        const cubeElement = document.querySelector('.cube-face');
+        const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 260;
+        const halfSize = cubeSize / 2;
+        const moveDistance = cubeSize / 3; // Move 1/3 of cube length forward
+        
+        const faceElement = cube.querySelector(`.cube-face.${faceName}`);
+        if (faceElement) {
+            let hoverTransform = '';
+            
+            switch(faceName) {
+                case 'front':
+                    hoverTransform = `translateZ(${halfSize + moveDistance}px)`;
+                    break;
+                case 'back':
+                    hoverTransform = `rotateY(180deg) translateZ(${halfSize + moveDistance}px)`;
+                    break;
+                case 'right':
+                    hoverTransform = `rotateY(90deg) translateZ(${halfSize + moveDistance}px)`;
+                    break;
+                case 'left':
+                    hoverTransform = `rotateY(-90deg) translateZ(${halfSize + moveDistance}px)`;
+                    break;
+                case 'top':
+                    hoverTransform = `rotateX(90deg) translateZ(${halfSize + moveDistance}px)`;
+                    break;
+                case 'bottom':
+                    hoverTransform = `rotateX(-90deg) translateZ(${halfSize + moveDistance}px)`;
+                    break;
+            }
+            
+            faceElement.style.transform = hoverTransform;
+        }
+    }
+    
+    function resetFacePosition(faceName) {
+        const cubeElement = document.querySelector('.cube-face');
+        const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 260;
+        const halfSize = cubeSize / 2;
+        
+        const faceElement = cube.querySelector(`.cube-face.${faceName}`);
+        if (faceElement) {
+            let baseTransform = '';
+            
+            switch(faceName) {
+                case 'front':
+                    baseTransform = `translateZ(${halfSize}px)`;
+                    break;
+                case 'back':
+                    baseTransform = `rotateY(180deg) translateZ(${halfSize}px)`;
+                    break;
+                case 'right':
+                    baseTransform = `rotateY(90deg) translateZ(${halfSize}px)`;
+                    break;
+                case 'left':
+                    baseTransform = `rotateY(-90deg) translateZ(${halfSize}px)`;
+                    break;
+                case 'top':
+                    baseTransform = `rotateX(90deg) translateZ(${halfSize}px)`;
+                    break;
+                case 'bottom':
+                    baseTransform = `rotateX(-90deg) translateZ(${halfSize}px)`;
+                    break;
+            }
+            
+            faceElement.style.transform = baseTransform;
+        }
+    }
+    
+    function resetAllFaces() {
+        const faces = ['front', 'back', 'right', 'left', 'top', 'bottom'];
+        faces.forEach(faceName => {
+            resetFacePosition(faceName);
+        });
     }
     
     // Optional auto-rotate demo (disabled by default)
