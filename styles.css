@@ -641,32 +641,32 @@ nav ul li.dropdown:hover .dropdown-content {
 
 .cube-face.front {
     background: linear-gradient(135deg, #b39ddb 0%, #7ea7d8 100%);
-    transform: translateZ(182px);
+    transform: translateZ(273px);
 }
 
 .cube-face.back {
     background: linear-gradient(135deg, #9c27b0 0%, #f48fb1 100%);
-    transform: rotateY(180deg) translateZ(182px);
+    transform: rotateY(180deg) translateZ(273px);
 }
 
 .cube-face.right {
     background: linear-gradient(135deg, #5c6bc0 0%, #26a69a 100%);
-    transform: rotateY(90deg) translateZ(182px);
+    transform: rotateY(90deg) translateZ(273px);
 }
 
 .cube-face.left {
     background: linear-gradient(135deg, #9575cd 0%, #f3e5f5 100%);
-    transform: rotateY(-90deg) translateZ(182px);
+    transform: rotateY(-90deg) translateZ(273px);
 }
 
 .cube-face.top {
     background: linear-gradient(135deg, #7ea7d8 0%, #b39ddb 100%);
-    transform: rotateX(90deg) translateZ(182px);
+    transform: rotateX(90deg) translateZ(273px);
 }
 
 .cube-face.bottom {
     background: linear-gradient(135deg, #673ab7 0%, #64b5f6 100%);
-    transform: rotateX(-90deg) translateZ(182px);
+    transform: rotateX(-90deg) translateZ(273px);
 }
 
 .role-content {
@@ -941,10 +941,10 @@ nav ul li.dropdown:hover .dropdown-content {
 }
 /* Unified 3D cube/banner sizing and spacing */
 
-/* Desktop default - 40% larger cube */
+/* Desktop default - 50% larger cube */
 .cube-container, .cube-face {
-  width: 364px;
-  height: 364px;
+  width: 546px;
+  height: 546px;
 }
 .cube-container {
   margin: 2.5rem auto 2rem auto;
@@ -958,35 +958,35 @@ nav ul li.dropdown:hover .dropdown-content {
   padding-top: 8rem;
 }
 
-/* Tablet - 40% larger cube */
+/* Tablet - 50% larger cube */
 @media (max-width: 900px) {
   .cube-container, .cube-face {
-    width: 280px;
-    height: 280px;
+    width: 420px;
+    height: 420px;
   }
   
   .cube-face.front {
-    transform: translateZ(140px);
+    transform: translateZ(210px);
   }
   
   .cube-face.back {
-    transform: rotateY(180deg) translateZ(140px);
+    transform: rotateY(180deg) translateZ(210px);
   }
   
   .cube-face.right {
-    transform: rotateY(90deg) translateZ(140px);
+    transform: rotateY(90deg) translateZ(210px);
   }
   
   .cube-face.left {
-    transform: rotateY(-90deg) translateZ(140px);
+    transform: rotateY(-90deg) translateZ(210px);
   }
   
   .cube-face.top {
-    transform: rotateX(90deg) translateZ(140px);
+    transform: rotateX(90deg) translateZ(210px);
   }
   
   .cube-face.bottom {
-    transform: rotateX(-90deg) translateZ(140px);
+    transform: rotateX(-90deg) translateZ(210px);
   }
 }
 
