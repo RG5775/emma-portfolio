@@ -550,12 +550,7 @@ nav ul li.dropdown:hover .dropdown-content {
         margin: 0;
         margin-bottom: 2rem;
     }
-    .cube-face.front { transform: translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.right { transform: rotateY(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    /* Cube face transforms are now handled by JavaScript */
 }
 
 /* Very small screens */
@@ -642,36 +637,31 @@ nav ul li.dropdown:hover .dropdown-content {
     box-shadow: none;
     border: none;
     backdrop-filter: blur(10px);
+    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .cube-face.front {
     background: linear-gradient(135deg, #b39ddb 0%, #7ea7d8 100%);
-    transform: translateZ(200px);
 }
 
 .cube-face.back {
     background: linear-gradient(135deg, #9c27b0 0%, #f48fb1 100%);
-    transform: rotateY(180deg) translateZ(200px);
 }
 
 .cube-face.right {
     background: linear-gradient(135deg, #5c6bc0 0%, #26a69a 100%);
-    transform: rotateY(90deg) translateZ(200px);
 }
 
 .cube-face.left {
     background: linear-gradient(135deg, #9575cd 0%, #f3e5f5 100%);
-    transform: rotateY(-90deg) translateZ(200px);
 }
 
 .cube-face.top {
     background: linear-gradient(135deg, #7ea7d8 0%, #b39ddb 100%);
-    transform: rotateX(90deg) translateZ(200px);
 }
 
 .cube-face.bottom {
     background: linear-gradient(135deg, #673ab7 0%, #64b5f6 100%);
-    transform: rotateX(-90deg) translateZ(200px);
 }
 
 .role-content {
@@ -790,12 +780,7 @@ nav ul li.dropdown:hover .dropdown-content {
         border-radius: 0;
     }
 
-    .cube-face.front { transform: translateZ(150px); }
-    .cube-face.back { transform: rotateY(180deg) translateZ(150px); }
-    .cube-face.right { transform: rotateY(90deg) translateZ(150px); }
-    .cube-face.left { transform: rotateY(-90deg) translateZ(150px); }
-    .cube-face.top { transform: rotateX(90deg) translateZ(150px); }
-    .cube-face.bottom { transform: rotateX(-90deg) translateZ(150px); }
+    /* Cube face transforms are now handled by JavaScript */
 
     .role-content h2 {
         font-size: 1.8rem;
@@ -849,12 +834,7 @@ nav ul li.dropdown:hover .dropdown-content {
         border-radius: 16px;
     }
 
-    .cube-face.front { transform: translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.right { transform: rotateY(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    /* Cube face transforms are now handled by JavaScript */
 
     .role-content {
         padding: 0.5rem;
@@ -903,12 +883,7 @@ nav ul li.dropdown:hover .dropdown-content {
 @media (max-width: 600px) {
   
   
-  .cube-container .cube-face.front { transform: translateZ(100px); }
-  .cube-container .cube-face.back { transform: rotateY(180deg) translateZ(100px); }
-  .cube-container .cube-face.right { transform: rotateY(90deg) translateZ(100px); }
-  .cube-container .cube-face.left { transform: rotateY(-90deg) translateZ(100px); }
-  .cube-container .cube-face.top { transform: rotateX(90deg) translateZ(100px); }
-  .cube-container .cube-face.bottom { transform: rotateX(-90deg) translateZ(100px); }
+  /* Cube face transforms are now handled by JavaScript */
 
   /* 2. Ensure nav bar is on top of the cube */
   nav {
