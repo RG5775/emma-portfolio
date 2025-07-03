@@ -389,9 +389,7 @@ nav ul li.dropdown:hover .dropdown-content {
 
 /* Mobile Responsiveness - Mobile phones */
 @media screen and (max-width: 480px) {
-    :root {
-        --cube-size-mobile: 70vw;
-    }
+    /* Cube sizing now handled in unified section at bottom */
     
     nav {
         position: sticky;
@@ -591,7 +589,7 @@ nav ul li.dropdown:hover .dropdown-content {
     padding: 0;
     margin: 0;
     background: linear-gradient(135deg, #f5f0ff 0%, #e8e0f2 100%);
-    perspective: 1000px;
+    perspective: 1200px; /* Updated for larger cube */
     overflow: hidden;
     position: relative;
     z-index: 0;
@@ -609,7 +607,7 @@ nav ul li.dropdown:hover .dropdown-content {
 
 .cube-container {
     position: relative;
-    perspective: 1000px;
+    perspective: 1200px; /* Updated for larger cube */
     z-index: 2; /* keep this below nav if needed */
 }
 
@@ -718,7 +716,8 @@ nav ul li.dropdown:hover .dropdown-content {
     justify-content: center;
     align-items: center;
     gap: 3rem;
-    margin-top: 15rem;
+    margin-top: 8rem;
+    margin-bottom: 3rem;
 }
 
 .timeline-btn {
@@ -797,7 +796,8 @@ nav ul li.dropdown:hover .dropdown-content {
 
     .timeline-navigation {
         gap: 1.5rem;
-        margin-top: 1rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
     }
 }
 
@@ -814,25 +814,9 @@ nav ul li.dropdown:hover .dropdown-content {
         margin-bottom: 2rem;
     }
 
-    /* Commented out - using new media query for phones instead
-    .cube-container {
-        width: var(--cube-size-mobile);
-        height: var(--cube-size-mobile);
-        margin: 0 auto;
-        perspective: 600px;
-        margin-bottom: 2rem;
-        overflow: visible;
-        position: relative;
-        transform: scale(0.6);
-        margin-top: 80px;
-        z-index: 0;
-    } */
+    /* Cube sizing now handled in unified section at bottom */
 
-    .cube-face {
-        width: var(--cube-size-mobile);
-        height: var(--cube-size-mobile);
-        border-radius: 16px;
-    }
+    /* Cube face sizing now handled in unified section at bottom */
 
     /* Cube face transforms are now handled by JavaScript */
 
@@ -857,7 +841,8 @@ nav ul li.dropdown:hover .dropdown-content {
 
     .timeline-navigation {
         gap: 1rem;
-        margin-top: 0.5rem;
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
         padding: 0 0.5rem;
     }
 
@@ -905,11 +890,7 @@ nav ul li.dropdown:hover .dropdown-content {
     z-index: 9999;
   }
 
-  /* Add some spacing so indicators aren't overlapped by the cube */
-  .timeline-navigation {
-    margin-top: 1rem;
-    text-align: center;  /* center the labels under the cube */
-  }
+  /* Timeline navigation already handled in media queries above */
   
   /* Ensure the cube wrapper doesn't interfere */
   .cube-wrapper {
@@ -949,21 +930,18 @@ nav ul li.dropdown:hover .dropdown-content {
     margin-top: 0; /* Reset since cube has bottom margin */
   }
   
-  /* Timeline navigation spacing */
-  .timeline-navigation {
-    margin-bottom: 100px; /* Add space below timeline buttons */
-  }
+  /* Timeline navigation spacing already handled in media queries above */
 }
 /* Unified 3D cube/banner sizing and spacing */
 
-/* Desktop default */
+/* Desktop default - 40% larger cube */
 .cube-container, .cube-face {
-  width: 260px;
-  height: 260px;
+  width: 364px;
+  height: 364px;
 }
 .cube-container {
   margin: 2.5rem auto 2rem auto;
-  perspective: 1000px;
+  perspective: 1200px; /* Increased for larger cube */
 }
 .banner-container {
   margin: 0 auto;
@@ -973,28 +951,28 @@ nav ul li.dropdown:hover .dropdown-content {
   padding-top: 8rem;
 }
 
-/* Tablet */
+/* Tablet - 40% larger cube */
 @media (max-width: 900px) {
   .cube-container, .cube-face {
-    width: 200px;
-    height: 200px;
+    width: 280px;
+    height: 280px;
   }
 }
 
-/* Phone */
+/* Phone - 40% larger cube */
 @media (max-width: 600px) {
   .cube-container, .cube-face {
-    width: 60vw;
-    height: 60vw;
-    max-width: 150px;
-    max-height: 150px;
+    width: 70vw;
+    height: 70vw;
+    max-width: 210px;
+    max-height: 210px;
     margin: 1.5rem auto 1rem auto;
   }
   .role-content h2 {
-    font-size: 1.05rem;
+    font-size: 1.2rem; /* Slightly larger for bigger cube */
   }
   .role-content {
     max-width: 90vw;
-    padding: 0.2rem;
+    padding: 0.3rem;
   }
 }

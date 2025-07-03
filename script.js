@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateDisplay() {
         // Get cube size for positioning
         const cubeElement = document.querySelector('.cube-face');
-        const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 260;
+        const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 364;
         const halfSize = cubeSize / 2;
         
         // Set all faces to their default attached positions
@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function moveFaceForward(faceName) {
         const cubeElement = document.querySelector('.cube-face');
-        const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 260;
+        const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 364;
         const halfSize = cubeSize / 2;
         const moveDistance = cubeSize / 3; // Move 1/3 of cube length forward
         
@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function resetFacePosition(faceName) {
         const cubeElement = document.querySelector('.cube-face');
-        const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 260;
+        const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 364;
         const halfSize = cubeSize / 2;
         
         const faceElement = cube.querySelector(`.cube-face.${faceName}`);
