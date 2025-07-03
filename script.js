@@ -203,6 +203,40 @@ document.addEventListener('DOMContentLoaded', function() {
         return (yCloseToCardinal && xCloseToNormal) || xCloseToCardinal;
     }
 
+    function isFaceVisibleAndFacing(faceName) {
+        // Check if a face is visible and facing the viewer enough for hover effects
+        // Allow hover effects when X rotation is minimal and face is reasonably facing viewer
+        
+        // Don't allow hover effects when looking up/down significantly
+        if (Math.abs(currentRotationX) > 45) {
+            return ['top', 'bottom'].includes(faceName) && Math.abs(currentRotationX) > 60;
+        }
+        
+        // For Y-axis faces, check if they're facing the viewer within reasonable range
+        const normalizedY = ((currentRotationY % 360) + 360) % 360;
+        
+        switch(faceName) {
+            case 'front':
+                // Front face is hoverable when rotation is roughly -60° to +60°
+                return normalizedY >= 300 || normalizedY <= 60;
+            case 'right': 
+                // Right face is hoverable when rotation is roughly -150° to -30° (210° to 330°)
+                return normalizedY >= 210 && normalizedY <= 330;
+            case 'back':
+                // Back face is hoverable when rotation is roughly 120° to 240°
+                return normalizedY >= 120 && normalizedY <= 240;
+            case 'left':
+                // Left face is hoverable when rotation is roughly 30° to 150°
+                return normalizedY >= 30 && normalizedY <= 150;
+            case 'top':
+                return currentRotationX < -60;
+            case 'bottom':
+                return currentRotationX > 60;
+            default:
+                return false;
+        }
+    }
+
     function getCurrentFrontFace() {
         // Determine which face is most directly facing the viewer
         const normalizedY = ((currentRotationY % 360) + 360) % 360;
@@ -308,14 +342,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function moveFaceForward(faceName) {
-        // Only apply hover effect if we're in single face view and this is the current front face
-        if (!isSingleFaceView()) {
-            return; // Don't apply hover effect in multi-face view
-        }
-        
-        const currentFrontFace = getCurrentFrontFace();
-        if (faceName !== currentFrontFace) {
-            return; // Don't apply hover effect for non-front faces
+        // Apply hover effect to any visible face that's facing forward enough
+        if (!isFaceVisibleAndFacing(faceName)) {
+            return; // Don't apply hover effect for faces that are facing away
         }
         
         const cubeElement = document.querySelector('.cube-face');
