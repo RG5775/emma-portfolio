@@ -187,14 +187,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const normalizedY = ((currentRotationY % 360) + 360) % 360;
         const normalizedX = ((currentRotationX % 360) + 360) % 360;
         
-        // Check X-axis faces first (top/bottom) - these override Y-axis rotation
-        if (normalizedX >= 315 || normalizedX <= 45) {
-            return 'bottom'; // When looking down (positive X rotation)
-        } else if (normalizedX >= 135 && normalizedX <= 225) {
-            return 'top'; // When looking up (negative X rotation)
+        // Only consider top/bottom faces when X rotation is significant (more than 60 degrees)
+        if (Math.abs(currentRotationX) > 60) {
+            if (currentRotationX > 60) {
+                return 'bottom'; // When looking down significantly
+            } else if (currentRotationX < -60) {
+                return 'top'; // When looking up significantly
+            }
         }
         
-        // Then check Y-axis faces (front/back/left/right)
+        // For normal Y-axis rotation, determine front face based on Y rotation
         // Note: Cube rotation works opposite to face visibility
         if (normalizedY >= 315 || normalizedY <= 45) {
             return 'front';     // 0° rotation shows front face
@@ -213,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cubeElement = document.querySelector('.cube-face');
         const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 546;
         const halfSize = cubeSize / 2;
-        const extraDistance = cubeSize / 6; // Extra forward distance for front face effect
+        const extraDistance = cubeSize / 12; // Subtle extra forward distance for front face effect
         
         const faceElement = cube.querySelector(`.cube-face.${faceName}`);
         if (faceElement) {
