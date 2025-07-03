@@ -727,8 +727,11 @@ nav ul li.dropdown:hover .dropdown-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 3rem;
-    margin-top: 2rem;
+    gap: 1rem;
+    margin-top: 100px;
+    margin-bottom: 0;
+    position:relative;
+    z-index: 15;
 }
 
 .timeline-btn {
@@ -811,8 +814,11 @@ nav ul li.dropdown:hover .dropdown-content {
     }
 
     .timeline-navigation {
-        gap: 1.5rem;
+        gap: 1rem;
         margin-top: 1rem;
+        margin-bottom: 0;
+        position:relative;
+        z-index: 15;
     }
 }
 
@@ -877,8 +883,11 @@ nav ul li.dropdown:hover .dropdown-content {
 
     .timeline-navigation {
         gap: 1rem;
-        margin-top: 0.5rem;
+        margin-top: 100px;
         padding: 0 0.5rem;
+        margin-bottom: 0;
+        position:relative;
+        z-index: 15;
     }
 
     .timeline-btn {
