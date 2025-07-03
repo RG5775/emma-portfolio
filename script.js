@@ -171,17 +171,38 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Apply extra forward effect only to the face currently at front
-        const frontFace = getCurrentFrontFace();
-        if (frontFace) {
-            applyExtraForwardEffect(frontFace);
+        // Only apply extra forward effect when cube is positioned to show a single face clearly
+        if (isSingleFaceView()) {
+            const frontFace = getCurrentFrontFace();
+            if (frontFace) {
+                applyExtraForwardEffect(frontFace);
+            }
         }
         
         // Apply the overall cube rotation
         cube.style.transform = `rotateX(${currentRotationX}deg) rotateY(${currentRotationY}deg)`;
-        console.log(`Cube rotated to: X=${currentRotationX}, Y=${currentRotationY}, Front face: ${frontFace}`);
+        console.log(`Cube rotated to: X=${currentRotationX}, Y=${currentRotationY}${isSingleFaceView() ? ', Front face: ' + getCurrentFrontFace() : ', Multi-face view'}`);
     }
     
+    function isSingleFaceView() {
+        // Check if the cube is positioned to show primarily a single face
+        // This happens when rotations are close to multiples of 90 degrees
+        const threshold = 30; // degrees - within 30° of a cardinal direction
+        
+        // Check Y rotation (for front/back/left/right faces)
+        const normalizedY = ((currentRotationY % 360) + 360) % 360;
+        const yCloseToCardinal = [0, 90, 180, 270].some(cardinal => {
+            const diff = Math.min(Math.abs(normalizedY - cardinal), Math.abs(normalizedY - cardinal + 360), Math.abs(normalizedY - cardinal - 360));
+            return diff <= threshold;
+        });
+        
+        // Check X rotation (for top/bottom faces or normal side views)
+        const xCloseToNormal = Math.abs(currentRotationX) <= threshold; // Close to 0°
+        const xCloseToCardinal = Math.abs(Math.abs(currentRotationX) - 90) <= threshold; // Close to ±90°
+        
+        return (yCloseToCardinal && xCloseToNormal) || xCloseToCardinal;
+    }
+
     function getCurrentFrontFace() {
         // Determine which face is most directly facing the viewer
         const normalizedY = ((currentRotationY % 360) + 360) % 360;
@@ -287,7 +308,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function moveFaceForward(faceName) {
-        // Only apply hover effect if this is the current front face
+        // Only apply hover effect if we're in single face view and this is the current front face
+        if (!isSingleFaceView()) {
+            return; // Don't apply hover effect in multi-face view
+        }
+        
         const currentFrontFace = getCurrentFrontFace();
         if (faceName !== currentFrontFace) {
             return; // Don't apply hover effect for non-front faces
@@ -296,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cubeElement = document.querySelector('.cube-face');
         const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 546;
         const halfSize = cubeSize / 2;
-        const hoverDistance = cubeSize / 3; // Additional forward movement on hover
+        const hoverDistance = cubeSize / 4; // Additional forward movement on hover
         
         const faceElement = cube.querySelector(`.cube-face.${faceName}`);
         if (faceElement) {
