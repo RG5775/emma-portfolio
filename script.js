@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     
-    let currentRotationY = 90; // Start showing the "Current" face (accountant/left)
+    let currentRotationY = -45; // Start showing both accountant and data analyst faces
     let currentRotationX = 0; // Current X rotation
     let isDragging = false;
     let startX = 0;
