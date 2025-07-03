@@ -546,16 +546,9 @@ nav ul li.dropdown:hover .dropdown-content {
     }
     
     .banner-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;  /* Push buttons to bottom */
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 5rem 2rem 5rem 2rem;   /* Add top & bottom space */
-        text-align: center;
-        min-height: 600px;              /* Ensures enough height for cube + space */
-        position: relative;
+        padding: 3rem 0.25rem;
+        margin: 0;
+        margin-bottom: 2rem;
     }
     .cube-face.front { transform: translateZ(calc(var(--cube-size-mobile) / 2)); }
     .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
@@ -611,16 +604,12 @@ nav ul li.dropdown:hover .dropdown-content {
 }
 
 .banner-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;  /* Push buttons to bottom */
-    align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 5rem 2rem 5rem 2rem;   /* Add top & bottom space */
+    padding: 4rem 2rem;
     text-align: center;
-    min-height: 600px;              /* Ensures enough height for cube + space */
     position: relative;
+    z-index: 1;
 }
 
 .cube-container {
@@ -797,16 +786,8 @@ nav ul li.dropdown:hover .dropdown-content {
 /* Mobile Responsiveness for 3D Banner */
 @media screen and (max-width: 768px) {
     .banner-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;  /* Push buttons to bottom */
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 5rem 2rem 5rem 2rem;   /* Add top & bottom space */
-        text-align: center;
-        min-height: 600px;              /* Ensures enough height for cube + space */
-        position: relative;
+        padding: 3rem 0.5rem;
+        margin: 0;
     }
     .cube-face {
         border-radius: 0;
@@ -843,16 +824,10 @@ nav ul li.dropdown:hover .dropdown-content {
 
 @media screen and (max-width: 480px) {
     .banner-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;  /* Push buttons to bottom */
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 5rem 2rem 5rem 2rem;   /* Add top & bottom space */
-        text-align: center;
-        min-height: 600px;              /* Ensures enough height for cube + space */
-        position: relative;
+        padding: 3rem 0.25rem;
+        margin: 0;
+        margin-bottom: 2rem;
+    }
 
     #interactive-banner {
         padding: 0;
@@ -979,16 +954,7 @@ nav ul li.dropdown:hover .dropdown-content {
   
   /* Add padding to the banner container on mobile */
   .banner-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;  /* Push buttons to bottom */
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 5rem 2rem 5rem 2rem;   /* Add top & bottom space */
-        text-align: center;
-        min-height: 600px;              /* Ensures enough height for cube + space */
-        position: relative;
+    padding-top: 3rem;
   }
   
   /* Make sure the interaction hint is visible */
@@ -1034,17 +1000,8 @@ nav ul li.dropdown:hover .dropdown-content {
   perspective: 1000px;
 }
 .banner-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;  /* Push buttons to bottom */
-  align-items: center;
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 5rem 2rem 5rem 2rem;   /* Add top & bottom space */
-  text-align: center;
-  min-height: 600px;              /* Ensures enough height for cube + space */
-  position: relative;
-
+  padding: 3rem 1rem;
 }
 #interactive-banner {
   padding-top: 2rem;
