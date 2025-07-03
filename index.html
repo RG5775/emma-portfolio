@@ -1,122 +1,1025 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jieren LI - Data Analyst</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="images/favicon.png">
-</head>
-<body>
-    <header>
-        <h1>Jieren LI</h1>
-        <p>Data Analyst | Problem solver</p>
-    </header>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@700&display=swap');
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li class="dropdown">
-                <a href="skills_and_projects.html" class="dropbtn">My Work</a>
-                <div class="dropdown-content">
-                    <a href="walmart_sales_analysis.html">Walmart Sales Analysis</a>
-                </div>
-            </li>
-            <li><a href="about.html">About Me</a></li>
-        </ul>
-    </nav>
+:root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #f5f0ff;
+    --accent-color: #9966cc;
+    --text-color: #333333;
+    --light-gray: #e8e0f2;
+}
 
-    <!-- Interactive 3D Banner Section -->
-    <section id="interactive-banner">
-        <div class="banner-container">
-            <div class="cube-wrapper">
-                <div class="cube-container" id="cubeContainer">
-                    <div class="cube" id="cube">
-                        <div class="cube-face front" data-role="data-analyst">
-                            <div class="role-content">
-                                <h2>Data Analyst</h2>
-                                <span class="time-indicator">(transitioning)</span>
-                                <div class="role-description">Bridging numbers with insights</div>
-                            </div>
-                        </div>
-                        <div class="cube-face back" data-role="hidden">
-                            <div class="role-content">
-                                <h2>Hobbies</h2>
-                                <span class="time-indicator">(in progress)</span>
-                                <div class="role-description">Knitting • 3D Printing • Puzzles • Reading</div>
-                            </div>
-                        </div>
-                        <div class="cube-face right" data-role="data-scientist">
-                            <div class="role-content">
-                                <h2>Data Scientist</h2>
-                                <span class="time-indicator">(future)</span>
-                                <div class="role-description">Innovating through data intelligence</div>
-                            </div>
-                        </div>
-                        <div class="cube-face left" data-role="accountant">
-                            <div class="role-content">
-                                <h2>Accountant</h2>
-                                <span class="time-indicator">(current)</span>
-                                <div class="role-description">Building strong financial foundations</div>
-                            </div>
-                        </div>
-                        <div class="cube-face top" data-role="skills">
-                            <div class="role-content">
-                                <h2>Skills</h2>
-                                <span class="time-indicator"></span>
-                                <div class="role-description">SQL • Python • VBA • Power BI • Excel • Xero • MYOB</div>
-                            </div>
-                        </div>
-                        <div class="cube-face bottom" data-role="foundation">
-                            <div class="role-content">
-                                <h2>Academic Background</h2>
-                                <span class="time-indicator"></span>
-                                <div class="role-description">Mathematics • Biochemistry • Professional Accounting</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="interaction-hint" id="interactionHint">
-                        <span>🖱️ Click and drag to explore my career journey</span>
-                    </div>
-                </div>
-            </div>
-            <div class="timeline-navigation">
-                <button class="timeline-btn active" data-rotation="90">
-                    <span class="timeline-dot"></span>
-                    <span class="timeline-label">Current</span>
-                </button>
-                <button class="timeline-btn" data-rotation="0">
-                    <span class="timeline-dot"></span>
-                    <span class="timeline-label">Transitioning</span>
-                </button>
-                <button class="timeline-btn" data-rotation="-90">
-                    <span class="timeline-dot"></span>
-                    <span class="timeline-label">Future</span>
-                </button>
-            </div>
-        </div>
-    </section>
+* {
+    box-sizing: border-box;
+}
 
-    <main class="main-content">
-        <section id="about">
-            <h2>Explore at your own pace </h2>
-            <p>I'm a data analyst with a passion for uncovering insights from complex datasets. Explore my work or learn more about my background and skills.</p>
-            <div class="cta-container">
-                <a href="skills_and_projects.html" class="cta-button">View My Work</a>
-                <a href="about.html" class="cta-button">More About Me</a>
-            </div>
-        </section>
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
 
-        <section id="contact">
-            <h2>Get In Touch</h2>
-            <p>You can reach me at <a href="mailto:emma.jieren.li@gmail.com">emma.jieren.li@gmail.com</a></p>
-        </section>
-    </main>
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-color);
+}
 
-    <footer>
-        <p>&copy; 2025 Jieren LI</p>
-    </footer>
+header {
+    background: linear-gradient(135deg, #C8A2C8 0%, #9966CC 100%);
+    color: var(--secondary-color);
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 100;
+}
 
-    <script src="script.js"></script>
-</body>
-</html> 
+header h1 {
+    font-size: 3.5rem;
+    margin: 0;
+    color: var(--secondary-color);
+}
+
+header p {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    margin-top: 0.5rem;
+}
+
+nav {
+    background-color: var(--secondary-color);
+    border-bottom: 1px solid #eee;
+    position: relative;
+    z-index: 1000;
+}
+
+nav ul {
+    padding: 0;
+    margin: 0 auto;
+    list-style: none;
+    text-align: center;
+    max-width: 960px;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--primary-color);
+    padding: 1rem 1.5rem;
+    display: block;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover,
+.dropdown-content a:hover {
+    color: var(--accent-color);
+}
+
+.dropdown-content {
+    background-color: var(--secondary-color);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.dropdown-content a {
+    color: var(--primary-color);
+    text-align: left;
+    min-width: 200px;
+}
+
+main {
+    padding: 4rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    background-color: var(--secondary-color);
+}
+
+.main-content {
+    position: relative;
+    z-index: 5;
+}
+
+/* Base styling for the cube wrapper */
+.cube-wrapper {
+    position: relative;
+    z-index: 1;
+    margin-top: 0; /* default for desktop */
+}
+
+section {
+    margin: 0;
+    background-color: var(--secondary-color);
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 10;
+}
+
+section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+#about p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+}
+
+.cta-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-button {
+    background-color: transparent;
+    color: var(--primary-color);
+    padding: 12px 28px;
+    text-decoration: none;
+    border: 2px solid var(--primary-color);
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background-color 0.3s, color 0.3s;
+    white-space: nowrap;
+}
+
+.cta-button:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    transform: none;
+}
+
+.project {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: var(--secondary-color);
+    border: 1px solid #eee;
+    text-align: left;
+}
+
+.project h3 a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.project h3 a:hover {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+#skills ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+#skills li {
+    background-color: var(--light-gray);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--light-gray);
+    color: #888;
+    font-size: 0.9rem;
+}
+
+#hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+}
+
+.hero-banner {
+    display: none;
+}
+
+.education-item, .experience-item {
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background-color: var(--secondary-color);
+    border: 1px solid #eee;
+    text-align: center;
+    border-radius: 8px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.education-item h3, .experience-item h3 {
+    margin-top: 0;
+}
+
+.education-item p, .experience-item p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Certificate card styles */
+.certificate-card {
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    border: 1px solid #eee;
+    border-radius: 16px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.certificate-image {
+    flex: 0 0 380px;
+    margin-right: 2rem;
+}
+
+.certificate-image img {
+    width: 100%;
+    max-width: 380px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.certificate-info {
+    flex: 1;
+    text-align: left;
+}
+
+.certificate-btn {
+    display: inline-block;
+    margin-top: 1.2rem;
+    padding: 12px 28px;
+    background: #9966cc;
+    color: #fff;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+/* Dropdown styles */
+nav ul li.dropdown {
+    position: relative;
+}
+nav ul li .dropbtn {
+    cursor: pointer;
+}
+nav ul li .dropdown-content {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    min-width: 200px;
+    z-index: 1001;
+    background-color: var(--secondary-color);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 0 0 8px 8px;
+    padding: 0.5rem 0;
+}
+nav ul li .dropdown-content a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: var(--primary-color);
+    text-align: left;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    border-bottom: 1px solid #eee;
+    background: none;
+    transition: background 0.2s, color 0.2s;
+}
+nav ul li .dropdown-content a:last-child {
+    border-bottom: none;
+}
+nav ul li .dropdown-content a:hover {
+    background-color: var(--light-gray);
+    color: var(--accent-color);
+}
+nav ul li.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Mobile Responsiveness - Tablets and small laptops */
+@media screen and (max-width: 768px) {
+    nav {
+        z-index: 10; /* make sure nav stays on top */
+        position: relative;
+    }
+    
+    .hero-banner, .main-content {
+        position: relative;
+        z-index: 5;
+    }
+    
+    header {
+        padding: 2.5rem 1rem;
+    }
+    
+    header h1 {
+        font-size: 2.5rem;
+    }
+    
+    header p {
+        font-size: 1.1rem;
+    }
+    
+    nav ul li a {
+        padding: 0.8rem 1rem;
+        font-size: 0.75rem;
+    }
+    
+    main {
+        padding: 2.5rem 1rem;
+        max-width: 100%;
+    }
+    
+    section h2 {
+        font-size: 2rem;
+    }
+    
+    .certificate-card {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+    }
+    
+    .certificate-image {
+        flex: 0 0 300px;
+        margin-right: 1.5rem;
+    }
+    
+    .certificate-image img {
+        max-width: 300px;
+    }
+    
+    .project {
+        padding: 1.5rem;
+    }
+    
+    #skills li {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile Responsiveness - Mobile phones */
+@media screen and (max-width: 480px) {
+    :root {
+        --cube-size-mobile: 70vw;
+    }
+    
+    nav {
+        position: sticky;
+        top: 0;
+        background-color: var(--secondary-color);
+        z-index: 10;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    header {
+        padding: 2rem 1rem;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+    
+    header p {
+        font-size: 1rem;
+    }
+    
+    nav ul li {
+        display: block;
+        width: 100%;
+    }
+    
+    nav ul li a {
+        padding: 1rem;
+        border-bottom: 1px solid #eee;
+        font-size: 0.8rem;
+        white-space: nowrap;
+        overflow: visible;
+        text-align: center;
+    }
+    
+    nav ul li:last-child a {
+        border-bottom: none;
+    }
+    
+    nav ul li .dropdown-content {
+        position: static;
+        display: none;
+        box-shadow: none;
+        background-color: #f0f0f0;
+        border-radius: 0;
+        margin-top: 0;
+        z-index: 9999;
+    }
+    
+    nav ul li.dropdown:hover .dropdown-content {
+        display: block;
+    }
+    
+    main {
+        padding: 2rem 1rem;
+        margin-top: 2rem;
+    }
+    
+    section {
+        margin-bottom: 2.5rem;
+    }
+    
+    section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    #about p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .cta-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+    
+    .cta-button {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+        width: 80%;
+        max-width: 250px;
+        text-align: center;
+    }
+    
+    .certificate-card {
+        flex-direction: column;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        text-align: center;
+    }
+    
+    .certificate-image {
+        flex: none;
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+        width: 100%;
+    }
+    
+    .certificate-image img {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .certificate-info {
+        text-align: center;
+    }
+    
+    .certificate-btn {
+        margin-top: 1rem;
+        padding: 12px 24px;
+        font-size: 0.9rem;
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+    }
+    
+    .project {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .project h3 a {
+        font-size: 1.3rem;
+        line-height: 1.3;
+    }
+    
+    .project p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    
+    #skills ul {
+        gap: 0.8rem;
+    }
+    
+    #skills li {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .education-item, .experience-item {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    footer {
+        padding: 1.5rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .banner-container {
+        padding: 3rem 0.25rem;
+        margin: 0;
+        margin-bottom: 2rem;
+    }
+    .cube-face.front { transform: translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.right { transform: rotateY(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+}
+
+/* Very small screens */
+@media screen and (max-width: 320px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    main {
+        padding: 1.5rem 0.8rem;
+    }
+    
+    section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .cta-button {
+        width: 90%;
+        font-size: 0.85rem;
+    }
+    
+    .certificate-card,
+    .project,
+    .education-item,
+    .experience-item {
+        padding: 1rem;
+    }
+    
+    #skills li {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Interactive 3D Banner Styles */
+#interactive-banner {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(135deg, #f5f0ff 0%, #e8e0f2 100%);
+    perspective: 1000px;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    padding-top: 100px; /* Additional spacing for desktop */
+}
+
+.banner-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.cube-container {
+    position: relative;
+    perspective: 1000px;
+    z-index: 2; /* keep this below nav if needed */
+}
+
+.cube {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+    cursor: grab;
+    z-index: 1;
+}
+
+.cube:active {
+    cursor: grabbing;
+}
+
+.cube-face {
+    position: absolute;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: none;
+    border: none;
+    backdrop-filter: blur(10px);
+}
+
+.cube-face.front {
+    background: linear-gradient(135deg, #b39ddb 0%, #7ea7d8 100%);
+    transform: translateZ(200px);
+}
+
+.cube-face.back {
+    background: linear-gradient(135deg, #9c27b0 0%, #f48fb1 100%);
+    transform: rotateY(180deg) translateZ(200px);
+}
+
+.cube-face.right {
+    background: linear-gradient(135deg, #5c6bc0 0%, #26a69a 100%);
+    transform: rotateY(90deg) translateZ(200px);
+}
+
+.cube-face.left {
+    background: linear-gradient(135deg, #9575cd 0%, #f3e5f5 100%);
+    transform: rotateY(-90deg) translateZ(200px);
+}
+
+.cube-face.top {
+    background: linear-gradient(135deg, #7ea7d8 0%, #b39ddb 100%);
+    transform: rotateX(90deg) translateZ(200px);
+}
+
+.cube-face.bottom {
+    background: linear-gradient(135deg, #673ab7 0%, #64b5f6 100%);
+    transform: rotateX(-90deg) translateZ(200px);
+}
+
+.role-content {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    max-width: 300px;
+}
+
+.role-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: white;
+}
+
+.time-indicator {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 400;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.role-description {
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.4;
+    opacity: 0.95;
+}
+
+.interaction-hint {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.cube-container:hover .interaction-hint {
+    opacity: 1;
+}
+
+.timeline-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 15rem;
+}
+
+.timeline-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+.timeline-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.timeline-btn.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.timeline-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(153, 102, 204, 0.5);
+    border: 3px solid rgba(153, 102, 204, 0.3);
+    transition: all 0.3s ease;
+}
+
+.timeline-btn.active .timeline-dot {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px rgba(153, 102, 204, 0.4);
+}
+
+.timeline-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.timeline-btn.active .timeline-label {
+    opacity: 1;
+}
+
+/* Mobile Responsiveness for 3D Banner */
+@media screen and (max-width: 768px) {
+    .banner-container {
+        padding: 3rem 0.5rem;
+        margin: 0;
+    }
+    .cube-face {
+        border-radius: 0;
+    }
+
+    .cube-face.front { transform: translateZ(150px); }
+    .cube-face.back { transform: rotateY(180deg) translateZ(150px); }
+    .cube-face.right { transform: rotateY(90deg) translateZ(150px); }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(150px); }
+    .cube-face.top { transform: rotateX(90deg) translateZ(150px); }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(150px); }
+
+    .role-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .time-indicator {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .role-description {
+        font-size: 0.95rem;
+    }
+
+    .timeline-navigation {
+        gap: 1.5rem;
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .banner-container {
+        padding: 3rem 0.25rem;
+        margin: 0;
+        margin-bottom: 2rem;
+    }
+
+    #interactive-banner {
+        padding: 0;
+        margin: 0;
+        margin-bottom: 2rem;
+    }
+
+    /* Commented out - using new media query for phones instead
+    .cube-container {
+        width: var(--cube-size-mobile);
+        height: var(--cube-size-mobile);
+        margin: 0 auto;
+        perspective: 600px;
+        margin-bottom: 2rem;
+        overflow: visible;
+        position: relative;
+        transform: scale(0.6);
+        margin-top: 80px;
+        z-index: 0;
+    } */
+
+    .cube-face {
+        width: var(--cube-size-mobile);
+        height: var(--cube-size-mobile);
+        border-radius: 16px;
+    }
+
+    .cube-face.front { transform: translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.right { transform: rotateY(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+
+    .role-content {
+        padding: 0.5rem;
+    }
+
+    .role-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .time-indicator {
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .role-description {
+        font-size: 0.85rem;
+        line-height: 1.3;
+    }
+
+    .timeline-navigation {
+        gap: 1rem;
+        margin-top: 0.5rem;
+        padding: 0 0.5rem;
+    }
+
+    .timeline-btn {
+        padding: 0.5rem;
+    }
+
+    .timeline-label {
+        font-size: 0.8rem;
+    }
+
+    .interaction-hint {
+        position: relative;
+        bottom: auto;
+        margin-top: 1rem;
+        font-size: 0.75rem;
+        padding: 6px 12px;
+        display: inline-block;
+    }
+}
+
+/* Media query for phones/small screens */
+@media (max-width: 600px) {
+  
+  
+  .cube-container .cube-face.front { transform: translateZ(100px); }
+  .cube-container .cube-face.back { transform: rotateY(180deg) translateZ(100px); }
+  .cube-container .cube-face.right { transform: rotateY(90deg) translateZ(100px); }
+  .cube-container .cube-face.left { transform: rotateY(-90deg) translateZ(100px); }
+  .cube-container .cube-face.top { transform: rotateX(90deg) translateZ(100px); }
+  .cube-container .cube-face.bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+  /* 2. Ensure nav bar is on top of the cube */
+  nav {
+    position: relative;
+    z-index: 9999;  /* high value to overlay the cube */
+  }
+  
+  /* Add spacing to the interactive banner section */
+  #interactive-banner {
+    margin-top: 80px; /* Push the entire section down */
+    padding-top: 40px;
+    padding-bottom: 80px; /* Add bottom padding to match */
+  }
+
+  /* 3. Ensure hero text and indicators appear above cube */
+  .hero-intro, /* e.g., class for intro text section */
+  .timeline-navigation { /* class for the Current/Transitioning/Future label container */
+    position: relative;
+    z-index: 9999;
+  }
+
+  /* Add some spacing so indicators aren't overlapped by the cube */
+  .timeline-navigation {
+    margin-top: 1rem;
+    text-align: center;  /* center the labels under the cube */
+  }
+  
+  /* Ensure the cube wrapper doesn't interfere */
+  .cube-wrapper {
+    position: relative;
+    z-index: 1;
+    padding-top: 0; /* Removed since we have large margins */
+  }
+  
+  /* Add padding to the banner container on mobile */
+  .banner-container {
+    padding-top: 3rem;
+  }
+  
+  /* Make sure the interaction hint is visible */
+  .interaction-hint {
+    position: relative;
+    z-index: 10;
+    margin-top: 1rem;
+  }
+  
+  /* Adjust text sizes for smaller cube */
+  .cube-container .role-content h2 {
+    font-size: 1.2rem;
+  }
+  
+  .cube-container .time-indicator {
+    font-size: 0.8rem;
+  }
+  
+  .cube-container .role-description {
+    font-size: 0.75rem;
+    padding: 0 0.5rem;
+  }
+  
+  /* Ensure main content has proper spacing from cube */
+  .main-content {
+    margin-top: 0; /* Reset since cube has bottom margin */
+  }
+  
+  /* Timeline navigation spacing */
+  .timeline-navigation {
+    margin-bottom: 100px; /* Add space below timeline buttons */
+  }
+}
+/* Unified 3D cube/banner sizing and spacing */
+
+/* Desktop default */
+.cube-container, .cube-face {
+  width: 260px;
+  height: 260px;
+}
+.cube-container {
+  margin: 2.5rem auto 2rem auto;
+  perspective: 1000px;
+}
+.banner-container {
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+#interactive-banner {
+  padding-top: 8rem;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .cube-container, .cube-face {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* Phone */
+@media (max-width: 600px) {
+  .cube-container, .cube-face {
+    width: 60vw;
+    height: 60vw;
+    max-width: 150px;
+    max-height: 150px;
+    margin: 1.5rem auto 1rem auto;
+  }
+  .role-content h2 {
+    font-size: 1.05rem;
+  }
+  .role-content {
+    max-width: 90vw;
+    padding: 0.2rem;
+  }
+}
