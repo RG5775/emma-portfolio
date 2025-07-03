@@ -171,135 +171,48 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Only apply extra forward effect when cube is positioned to show a single face clearly
-        if (isSingleFaceView()) {
-            const frontFace = getCurrentFrontFace();
-            if (frontFace) {
-                applyExtraForwardEffect(frontFace);
-            }
-        }
+        // No automatic forward effects - only on hover when face shows ~50% area
         
         // Apply the overall cube rotation
         cube.style.transform = `rotateX(${currentRotationX}deg) rotateY(${currentRotationY}deg)`;
-        console.log(`Cube rotated to: X=${currentRotationX}, Y=${currentRotationY}${isSingleFaceView() ? ', Front face: ' + getCurrentFrontFace() : ', Multi-face view'}`);
+        console.log(`Cube rotated to: X=${currentRotationX}, Y=${currentRotationY}`);
     }
     
-    function isSingleFaceView() {
-        // Check if the cube is positioned to show primarily a single face
-        // This happens when rotations are close to multiples of 90 degrees
-        const threshold = 30; // degrees - within 30° of a cardinal direction
-        
-        // Check Y rotation (for front/back/left/right faces)
-        const normalizedY = ((currentRotationY % 360) + 360) % 360;
-        const yCloseToCardinal = [0, 90, 180, 270].some(cardinal => {
-            const diff = Math.min(Math.abs(normalizedY - cardinal), Math.abs(normalizedY - cardinal + 360), Math.abs(normalizedY - cardinal - 360));
-            return diff <= threshold;
-        });
-        
-        // Check X rotation (for top/bottom faces or normal side views)
-        const xCloseToNormal = Math.abs(currentRotationX) <= threshold; // Close to 0°
-        const xCloseToCardinal = Math.abs(Math.abs(currentRotationX) - 90) <= threshold; // Close to ±90°
-        
-        return (yCloseToCardinal && xCloseToNormal) || xCloseToCardinal;
-    }
-
     function isFaceVisibleAndFacing(faceName) {
-        // Check if a face is visible and facing the viewer enough for hover effects
-        // Allow hover effects when X rotation is minimal and face is reasonably facing viewer
+        // Check if a face is showing approximately 50% area (at 45-degree transition angles)
+        // Only allow hover effects in these transition zones, not when face is fully front
         
         // Don't allow hover effects when looking up/down significantly
-        if (Math.abs(currentRotationX) > 45) {
-            return ['top', 'bottom'].includes(faceName) && Math.abs(currentRotationX) > 60;
+        if (Math.abs(currentRotationX) > 30) {
+            return false; // No hover effects when tilted up/down
         }
         
-        // For Y-axis faces, check if they're facing the viewer within reasonable range
+        // For Y-axis faces, only allow hover in 45-degree transition zones
         const normalizedY = ((currentRotationY % 360) + 360) % 360;
         
         switch(faceName) {
             case 'front':
-                // Front face is hoverable when rotation is roughly -60° to +60°
-                return normalizedY >= 300 || normalizedY <= 60;
+                // Front face hoverable around -45° and +45° transitions (showing ~50% area)
+                return (normalizedY >= 310 && normalizedY <= 340) || (normalizedY >= 20 && normalizedY <= 50);
             case 'right': 
-                // Right face is hoverable when rotation is roughly -150° to -30° (210° to 330°)
-                return normalizedY >= 210 && normalizedY <= 330;
+                // Right face hoverable around 45° and 135° transitions  
+                return (normalizedY >= 20 && normalizedY <= 50) || (normalizedY >= 110 && normalizedY <= 140);
             case 'back':
-                // Back face is hoverable when rotation is roughly 120° to 240°
-                return normalizedY >= 120 && normalizedY <= 240;
+                // Back face hoverable around 135° and 225° transitions
+                return (normalizedY >= 110 && normalizedY <= 140) || (normalizedY >= 200 && normalizedY <= 230);
             case 'left':
-                // Left face is hoverable when rotation is roughly 30° to 150°
-                return normalizedY >= 30 && normalizedY <= 150;
+                // Left face hoverable around 225° and 315° transitions
+                return (normalizedY >= 200 && normalizedY <= 230) || (normalizedY >= 310 && normalizedY <= 340);
             case 'top':
-                return currentRotationX < -60;
+                return false; // No hover for top/bottom in this mode
             case 'bottom':
-                return currentRotationX > 60;
+                return false; // No hover for top/bottom in this mode
             default:
                 return false;
         }
     }
 
-    function getCurrentFrontFace() {
-        // Determine which face is most directly facing the viewer
-        const normalizedY = ((currentRotationY % 360) + 360) % 360;
-        const normalizedX = ((currentRotationX % 360) + 360) % 360;
-        
-        // Only consider top/bottom faces when X rotation is significant (more than 60 degrees)
-        if (Math.abs(currentRotationX) > 60) {
-            if (currentRotationX > 60) {
-                return 'bottom'; // When looking down significantly
-            } else if (currentRotationX < -60) {
-                return 'top'; // When looking up significantly
-            }
-        }
-        
-        // For normal Y-axis rotation, determine front face based on Y rotation
-        // Note: Cube rotation works opposite to face visibility
-        if (normalizedY >= 315 || normalizedY <= 45) {
-            return 'front';     // 0° rotation shows front face
-        } else if (normalizedY >= 45 && normalizedY <= 135) {
-            return 'left';      // 90° rotation shows left face  
-        } else if (normalizedY >= 135 && normalizedY <= 225) {
-            return 'back';      // 180° rotation shows back face
-        } else if (normalizedY >= 225 && normalizedY <= 315) {
-            return 'right';     // 270° rotation (-90°) shows right face
-        }
-        
-        return 'front'; // Default fallback
-    }
-    
-    function applyExtraForwardEffect(faceName) {
-        const cubeElement = document.querySelector('.cube-face');
-        const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 546;
-        const halfSize = cubeSize / 2;
-        const extraDistance = cubeSize / 12; // Subtle extra forward distance for front face effect
-        
-        const faceElement = cube.querySelector(`.cube-face.${faceName}`);
-        if (faceElement) {
-            let enhancedTransform = '';
-            
-            switch(faceName) {
-                case 'front':
-                    enhancedTransform = `translateZ(${halfSize + extraDistance}px)`;
-                    break;
-                case 'back':
-                    enhancedTransform = `rotateY(180deg) translateZ(${halfSize + extraDistance}px)`;
-                    break;
-                case 'right':
-                    enhancedTransform = `rotateY(90deg) translateZ(${halfSize + extraDistance}px)`;
-                    break;
-                case 'left':
-                    enhancedTransform = `rotateY(-90deg) translateZ(${halfSize + extraDistance}px)`;
-                    break;
-                case 'top':
-                    enhancedTransform = `rotateX(90deg) translateZ(${halfSize + extraDistance}px)`;
-                    break;
-                case 'bottom':
-                    enhancedTransform = `rotateX(-90deg) translateZ(${halfSize + extraDistance}px)`;
-                    break;
-            }
-            
-            faceElement.style.transform = enhancedTransform;
-        }
-    }
+
 
     function updateActiveButton() {
         timelineButtons.forEach(button => {
@@ -350,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cubeElement = document.querySelector('.cube-face');
         const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 546;
         const halfSize = cubeSize / 2;
-        const hoverDistance = cubeSize / 4; // Additional forward movement on hover
+        const hoverDistance = cubeSize / 3; // Strong forward movement on hover (only effect now)
         
         const faceElement = cube.querySelector(`.cube-face.${faceName}`);
         if (faceElement) {
