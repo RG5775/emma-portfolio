@@ -161,47 +161,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     function updateDisplay() {
-        // Get cube size for positioning
-        const cubeElement = document.querySelector('.cube-face');
-        const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 364;
-        const halfSize = cubeSize / 2;
-        
-        // Set all faces to their base positions without forward effect
+        // Reset all faces to their default CSS transforms (cube structure maintained by CSS)
         const faces = ['front', 'back', 'right', 'left', 'top', 'bottom'];
         faces.forEach(face => {
             const faceElement = cube.querySelector(`.cube-face.${face}`);
             if (faceElement) {
-                let baseTransform = '';
-                
-                switch(face) {
-                    case 'front':
-                        baseTransform = '';
-                        break;
-                    case 'back':
-                        baseTransform = `rotateY(180deg)`;
-                        break;
-                    case 'right':
-                        baseTransform = `rotateY(90deg)`;
-                        break;
-                    case 'left':
-                        baseTransform = `rotateY(-90deg)`;
-                        break;
-                    case 'top':
-                        baseTransform = `rotateX(90deg)`;
-                        break;
-                    case 'bottom':
-                        baseTransform = `rotateX(-90deg)`;
-                        break;
-                }
-                
-                faceElement.style.transform = baseTransform;
+                // Clear any inline transform to restore CSS defaults
+                faceElement.style.transform = '';
             }
         });
         
-        // Apply forward effect only to the face currently at front
+        // Apply extra forward effect only to the face currently at front
         const frontFace = getCurrentFrontFace();
         if (frontFace) {
-            applyForwardEffect(frontFace, halfSize);
+            applyExtraForwardEffect(frontFace);
         }
         
         // Apply the overall cube rotation
@@ -236,33 +209,38 @@ document.addEventListener('DOMContentLoaded', function() {
         return 'front'; // Default fallback
     }
     
-    function applyForwardEffect(faceName, halfSize) {
+    function applyExtraForwardEffect(faceName) {
+        const cubeElement = document.querySelector('.cube-face');
+        const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 546;
+        const halfSize = cubeSize / 2;
+        const extraDistance = cubeSize / 6; // Extra forward distance for front face effect
+        
         const faceElement = cube.querySelector(`.cube-face.${faceName}`);
         if (faceElement) {
-            let forwardTransform = '';
+            let enhancedTransform = '';
             
             switch(faceName) {
                 case 'front':
-                    forwardTransform = `translateZ(${halfSize}px)`;
+                    enhancedTransform = `translateZ(${halfSize + extraDistance}px)`;
                     break;
                 case 'back':
-                    forwardTransform = `rotateY(180deg) translateZ(${halfSize}px)`;
+                    enhancedTransform = `rotateY(180deg) translateZ(${halfSize + extraDistance}px)`;
                     break;
                 case 'right':
-                    forwardTransform = `rotateY(90deg) translateZ(${halfSize}px)`;
+                    enhancedTransform = `rotateY(90deg) translateZ(${halfSize + extraDistance}px)`;
                     break;
                 case 'left':
-                    forwardTransform = `rotateY(-90deg) translateZ(${halfSize}px)`;
+                    enhancedTransform = `rotateY(-90deg) translateZ(${halfSize + extraDistance}px)`;
                     break;
                 case 'top':
-                    forwardTransform = `rotateX(90deg) translateZ(${halfSize}px)`;
+                    enhancedTransform = `rotateX(90deg) translateZ(${halfSize + extraDistance}px)`;
                     break;
                 case 'bottom':
-                    forwardTransform = `rotateX(-90deg) translateZ(${halfSize}px)`;
+                    enhancedTransform = `rotateX(-90deg) translateZ(${halfSize + extraDistance}px)`;
                     break;
             }
             
-            faceElement.style.transform = forwardTransform;
+            faceElement.style.transform = enhancedTransform;
         }
     }
 
@@ -314,12 +292,37 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         const cubeElement = document.querySelector('.cube-face');
-        const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 364;
+        const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 546;
         const halfSize = cubeSize / 2;
-        const moveDistance = cubeSize / 3; // Additional forward movement on hover
+        const hoverDistance = cubeSize / 3; // Additional forward movement on hover
         
-        // Apply both the base forward effect and the additional hover distance
-        applyForwardEffect(faceName, halfSize + moveDistance);
+        const faceElement = cube.querySelector(`.cube-face.${faceName}`);
+        if (faceElement) {
+            let hoverTransform = '';
+            
+            switch(faceName) {
+                case 'front':
+                    hoverTransform = `translateZ(${halfSize + hoverDistance}px)`;
+                    break;
+                case 'back':
+                    hoverTransform = `rotateY(180deg) translateZ(${halfSize + hoverDistance}px)`;
+                    break;
+                case 'right':
+                    hoverTransform = `rotateY(90deg) translateZ(${halfSize + hoverDistance}px)`;
+                    break;
+                case 'left':
+                    hoverTransform = `rotateY(-90deg) translateZ(${halfSize + hoverDistance}px)`;
+                    break;
+                case 'top':
+                    hoverTransform = `rotateX(90deg) translateZ(${halfSize + hoverDistance}px)`;
+                    break;
+                case 'bottom':
+                    hoverTransform = `rotateX(-90deg) translateZ(${halfSize + hoverDistance}px)`;
+                    break;
+            }
+            
+            faceElement.style.transform = hoverTransform;
+        }
     }
     
     function resetFacePosition(faceName) {
