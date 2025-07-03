@@ -244,6 +244,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function moveFaceForward(faceName) {
+        // Only apply hover effect if the face is currently facing forward (visible)
+        if (!isFaceFacingFront(faceName)) {
+            return; // Don't apply hover effect for back-facing faces
+        }
+        
         const cubeElement = document.querySelector('.cube-face');
         const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 364;
         const halfSize = cubeSize / 2;
@@ -276,6 +281,41 @@ document.addEventListener('DOMContentLoaded', function() {
             
             faceElement.style.transform = hoverTransform;
         }
+    }
+    
+    function isFaceFacingFront(faceName) {
+        // Calculate how much each face is rotated relative to facing the viewer directly
+        let faceAngleFromFront = 0;
+        
+        switch(faceName) {
+            case 'front':
+                faceAngleFromFront = 0 - currentRotationY; // Front face starts at 0°
+                break;
+            case 'right': 
+                faceAngleFromFront = 90 - currentRotationY; // Right face starts at 90°
+                break;
+            case 'back':
+                faceAngleFromFront = 180 - currentRotationY; // Back face starts at 180°
+                break;
+            case 'left':
+                faceAngleFromFront = -90 - currentRotationY; // Left face starts at -90°
+                break;
+            case 'top':
+                faceAngleFromFront = 90 - currentRotationX; // Top face starts at 90° on X axis
+                break;
+            case 'bottom':
+                faceAngleFromFront = -90 - currentRotationX; // Bottom face starts at -90° on X axis
+                break;
+            default:
+                return false;
+        }
+        
+        // Normalize angle to -180° to 180° range
+        while (faceAngleFromFront > 180) faceAngleFromFront -= 360;
+        while (faceAngleFromFront < -180) faceAngleFromFront += 360;
+        
+        // Face is visible if it's within ±70° of facing the viewer (more restrictive threshold)
+        return Math.abs(faceAngleFromFront) <= 70;
     }
     
     function resetFacePosition(faceName) {
