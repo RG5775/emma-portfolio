@@ -214,22 +214,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const normalizedY = ((currentRotationY % 360) + 360) % 360;
         const normalizedX = ((currentRotationX % 360) + 360) % 360;
         
-        // Check X-axis faces first (top/bottom)
+        // Check X-axis faces first (top/bottom) - these override Y-axis rotation
         if (normalizedX >= 315 || normalizedX <= 45) {
-            return 'top';
+            return 'bottom'; // When looking down (positive X rotation)
         } else if (normalizedX >= 135 && normalizedX <= 225) {
-            return 'bottom';
+            return 'top'; // When looking up (negative X rotation)
         }
         
         // Then check Y-axis faces (front/back/left/right)
+        // Note: Cube rotation works opposite to face visibility
         if (normalizedY >= 315 || normalizedY <= 45) {
-            return 'front';
+            return 'front';     // 0° rotation shows front face
         } else if (normalizedY >= 45 && normalizedY <= 135) {
-            return 'right';
+            return 'left';      // 90° rotation shows left face  
         } else if (normalizedY >= 135 && normalizedY <= 225) {
-            return 'back';
+            return 'back';      // 180° rotation shows back face
         } else if (normalizedY >= 225 && normalizedY <= 315) {
-            return 'left';
+            return 'right';     // 270° rotation (-90°) shows right face
         }
         
         return 'front'; // Default fallback
