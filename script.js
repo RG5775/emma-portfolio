@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 364;
         const halfSize = cubeSize / 2;
         
-        // Set all faces to their default attached positions
+        // Set all faces to their base positions without forward effect
         const faces = ['front', 'back', 'right', 'left', 'top', 'bottom'];
         faces.forEach(face => {
             const faceElement = cube.querySelector(`.cube-face.${face}`);
@@ -175,22 +175,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 switch(face) {
                     case 'front':
-                        baseTransform = `translateZ(${halfSize}px)`;
+                        baseTransform = '';
                         break;
                     case 'back':
-                        baseTransform = `rotateY(180deg) translateZ(${halfSize}px)`;
+                        baseTransform = `rotateY(180deg)`;
                         break;
                     case 'right':
-                        baseTransform = `rotateY(90deg) translateZ(${halfSize}px)`;
+                        baseTransform = `rotateY(90deg)`;
                         break;
                     case 'left':
-                        baseTransform = `rotateY(-90deg) translateZ(${halfSize}px)`;
+                        baseTransform = `rotateY(-90deg)`;
                         break;
                     case 'top':
-                        baseTransform = `rotateX(90deg) translateZ(${halfSize}px)`;
+                        baseTransform = `rotateX(90deg)`;
                         break;
                     case 'bottom':
-                        baseTransform = `rotateX(-90deg) translateZ(${halfSize}px)`;
+                        baseTransform = `rotateX(-90deg)`;
                         break;
                 }
                 
@@ -198,11 +198,73 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
+        // Apply forward effect only to the face currently at front
+        const frontFace = getCurrentFrontFace();
+        if (frontFace) {
+            applyForwardEffect(frontFace, halfSize);
+        }
+        
         // Apply the overall cube rotation
         cube.style.transform = `rotateX(${currentRotationX}deg) rotateY(${currentRotationY}deg)`;
-        console.log(`Cube rotated to: X=${currentRotationX}, Y=${currentRotationY}`);
+        console.log(`Cube rotated to: X=${currentRotationX}, Y=${currentRotationY}, Front face: ${frontFace}`);
     }
     
+    function getCurrentFrontFace() {
+        // Determine which face is most directly facing the viewer
+        const normalizedY = ((currentRotationY % 360) + 360) % 360;
+        const normalizedX = ((currentRotationX % 360) + 360) % 360;
+        
+        // Check X-axis faces first (top/bottom)
+        if (normalizedX >= 315 || normalizedX <= 45) {
+            return 'top';
+        } else if (normalizedX >= 135 && normalizedX <= 225) {
+            return 'bottom';
+        }
+        
+        // Then check Y-axis faces (front/back/left/right)
+        if (normalizedY >= 315 || normalizedY <= 45) {
+            return 'front';
+        } else if (normalizedY >= 45 && normalizedY <= 135) {
+            return 'right';
+        } else if (normalizedY >= 135 && normalizedY <= 225) {
+            return 'back';
+        } else if (normalizedY >= 225 && normalizedY <= 315) {
+            return 'left';
+        }
+        
+        return 'front'; // Default fallback
+    }
+    
+    function applyForwardEffect(faceName, halfSize) {
+        const faceElement = cube.querySelector(`.cube-face.${faceName}`);
+        if (faceElement) {
+            let forwardTransform = '';
+            
+            switch(faceName) {
+                case 'front':
+                    forwardTransform = `translateZ(${halfSize}px)`;
+                    break;
+                case 'back':
+                    forwardTransform = `rotateY(180deg) translateZ(${halfSize}px)`;
+                    break;
+                case 'right':
+                    forwardTransform = `rotateY(90deg) translateZ(${halfSize}px)`;
+                    break;
+                case 'left':
+                    forwardTransform = `rotateY(-90deg) translateZ(${halfSize}px)`;
+                    break;
+                case 'top':
+                    forwardTransform = `rotateX(90deg) translateZ(${halfSize}px)`;
+                    break;
+                case 'bottom':
+                    forwardTransform = `rotateX(-90deg) translateZ(${halfSize}px)`;
+                    break;
+            }
+            
+            faceElement.style.transform = forwardTransform;
+        }
+    }
+
     function updateActiveButton() {
         timelineButtons.forEach(button => {
             const buttonRotation = parseInt(button.dataset.rotation);
@@ -244,119 +306,29 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function moveFaceForward(faceName) {
-        // Only apply hover effect if the face is currently facing forward (visible)
-        if (!isFaceFacingFront(faceName)) {
-            return; // Don't apply hover effect for back-facing faces
+        // Only apply hover effect if this is the current front face
+        const currentFrontFace = getCurrentFrontFace();
+        if (faceName !== currentFrontFace) {
+            return; // Don't apply hover effect for non-front faces
         }
         
         const cubeElement = document.querySelector('.cube-face');
         const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 364;
         const halfSize = cubeSize / 2;
-        const moveDistance = cubeSize / 3; // Move 1/3 of cube length forward
+        const moveDistance = cubeSize / 3; // Additional forward movement on hover
         
-        const faceElement = cube.querySelector(`.cube-face.${faceName}`);
-        if (faceElement) {
-            let hoverTransform = '';
-            
-            switch(faceName) {
-                case 'front':
-                    hoverTransform = `translateZ(${halfSize + moveDistance}px)`;
-                    break;
-                case 'back':
-                    hoverTransform = `rotateY(180deg) translateZ(${halfSize + moveDistance}px)`;
-                    break;
-                case 'right':
-                    hoverTransform = `rotateY(90deg) translateZ(${halfSize + moveDistance}px)`;
-                    break;
-                case 'left':
-                    hoverTransform = `rotateY(-90deg) translateZ(${halfSize + moveDistance}px)`;
-                    break;
-                case 'top':
-                    hoverTransform = `rotateX(90deg) translateZ(${halfSize + moveDistance}px)`;
-                    break;
-                case 'bottom':
-                    hoverTransform = `rotateX(-90deg) translateZ(${halfSize + moveDistance}px)`;
-                    break;
-            }
-            
-            faceElement.style.transform = hoverTransform;
-        }
-    }
-    
-    function isFaceFacingFront(faceName) {
-        // Calculate how much each face is rotated relative to facing the viewer directly
-        let faceAngleFromFront = 0;
-        
-        switch(faceName) {
-            case 'front':
-                faceAngleFromFront = 0 - currentRotationY; // Front face starts at 0°
-                break;
-            case 'right': 
-                faceAngleFromFront = 90 - currentRotationY; // Right face starts at 90°
-                break;
-            case 'back':
-                faceAngleFromFront = 180 - currentRotationY; // Back face starts at 180°
-                break;
-            case 'left':
-                faceAngleFromFront = -90 - currentRotationY; // Left face starts at -90°
-                break;
-            case 'top':
-                faceAngleFromFront = 90 - currentRotationX; // Top face starts at 90° on X axis
-                break;
-            case 'bottom':
-                faceAngleFromFront = -90 - currentRotationX; // Bottom face starts at -90° on X axis
-                break;
-            default:
-                return false;
-        }
-        
-        // Normalize angle to -180° to 180° range
-        while (faceAngleFromFront > 180) faceAngleFromFront -= 360;
-        while (faceAngleFromFront < -180) faceAngleFromFront += 360;
-        
-        // Face is visible if it's within ±70° of facing the viewer (more restrictive threshold)
-        return Math.abs(faceAngleFromFront) <= 70;
+        // Apply both the base forward effect and the additional hover distance
+        applyForwardEffect(faceName, halfSize + moveDistance);
     }
     
     function resetFacePosition(faceName) {
-        const cubeElement = document.querySelector('.cube-face');
-        const cubeSize = cubeElement ? parseFloat(getComputedStyle(cubeElement).width) : 364;
-        const halfSize = cubeSize / 2;
-        
-        const faceElement = cube.querySelector(`.cube-face.${faceName}`);
-        if (faceElement) {
-            let baseTransform = '';
-            
-            switch(faceName) {
-                case 'front':
-                    baseTransform = `translateZ(${halfSize}px)`;
-                    break;
-                case 'back':
-                    baseTransform = `rotateY(180deg) translateZ(${halfSize}px)`;
-                    break;
-                case 'right':
-                    baseTransform = `rotateY(90deg) translateZ(${halfSize}px)`;
-                    break;
-                case 'left':
-                    baseTransform = `rotateY(-90deg) translateZ(${halfSize}px)`;
-                    break;
-                case 'top':
-                    baseTransform = `rotateX(90deg) translateZ(${halfSize}px)`;
-                    break;
-                case 'bottom':
-                    baseTransform = `rotateX(-90deg) translateZ(${halfSize}px)`;
-                    break;
-            }
-            
-            faceElement.style.transform = baseTransform;
-        }
+        // Simply refresh the display to restore proper face positioning
+        updateDisplay();
     }
     
     function resetAllFaces() {
-        const faces = ['front', 'back', 'right', 'left', 'top', 'bottom'];
-        faces.forEach(faceName => {
-            resetFacePosition(faceName);
-        });
+        // Simply refresh the display to restore all faces to proper positions
+        updateDisplay();
     }
     
 

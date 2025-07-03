@@ -640,27 +640,27 @@ nav ul li.dropdown:hover .dropdown-content {
 
 .cube-face.front {
     background: linear-gradient(135deg, #b39ddb 0%, #7ea7d8 100%);
-    transform: translateZ(273px);
+    transform: none;
 }
 
 .cube-face.back {
     background: linear-gradient(135deg, #9c27b0 0%, #f48fb1 100%);
-    transform: rotateY(180deg) translateZ(273px);
+    transform: rotateY(180deg);
 }
 
 .cube-face.right {
     background: linear-gradient(135deg, #5c6bc0 0%, #26a69a 100%);
-    transform: rotateY(90deg) translateZ(273px);
+    transform: rotateY(90deg);
 }
 
 .cube-face.left {
     background: linear-gradient(135deg, #9575cd 0%, #f3e5f5 100%);
-    transform: rotateY(-90deg) translateZ(273px);
+    transform: rotateY(-90deg);
 }
 
 .cube-face.top {
     background: linear-gradient(135deg, #7ea7d8 0%, #b39ddb 100%);
-    transform: rotateX(90deg) translateZ(273px);
+    transform: rotateX(90deg);
 }
 
 .cube-face.bottom {
@@ -953,23 +953,23 @@ nav ul li.dropdown:hover .dropdown-content {
   }
   
   .cube-face.front {
-    transform: translateZ(210px);
+    transform: none;
   }
   
   .cube-face.back {
-    transform: rotateY(180deg) translateZ(210px);
+    transform: rotateY(180deg);
   }
   
   .cube-face.right {
-    transform: rotateY(90deg) translateZ(210px);
+    transform: rotateY(90deg);
   }
   
   .cube-face.left {
-    transform: rotateY(-90deg) translateZ(210px);
+    transform: rotateY(-90deg);
   }
   
   .cube-face.top {
-    transform: rotateX(90deg) translateZ(210px);
+    transform: rotateX(90deg);
   }
   
   .cube-face.bottom {
@@ -995,23 +995,23 @@ nav ul li.dropdown:hover .dropdown-content {
   }
   
   .cube-face.front {
-    transform: translateZ(157px);
+    transform: none;
   }
   
   .cube-face.back {
-    transform: rotateY(180deg) translateZ(157px);
+    transform: rotateY(180deg);
   }
   
   .cube-face.right {
-    transform: rotateY(90deg) translateZ(157px);
+    transform: rotateY(90deg);
   }
   
   .cube-face.left {
-    transform: rotateY(-90deg) translateZ(157px);
+    transform: rotateY(-90deg);
   }
   
   .cube-face.top {
-    transform: rotateX(90deg) translateZ(157px);
+    transform: rotateX(90deg);
   }
   
   .cube-face.bottom {
