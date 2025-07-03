@@ -903,12 +903,12 @@ nav ul li.dropdown:hover .dropdown-content {
 @media (max-width: 600px) {
   
   
-  .cube-container .cube-face.front { transform: translateZ(150px); }
-  .cube-container .cube-face.back { transform: rotateY(180deg) translateZ(150px); }
-  .cube-container .cube-face.right { transform: rotateY(90deg) translateZ(150px); }
-  .cube-container .cube-face.left { transform: rotateY(-90deg) translateZ(150px); }
-  .cube-container .cube-face.top { transform: rotateX(90deg) translateZ(150px); }
-  .cube-container .cube-face.bottom { transform: rotateX(-90deg) translateZ(150px); }
+  .cube-container .cube-face.front { transform: translateZ(100px); }
+  .cube-container .cube-face.back { transform: rotateY(180deg) translateZ(100px); }
+  .cube-container .cube-face.right { transform: rotateY(90deg) translateZ(100px); }
+  .cube-container .cube-face.left { transform: rotateY(-90deg) translateZ(100px); }
+  .cube-container .cube-face.top { transform: rotateX(90deg) translateZ(100px); }
+  .cube-container .cube-face.bottom { transform: rotateX(-90deg) translateZ(100px); }
 
   /* 2. Ensure nav bar is on top of the cube */
   nav {
@@ -983,8 +983,8 @@ nav ul li.dropdown:hover .dropdown-content {
 
 /* Desktop default */
 .cube-container, .cube-face {
-  width: 300px;
-  height: 300px;
+  width: 260px;
+  height: 260px;
 }
 .cube-container {
   margin: 2.5rem auto 2rem auto;
