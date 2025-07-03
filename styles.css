@@ -665,7 +665,7 @@ nav ul li.dropdown:hover .dropdown-content {
 
 .cube-face.bottom {
     background: linear-gradient(135deg, #673ab7 0%, #64b5f6 100%);
-    transform: rotateX(-90deg) translateZ(273px);
+    transform: rotateX(-90deg);
 }
 
 .role-content {
@@ -973,7 +973,7 @@ nav ul li.dropdown:hover .dropdown-content {
   }
   
   .cube-face.bottom {
-    transform: rotateX(-90deg) translateZ(210px);
+    transform: rotateX(-90deg);
   }
 }
 
@@ -1015,6 +1015,6 @@ nav ul li.dropdown:hover .dropdown-content {
   }
   
   .cube-face.bottom {
-    transform: rotateX(-90deg) translateZ(157px);
+    transform: rotateX(-90deg);
   }
 }
