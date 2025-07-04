@@ -390,7 +390,7 @@ nav ul li.dropdown:hover .dropdown-content {
 /* Mobile Responsiveness - Mobile phones */
 @media screen and (max-width: 480px) {
     :root {
-        --cube-size-mobile: 70vw;
+        --cube-size-mobile: 80vw;
     }
     
     nav {
@@ -615,8 +615,8 @@ nav ul li.dropdown:hover .dropdown-content {
     overflow: hidden;
     position: relative;
     z-index: 0;
-    padding-top: 250px;
-    padding-bottom: 25px; /* Increased spacing for desktop to show full cube */
+    padding-top: 100px;
+    padding-bottom: 25px;
 }
 
 .banner-container {
@@ -632,7 +632,7 @@ nav ul li.dropdown:hover .dropdown-content {
     position: relative;
     width: 400px;
     height: 400px;
-    margin: -100px auto 3rem auto; /* Moved cube up by 100px */
+    margin: 0 auto 3rem auto;
     perspective: 1000px;
     z-index: 2; /* keep this below nav if needed */
 }
@@ -814,7 +814,7 @@ nav ul li.dropdown:hover .dropdown-content {
     justify-content: center;
     align-items: center;
     gap: 3rem;
-    margin-top: 155px; /* Moved buttons down by 155px total */
+            margin-top: 2rem;
     z-index: 15;
     position: relative;
 }
@@ -876,8 +876,7 @@ nav ul li.dropdown:hover .dropdown-content {
     }
 
     .cube-container {
-        /* Add 500px to tablet view as well */
-        margin-top: 600px !important; /* 100px + 500px additional */
+        margin-top: 2rem;
     }
 
     .cube-face {
@@ -1003,7 +1002,7 @@ nav ul li.dropdown:hover .dropdown-content {
     width: 200px;
     height: 200px;
     /* Center it and add spacing from nav/text */
-    margin: 1100px auto 600px auto; /* Added 500px more to top margin */
+    margin: 2rem auto 2rem auto;
     /* Ensure it's not covering other content */
     position: relative !important;
     /* Option 2: scale down instead of setting fixed size */
@@ -1033,9 +1032,9 @@ nav ul li.dropdown:hover .dropdown-content {
   
   /* Add spacing to the interactive banner section */
   #interactive-banner {
-    margin-top: 80px; /* Push the entire section down */
-    padding-top: 40px;
-    padding-bottom: 80px; /* Add bottom padding to match */
+    margin-top: 0;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   /* 3. Ensure hero text and indicators appear above cube */
