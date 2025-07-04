@@ -601,6 +601,10 @@ nav ul li.dropdown:hover .dropdown-content {
         font-size: 0.8rem;
     }
     
+    .cube-container {
+        margin-top: 2rem; /* Move cube down by 2rem on very small screens */
+    }
+    
     .cube-face {
         border-radius: 16px !important; /* Ensure rounded corners on very small screens */
     }
@@ -817,6 +821,10 @@ nav ul li.dropdown:hover .dropdown-content {
         margin: 0;
     }
     
+    .cube-container {
+        margin-top: 2rem; /* Move cube down by 2rem on mobile */
+    }
+    
     .cube-face {
         border-radius: 16px !important; /* Explicitly set border radius for mobile */
     }
@@ -853,6 +861,10 @@ nav ul li.dropdown:hover .dropdown-content {
         margin: 0;
         margin-bottom: 2rem;
         padding-top: 0; /* Remove top padding for mobile */
+    }
+    
+    .cube-container {
+        margin-top: 2rem; /* Move cube down by 2rem on mobile */
     }
     
     .cube-face {
@@ -916,6 +928,11 @@ nav ul li.dropdown:hover .dropdown-content {
   /* Explicitly set border radius for cube faces on mobile */
   .cube-face {
     border-radius: 16px !important; /* Force border radius on mobile */
+  }
+  
+  /* Move cube down by 2rem on mobile */
+  .cube-container {
+    margin-top: 2rem; /* Move cube down by 2rem on mobile */
   }
   
   /* Add spacing to the interactive banner section */
@@ -1046,7 +1063,7 @@ nav ul li.dropdown:hover .dropdown-content {
     height: 70vw;
     max-width: 315px;
     max-height: 315px;
-    margin: 1.5rem auto 1rem auto;
+    margin: 3.5rem auto 1rem auto; /* Increased top margin to move cube down by 2rem */
   }
   
   .cube-face {
