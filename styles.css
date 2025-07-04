@@ -564,7 +564,7 @@ nav ul li.dropdown:hover .dropdown-content {
     }
     
     .banner-container {
-        padding: 3rem 0.25rem;
+        padding: 0 0.25rem 6rem 0.25rem; /* Remove top padding, extra bottom for rotation */
         margin: 0;
         margin-bottom: 2rem;
     }
@@ -944,9 +944,11 @@ nav ul li.dropdown:hover .dropdown-content {
   #interactive-banner {
     margin-top: 0; /* Remove top margin for mobile */
     padding-top: 0; /* Remove all top padding for mobile */
-    padding-bottom: 10rem; /* Extra bottom padding for cube rotation space */
-    min-height: 85vh; /* Ensure banner is big enough for cube rotation */
+    padding-bottom: 6rem; /* Extra bottom padding for cube rotation space */
+    min-height: 80vh; /* Ensure banner is big enough for cube rotation */
     overflow: visible; /* Allow cube to be fully visible during rotation */
+    display: flex; /* Use flexbox for centering */
+    align-items: center; /* Center vertically */
   }
   
   /* Additional rule to ensure no gap between nav and banner */
@@ -974,6 +976,11 @@ nav ul li.dropdown:hover .dropdown-content {
   /* Add padding to the banner container on mobile */
   .banner-container {
     padding-top: 0 !important; /* Remove all top padding */
+    width: 100%; /* Full width for flexbox */
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack vertically */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
   }
   
   /* Make sure the interaction hint is visible */
@@ -1070,7 +1077,11 @@ nav ul li.dropdown:hover .dropdown-content {
     height: 70vw;
     max-width: 315px;
     max-height: 315px;
-    margin: 5rem auto 4rem auto; /* Move cube down for better spacing distribution */
+    margin: 0 auto; /* Center the cube */
+  }
+  
+  .cube-container {
+    margin: 3rem auto 3rem auto; /* Center the cube with equal top/bottom margins */
   }
   
   .cube-face {
