@@ -51,6 +51,7 @@ nav {
     border-bottom: 1px solid #eee;
     position: relative;
     z-index: 1000;
+    margin: 0; /* Ensure no default margins */
 }
 
 nav ul {
@@ -397,6 +398,7 @@ nav ul li.dropdown:hover .dropdown-content {
         background-color: var(--secondary-color);
         z-index: 10;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 0; /* Remove any bottom margin */
     }
     
     header {
@@ -442,6 +444,22 @@ nav ul li.dropdown:hover .dropdown-content {
     
     nav ul li.dropdown:hover .dropdown-content {
         display: block;
+    }
+    
+    /* Ensure no gap between nav and banner */
+    nav {
+        margin-bottom: 0 !important;
+    }
+    
+    #interactive-banner {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+    
+    /* Direct adjacency rule to eliminate any gap */
+    nav + #interactive-banner {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
     }
     
     main {
@@ -874,8 +892,14 @@ nav ul li.dropdown:hover .dropdown-content {
   /* Add spacing to the interactive banner section */
   #interactive-banner {
     margin-top: 0; /* Remove top margin for mobile */
-    padding-top: 20px; /* Minimal padding */
+    padding-top: 0; /* Remove all top padding for mobile */
     padding-bottom: 80px; /* Add bottom padding to match */
+  }
+  
+  /* Additional rule to ensure no gap between nav and banner */
+  nav + #interactive-banner {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
   }
 
   /* 3. Ensure hero text and indicators appear above cube */
