@@ -602,7 +602,7 @@ nav ul li.dropdown:hover .dropdown-content {
     }
     
     .cube-container {
-        margin-top: 8rem !important; /* TESTING: Move cube down significantly on very small screens */
+        margin-top: 2rem; /* Move cube down by 2rem on very small screens */
     }
     
     .cube-face {
@@ -617,7 +617,7 @@ nav ul li.dropdown:hover .dropdown-content {
     margin: 0;
     background: linear-gradient(135deg, #f5f0ff 0%, #e8e0f2 100%);
     perspective: 1800px;
-    overflow: hidden;
+    overflow: visible; /* Allow cube rotation to be fully visible */
     position: relative;
     z-index: 0;
     padding-top: 100px; /* Additional spacing for desktop */
@@ -627,10 +627,13 @@ nav ul li.dropdown:hover .dropdown-content {
 @media (max-width: 768px) {
     #interactive-banner {
         padding-top: 0 !important;
+        min-height: 80vh; /* Ensure banner is big enough for cube rotation */
+        overflow: visible; /* Allow cube to be fully visible during rotation */
     }
     
     .banner-container {
         padding-top: 0 !important;
+        padding-bottom: 6rem; /* Extra space for cube rotation */
     }
 }
 
@@ -817,12 +820,12 @@ nav ul li.dropdown:hover .dropdown-content {
 /* Mobile Responsiveness for 3D Banner */
 @media screen and (max-width: 768px) {
     .banner-container {
-        padding: 0 0.5rem 3rem 0.5rem; /* Remove top padding, keep bottom */
+        padding: 0 0.5rem 6rem 0.5rem; /* Remove top padding, extra bottom for rotation */
         margin: 0;
     }
     
     .cube-container {
-        margin-top: 8rem !important; /* TESTING: Move cube down significantly on mobile */
+        margin-top: 2rem; /* Move cube down by 2rem on mobile */
     }
     
     .cube-face {
@@ -851,7 +854,7 @@ nav ul li.dropdown:hover .dropdown-content {
 
 @media screen and (max-width: 480px) {
     .banner-container {
-        padding: 0 0.25rem 1rem 0.25rem; /* Remove top padding completely */
+        padding: 0 0.25rem 6rem 0.25rem; /* Remove top padding, extra bottom for rotation */
         margin: 0;
         margin-bottom: 2rem;
     }
@@ -861,10 +864,12 @@ nav ul li.dropdown:hover .dropdown-content {
         margin: 0;
         margin-bottom: 2rem;
         padding-top: 0; /* Remove top padding for mobile */
+        min-height: 90vh; /* Bigger banner for small screens */
+        overflow: visible; /* Allow cube to be fully visible during rotation */
     }
     
     .cube-container {
-        margin-top: 8rem !important; /* TESTING: Move cube down significantly on mobile */
+        margin-top: 2rem; /* Move cube down by 2rem on mobile */
     }
     
     .cube-face {
@@ -932,14 +937,16 @@ nav ul li.dropdown:hover .dropdown-content {
   
   /* Move cube down by 2rem on mobile */
   .cube-container {
-    margin-top: 8rem !important; /* TESTING: Move cube down significantly on mobile */
+    margin-top: 2rem; /* Move cube down by 2rem on mobile */
   }
   
   /* Add spacing to the interactive banner section */
   #interactive-banner {
     margin-top: 0; /* Remove top margin for mobile */
     padding-top: 0; /* Remove all top padding for mobile */
-    padding-bottom: 80px; /* Add bottom padding to match */
+    padding-bottom: 10rem; /* Extra bottom padding for cube rotation space */
+    min-height: 85vh; /* Ensure banner is big enough for cube rotation */
+    overflow: visible; /* Allow cube to be fully visible during rotation */
   }
   
   /* Additional rule to ensure no gap between nav and banner */
@@ -1063,7 +1070,7 @@ nav ul li.dropdown:hover .dropdown-content {
     height: 70vw;
     max-width: 315px;
     max-height: 315px;
-    margin: 10rem auto 1rem auto !important; /* TESTING: Dramatically increased top margin */
+    margin: 3.5rem auto 1rem auto; /* Move cube down by 2rem (1.5 + 2 = 3.5) */
   }
   
   .cube-face {
