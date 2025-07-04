@@ -454,12 +454,14 @@ nav ul li.dropdown:hover .dropdown-content {
     }
     
     #interactive-banner {
+        margin: 0 auto !important;
         margin-top: 0 !important;
         padding-top: 0 !important;
     }
     
     /* Direct adjacency rule to eliminate any gap */
     nav + #interactive-banner {
+        margin: 0 auto !important;
         margin-top: 0 !important;
         padding-top: 0 !important;
     }
@@ -612,9 +614,9 @@ nav ul li.dropdown:hover .dropdown-content {
 
 /* Interactive 3D Banner Styles */
 #interactive-banner {
-    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 0;
-    margin: 0;
     background: linear-gradient(135deg, #f5f0ff 0%, #e8e0f2 100%);
     perspective: 1800px;
     overflow: visible; /* Allow cube rotation to be fully visible */
@@ -861,7 +863,7 @@ nav ul li.dropdown:hover .dropdown-content {
 
     #interactive-banner {
         padding: 0;
-        margin: 0;
+        margin: 0 auto;
         margin-bottom: 2rem;
         padding-top: 0; /* Remove top padding for mobile */
         min-height: 90vh; /* Bigger banner for small screens */
@@ -953,6 +955,7 @@ nav ul li.dropdown:hover .dropdown-content {
   
   /* Additional rule to ensure no gap between nav and banner */
   nav + #interactive-banner {
+    margin: 0 auto !important;
     margin-top: 0 !important;
     padding-top: 0 !important;
   }
@@ -1028,6 +1031,8 @@ nav ul li.dropdown:hover .dropdown-content {
 /* Consolidated mobile banner spacing rules above */
 #interactive-banner {
   padding-top: 8rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Mobile cube sizing and spacing rules consolidated below */
