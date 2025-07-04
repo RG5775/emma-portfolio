@@ -631,8 +631,8 @@ nav ul li.dropdown:hover .dropdown-content {
 
 .cube-container {
     position: relative;
-    width: 400px;
-    height: 400px;
+    width: 320px; /* 80% of 400px */
+    height: 320px; /* 80% of 400px */
     margin: 0 auto 3rem auto;
     perspective: 1000px;
     z-index: 2; /* keep this below nav if needed */
@@ -654,8 +654,8 @@ nav ul li.dropdown:hover .dropdown-content {
 
 .cube-face {
     position: absolute;
-    width: 400px;
-    height: 400px;
+    width: 320px; /* 80% of 400px */
+    height: 320px; /* 80% of 400px */
     border-radius: 16px;
     display: flex;
     align-items: center;
@@ -668,27 +668,27 @@ nav ul li.dropdown:hover .dropdown-content {
 
 .cube-face.front {
     background: linear-gradient(135deg, #b39ddb 0%, #7ea7d8 100%);
-    transform: translateZ(200px);
+    transform: translateZ(160px); /* 80% of 200px */
 }
 
 .cube-face.back {
     background: linear-gradient(135deg, #9c27b0 0%, #f48fb1 100%);
-    transform: rotateY(180deg) translateZ(200px);
+    transform: rotateY(180deg) translateZ(160px); /* 80% of 200px */
 }
 
 .cube-face.right {
     background: linear-gradient(135deg, #5c6bc0 0%, #26a69a 100%);
-    transform: rotateY(90deg) translateZ(200px);
+    transform: rotateY(90deg) translateZ(160px); /* 80% of 200px */
 }
 
 .cube-face.left {
     background: linear-gradient(135deg, #9575cd 0%, #f3e5f5 100%);
-    transform: rotateY(-90deg) translateZ(200px);
+    transform: rotateY(-90deg) translateZ(160px); /* 80% of 200px */
 }
 
 .cube-face.top {
     background: linear-gradient(135deg, #7ea7d8 0%, #b39ddb 100%);
-    transform: rotateX(90deg) translateZ(200px);
+    transform: rotateX(90deg) translateZ(160px); /* 80% of 200px */
     cursor: pointer;
     transition: all 0.3s ease;
     perspective: 1000px;
@@ -739,7 +739,7 @@ nav ul li.dropdown:hover .dropdown-content {
 
 .cube-face.bottom {
     background: linear-gradient(135deg, #673ab7 0%, #64b5f6 100%);
-    transform: rotateX(-90deg) translateZ(200px);
+    transform: rotateX(-90deg) translateZ(160px); /* 80% of 200px */
 }
 
 .role-content {
