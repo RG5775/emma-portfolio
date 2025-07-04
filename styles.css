@@ -115,6 +115,10 @@ main {
     position: relative;
     z-index: 1;
     margin-top: 0; /* default for desktop */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
 }
 
 section {
@@ -603,6 +607,9 @@ nav ul li.dropdown:hover .dropdown-content {
     
     .cube-container {
         margin-top: 0; /* Remove top margin for centered positioning */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .cube-face {
@@ -657,6 +664,9 @@ nav ul li.dropdown:hover .dropdown-content {
     position: relative;
     perspective: 1800px;
     z-index: 2; /* keep this below nav if needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cube {
@@ -668,6 +678,7 @@ nav ul li.dropdown:hover .dropdown-content {
     transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
     cursor: grab;
     z-index: 1;
+    flex-shrink: 0;
 }
 
 .cube:active {
@@ -760,6 +771,7 @@ nav ul li.dropdown:hover .dropdown-content {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     opacity: 0.8;
     transition: opacity 0.3s ease;
+    z-index: 10;
 }
 
 .cube-container:hover .interaction-hint {
@@ -834,6 +846,9 @@ nav ul li.dropdown:hover .dropdown-content {
     
     .cube-container {
         margin-top: 0; /* Remove top margin for centered positioning */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .cube-face {
@@ -881,6 +896,9 @@ nav ul li.dropdown:hover .dropdown-content {
     
     .cube-container {
         margin-top: 0; /* Remove top margin for centered positioning */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .cube-face {
@@ -949,6 +967,9 @@ nav ul li.dropdown:hover .dropdown-content {
   /* Center cube within banner on mobile */
   .cube-container {
     margin-top: 0; /* Remove top margin for centered positioning */
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   /* Add spacing to the interactive banner section */
@@ -1036,6 +1057,9 @@ nav ul li.dropdown:hover .dropdown-content {
 .cube-container {
   margin: 2.5rem auto 2rem auto;
   perspective: 1800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .banner-container {
   margin: 0 auto;
