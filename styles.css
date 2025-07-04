@@ -742,7 +742,7 @@ nav ul li.dropdown:hover .dropdown-content {
 
 .interaction-hint {
     position: absolute;
-    bottom: -60px;
+    bottom: -333px;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(255, 255, 255, 0.9);
@@ -751,7 +751,7 @@ nav ul li.dropdown:hover .dropdown-content {
     font-size: 0.9rem;
     color: var(--primary-color);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    opacity: 0.8;
+    opacity: 0.7;
     transition: opacity 0.3s ease;
 }
 
@@ -764,7 +764,7 @@ nav ul li.dropdown:hover .dropdown-content {
     justify-content: center;
     align-items: center;
     gap: 3rem;
-    margin-top: 8rem;
+    margin-top: 25rem;
     margin-bottom: 3rem;
 }
 
@@ -847,7 +847,7 @@ nav ul li.dropdown:hover .dropdown-content {
 
     .timeline-navigation {
         gap: 1.5rem;
-        margin-top: 2rem;
+        margin-top: 15rem;
         margin-bottom: 2rem;
     }
 }
@@ -897,7 +897,7 @@ nav ul li.dropdown:hover .dropdown-content {
 
     .timeline-navigation {
         gap: 1rem;
-        margin-top: 1.5rem;
+        margin-top: 12rem;
         margin-bottom: 2rem;
         padding: 0 0.5rem;
     }
@@ -911,9 +911,11 @@ nav ul li.dropdown:hover .dropdown-content {
     }
 
     .interaction-hint {
-        position: relative;
-        bottom: auto;
-        margin-top: 1rem;
+        position: absolute;
+        bottom: -217px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 0;
         font-size: 0.75rem;
         padding: 6px 12px;
         display: inline-block;
@@ -978,9 +980,12 @@ nav ul li.dropdown:hover .dropdown-content {
   
   /* Make sure the interaction hint is visible */
   .interaction-hint {
-    position: relative;
+    position: absolute;
+    bottom: -217px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 10;
-    margin-top: 1rem;
+    margin-top: 0;
   }
   
   /* Adjust text sizes for smaller cube */
@@ -1060,6 +1065,14 @@ nav ul li.dropdown:hover .dropdown-content {
   
   .cube-face.bottom {
     transform: rotateX(-90deg) translateZ(210px);
+  }
+  
+  .interaction-hint {
+    bottom: -270px;
+  }
+  
+  .timeline-navigation {
+    margin-top: 20rem;
   }
 }
 
