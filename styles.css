@@ -390,7 +390,7 @@ nav ul li.dropdown:hover .dropdown-content {
 /* Mobile Responsiveness - Mobile phones */
 @media screen and (max-width: 480px) {
     :root {
-        --cube-size-mobile: 64vw; /* 80% of 80vw */
+        --cube-size-mobile: 65vw; /* 80% of 80vw */
     }
     
     nav {
@@ -616,7 +616,8 @@ nav ul li.dropdown:hover .dropdown-content {
     position: relative;
     z-index: 0;
     padding-top: 100px;
-    padding-bottom: 25px;
+    padding-bottom: 120px; /* Increased from 25px to provide more space */
+    min-height: 600px; /* Added minimum height for better spacing */
 }
 
 .banner-container {
@@ -631,8 +632,8 @@ nav ul li.dropdown:hover .dropdown-content {
 
 .cube-container {
     position: relative;
-    width: 400px;
-    height: 400px;
+    width: 320px; /* 80% of 400px */
+    height: 320px; /* 80% of 400px */
     margin: 0 auto 3rem auto;
     perspective: 1000px;
     z-index: 2; /* keep this below nav if needed */
@@ -654,8 +655,8 @@ nav ul li.dropdown:hover .dropdown-content {
 
 .cube-face {
     position: absolute;
-    width: 400px;
-    height: 400px;
+    width: 320px; /* 80% of 400px */
+    height: 320px; /* 80% of 400px */
     border-radius: 16px;
     display: flex;
     align-items: center;
@@ -668,27 +669,27 @@ nav ul li.dropdown:hover .dropdown-content {
 
 .cube-face.front {
     background: linear-gradient(135deg, #b39ddb 0%, #7ea7d8 100%);
-    transform: translateZ(200px);
+    transform: translateZ(160px); /* 80% of 200px */
 }
 
 .cube-face.back {
     background: linear-gradient(135deg, #9c27b0 0%, #f48fb1 100%);
-    transform: rotateY(180deg) translateZ(200px);
+    transform: rotateY(180deg) translateZ(160px); /* 80% of 200px */
 }
 
 .cube-face.right {
     background: linear-gradient(135deg, #5c6bc0 0%, #26a69a 100%);
-    transform: rotateY(90deg) translateZ(200px);
+    transform: rotateY(90deg) translateZ(160px); /* 80% of 200px */
 }
 
 .cube-face.left {
     background: linear-gradient(135deg, #9575cd 0%, #f3e5f5 100%);
-    transform: rotateY(-90deg) translateZ(200px);
+    transform: rotateY(-90deg) translateZ(160px); /* 80% of 200px */
 }
 
 .cube-face.top {
     background: linear-gradient(135deg, #7ea7d8 0%, #b39ddb 100%);
-    transform: rotateX(90deg) translateZ(200px);
+    transform: rotateX(90deg) translateZ(160px); /* 80% of 200px */
     cursor: pointer;
     transition: all 0.3s ease;
     perspective: 1000px;
@@ -739,7 +740,7 @@ nav ul li.dropdown:hover .dropdown-content {
 
 .cube-face.bottom {
     background: linear-gradient(135deg, #673ab7 0%, #64b5f6 100%);
-    transform: rotateX(-90deg) translateZ(200px);
+    transform: rotateX(-90deg) translateZ(160px); /* 80% of 200px */
 }
 
 .role-content {
@@ -816,7 +817,7 @@ nav ul li.dropdown:hover .dropdown-content {
     align-items: center;
     gap: 3rem;
     position: absolute;
-    bottom: 2rem;
+    bottom: 3rem; /* Increased from 2rem for more separation */
     left: 50%;
     transform: translateX(-50%);
     z-index: 15;
@@ -1006,17 +1007,18 @@ nav ul li.dropdown:hover .dropdown-content {
   .interaction-hint {
     position: absolute;
     top: 50%;
-    left: 1rem;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 100;
     margin: 0;
     font-size: 0.75rem;
     padding: 8px 12px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 240, 255, 0.9));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(245, 240, 255, 0.95));
     border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(153, 102, 204, 0.2);
-    border: 1px solid rgba(153, 102, 204, 0.3);
+    box-shadow: 0 4px 12px rgba(153, 102, 204, 0.3);
+    border: 1px solid rgba(153, 102, 204, 0.4);
     white-space: nowrap;
+    backdrop-filter: blur(10px);
   }
   
   /* Text sizing for mobile cube */
