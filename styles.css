@@ -52,6 +52,7 @@ nav {
     position: relative;
     z-index: 1000;
     margin: 0; /* Ensure no default margins */
+    padding: 0; /* Ensure no default padding */
 }
 
 nav ul {
@@ -449,6 +450,7 @@ nav ul li.dropdown:hover .dropdown-content {
     /* Ensure no gap between nav and banner */
     nav {
         margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
     }
     
     #interactive-banner {
@@ -611,6 +613,17 @@ nav ul li.dropdown:hover .dropdown-content {
     position: relative;
     z-index: 0;
     padding-top: 100px; /* Additional spacing for desktop */
+}
+
+/* Remove top padding on mobile screens */
+@media (max-width: 768px) {
+    #interactive-banner {
+        padding-top: 0 !important;
+    }
+    
+    .banner-container {
+        padding-top: 0 !important;
+    }
 }
 
 .banner-container {
@@ -796,7 +809,7 @@ nav ul li.dropdown:hover .dropdown-content {
 /* Mobile Responsiveness for 3D Banner */
 @media screen and (max-width: 768px) {
     .banner-container {
-        padding: 3rem 0.5rem;
+        padding: 0 0.5rem 3rem 0.5rem; /* Remove top padding, keep bottom */
         margin: 0;
     }
     .cube-face {
@@ -825,7 +838,7 @@ nav ul li.dropdown:hover .dropdown-content {
 
 @media screen and (max-width: 480px) {
     .banner-container {
-        padding: 1rem 0.25rem; /* Reduced top padding */
+        padding: 0 0.25rem 1rem 0.25rem; /* Remove top padding completely */
         margin: 0;
         margin-bottom: 2rem;
     }
@@ -887,6 +900,8 @@ nav ul li.dropdown:hover .dropdown-content {
   nav {
     position: relative;
     z-index: 9999;  /* high value to overlay the cube */
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
   }
   
   /* Add spacing to the interactive banner section */
@@ -920,7 +935,7 @@ nav ul li.dropdown:hover .dropdown-content {
   
   /* Add padding to the banner container on mobile */
   .banner-container {
-    padding-top: 1rem; /* Reduced top padding */
+    padding-top: 0 !important; /* Remove all top padding */
   }
   
   /* Make sure the interaction hint is visible */
@@ -965,6 +980,13 @@ nav ul li.dropdown:hover .dropdown-content {
 .banner-container {
   margin: 0 auto;
   padding: 3rem 1rem;
+}
+
+/* Mobile override for banner container */
+@media (max-width: 768px) {
+  .banner-container {
+    padding-top: 0 !important;
+  }
 }
 #interactive-banner {
   padding-top: 8rem;
