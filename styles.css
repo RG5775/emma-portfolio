@@ -602,7 +602,7 @@ nav ul li.dropdown:hover .dropdown-content {
     }
     
     .cube-container {
-        margin-top: 2rem; /* Move cube down by 2rem on very small screens */
+        margin-top: 8rem !important; /* TESTING: Move cube down significantly on very small screens */
     }
     
     .cube-face {
@@ -822,7 +822,7 @@ nav ul li.dropdown:hover .dropdown-content {
     }
     
     .cube-container {
-        margin-top: 2rem; /* Move cube down by 2rem on mobile */
+        margin-top: 8rem !important; /* TESTING: Move cube down significantly on mobile */
     }
     
     .cube-face {
@@ -864,7 +864,7 @@ nav ul li.dropdown:hover .dropdown-content {
     }
     
     .cube-container {
-        margin-top: 2rem; /* Move cube down by 2rem on mobile */
+        margin-top: 8rem !important; /* TESTING: Move cube down significantly on mobile */
     }
     
     .cube-face {
@@ -932,7 +932,7 @@ nav ul li.dropdown:hover .dropdown-content {
   
   /* Move cube down by 2rem on mobile */
   .cube-container {
-    margin-top: 2rem; /* Move cube down by 2rem on mobile */
+    margin-top: 8rem !important; /* TESTING: Move cube down significantly on mobile */
   }
   
   /* Add spacing to the interactive banner section */
@@ -1063,7 +1063,7 @@ nav ul li.dropdown:hover .dropdown-content {
     height: 70vw;
     max-width: 315px;
     max-height: 315px;
-    margin: 3.5rem auto 1rem auto; /* Increased top margin to move cube down by 2rem */
+    margin: 10rem auto 1rem auto !important; /* TESTING: Dramatically increased top margin */
   }
   
   .cube-face {
