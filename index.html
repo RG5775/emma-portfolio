@@ -29,7 +29,8 @@
     <!-- Interactive 3D Banner Section -->
     <section id="interactive-banner">
         <div class="banner-container">
-            <div class="cube-container" id="cubeContainer">
+            <div class="cube-wrapper">
+                <div class="cube-container" id="cubeContainer">
                     <div class="cube" id="cube">
                         <div class="cube-face front" data-role="data-analyst">
                             <div class="role-content">
@@ -59,7 +60,7 @@
                                 <div class="role-description">Building strong financial foundations</div>
                             </div>
                         </div>
-                        <div class="cube-face top" data-role="skills">
+                        <div class="cube-face top" data-role="skills" onclick="window.location.href='skills_and_projects.html#skills'">
                             <div class="role-content">
                                 <h2>Skills</h2>
                                 <span class="time-indicator"></span>
@@ -75,15 +76,16 @@
                         </div>
                     </div>
                     <div class="interaction-hint" id="interactionHint">
-                        <span>🖱️ Click and drag to explore my career journey</span>
+                        <span>🖱️ Click and drag</span>
                     </div>
                 </div>
+            </div>
             <div class="timeline-navigation">
-                <button class="timeline-btn" data-rotation="90">
+                <button class="timeline-btn active" data-rotation="90">
                     <span class="timeline-dot"></span>
                     <span class="timeline-label">Current</span>
                 </button>
-                <button class="timeline-btn active" data-rotation="-45">
+                <button class="timeline-btn" data-rotation="0">
                     <span class="timeline-dot"></span>
                     <span class="timeline-label">Transitioning</span>
                 </button>
