@@ -807,7 +807,7 @@ nav ul li.dropdown:hover .dropdown-content {
 
 @media screen and (max-width: 480px) {
     .banner-container {
-        padding: 3rem 0.25rem;
+        padding: 1rem 0.25rem; /* Reduced top padding */
         margin: 0;
         margin-bottom: 2rem;
     }
@@ -816,6 +816,7 @@ nav ul li.dropdown:hover .dropdown-content {
         padding: 0;
         margin: 0;
         margin-bottom: 2rem;
+        padding-top: 0; /* Remove top padding for mobile */
     }
 
     .role-content {
@@ -872,8 +873,8 @@ nav ul li.dropdown:hover .dropdown-content {
   
   /* Add spacing to the interactive banner section */
   #interactive-banner {
-    margin-top: 80px; /* Push the entire section down */
-    padding-top: 40px;
+    margin-top: 0; /* Remove top margin for mobile */
+    padding-top: 20px; /* Minimal padding */
     padding-bottom: 80px; /* Add bottom padding to match */
   }
 
@@ -895,7 +896,7 @@ nav ul li.dropdown:hover .dropdown-content {
   
   /* Add padding to the banner container on mobile */
   .banner-container {
-    padding-top: 3rem;
+    padding-top: 1rem; /* Reduced top padding */
   }
   
   /* Make sure the interaction hint is visible */
@@ -943,6 +944,13 @@ nav ul li.dropdown:hover .dropdown-content {
 }
 #interactive-banner {
   padding-top: 8rem;
+}
+
+/* Mobile override for banner padding */
+@media (max-width: 600px) {
+  #interactive-banner {
+    padding-top: 0 !important;
+  }
 }
 
 /* Tablet - 50% larger cube */
