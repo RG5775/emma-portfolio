@@ -110,12 +110,7 @@ main {
     z-index: 5;
 }
 
-/* Base styling for the cube wrapper */
-.cube-wrapper {
-    position: relative;
-    z-index: 1;
-    margin-top: 0; /* default for desktop */
-}
+/* Cube wrapper removed - no longer needed */
 
 section {
     margin: 0;
@@ -966,12 +961,7 @@ nav ul li.dropdown:hover .dropdown-content {
 
   /* Timeline navigation already handled in media queries above */
   
-  /* Ensure the cube wrapper doesn't interfere */
-  .cube-wrapper {
-    position: relative;
-    z-index: 1;
-    padding-top: 0; /* Removed since we have large margins */
-  }
+  /* Cube wrapper removed - no longer needed */
   
   /* Add padding to the banner container on mobile */
   .banner-container {
