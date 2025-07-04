@@ -390,7 +390,7 @@ nav ul li.dropdown:hover .dropdown-content {
 /* Mobile Responsiveness - Mobile phones */
 @media screen and (max-width: 480px) {
     :root {
-        --cube-size-mobile: 64vw; /* 80% of 80vw */
+        --cube-size-mobile: 65vw; /* 80% of 80vw */
     }
     
     nav {
@@ -1006,17 +1006,18 @@ nav ul li.dropdown:hover .dropdown-content {
   .interaction-hint {
     position: absolute;
     top: 50%;
-    left: 1rem;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 100;
     margin: 0;
     font-size: 0.75rem;
     padding: 8px 12px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 240, 255, 0.9));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(245, 240, 255, 0.95));
     border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(153, 102, 204, 0.2);
-    border: 1px solid rgba(153, 102, 204, 0.3);
+    box-shadow: 0 4px 12px rgba(153, 102, 204, 0.3);
+    border: 1px solid rgba(153, 102, 204, 0.4);
     white-space: nowrap;
+    backdrop-filter: blur(10px);
   }
   
   /* Text sizing for mobile cube */
