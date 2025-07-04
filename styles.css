@@ -626,6 +626,7 @@ nav ul li.dropdown:hover .dropdown-content {
     text-align: center;
     position: relative;
     z-index: 1;
+    height: 100%;
 }
 
 .cube-container {
@@ -814,9 +815,12 @@ nav ul li.dropdown:hover .dropdown-content {
     justify-content: center;
     align-items: center;
     gap: 3rem;
-            margin-top: 2rem;
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 15;
-    position: relative;
+    margin: 0;
 }
 
 .timeline-btn {
