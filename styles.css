@@ -812,9 +812,7 @@ nav ul li.dropdown:hover .dropdown-content {
         padding: 0 0.5rem 3rem 0.5rem; /* Remove top padding, keep bottom */
         margin: 0;
     }
-    .cube-face {
-        border-radius: 0;
-    }
+    /* Keep same border radius as desktop - removed border-radius: 0 */
 
     .role-content h2 {
         font-size: 1.8rem;
@@ -982,22 +980,12 @@ nav ul li.dropdown:hover .dropdown-content {
   padding: 3rem 1rem;
 }
 
-/* Mobile override for banner container */
-@media (max-width: 768px) {
-  .banner-container {
-    padding-top: 0 !important;
-  }
-}
+/* Consolidated mobile banner spacing rules above */
 #interactive-banner {
   padding-top: 8rem;
 }
 
-/* Mobile override for banner padding */
-@media (max-width: 600px) {
-  #interactive-banner {
-    padding-top: 0 !important;
-  }
-}
+/* Mobile cube sizing and spacing rules consolidated below */
 
 /* Tablet - 50% larger cube */
 @media (max-width: 900px) {
@@ -1031,7 +1019,7 @@ nav ul li.dropdown:hover .dropdown-content {
   }
 }
 
-/* Phone - 50% larger cube */
+/* Phone - Mobile cube sizing */
 @media (max-width: 600px) {
   .cube-container, .cube-face {
     width: 70vw;
@@ -1048,6 +1036,7 @@ nav ul li.dropdown:hover .dropdown-content {
     padding: 0.3rem;
   }
   
+  /* Cube face transforms for mobile size */
   .cube-face.front {
     transform: translateZ(157px);
   }
