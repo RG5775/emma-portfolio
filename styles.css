@@ -600,6 +600,10 @@ nav ul li.dropdown:hover .dropdown-content {
         padding: 0.5rem 0.8rem;
         font-size: 0.8rem;
     }
+    
+    .cube-face {
+        border-radius: 16px !important; /* Ensure rounded corners on very small screens */
+    }
 }
 
 /* Interactive 3D Banner Styles */
@@ -812,7 +816,10 @@ nav ul li.dropdown:hover .dropdown-content {
         padding: 0 0.5rem 3rem 0.5rem; /* Remove top padding, keep bottom */
         margin: 0;
     }
-    /* Keep same border radius as desktop - removed border-radius: 0 */
+    
+    .cube-face {
+        border-radius: 16px !important; /* Explicitly set border radius for mobile */
+    }
 
     .role-content h2 {
         font-size: 1.8rem;
@@ -846,6 +853,10 @@ nav ul li.dropdown:hover .dropdown-content {
         margin: 0;
         margin-bottom: 2rem;
         padding-top: 0; /* Remove top padding for mobile */
+    }
+    
+    .cube-face {
+        border-radius: 16px !important; /* Explicitly set border radius for mobile */
     }
 
     .role-content {
@@ -900,6 +911,11 @@ nav ul li.dropdown:hover .dropdown-content {
     z-index: 9999;  /* high value to overlay the cube */
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
+  }
+  
+  /* Explicitly set border radius for cube faces on mobile */
+  .cube-face {
+    border-radius: 16px !important; /* Force border radius on mobile */
   }
   
   /* Add spacing to the interactive banner section */
@@ -994,6 +1010,10 @@ nav ul li.dropdown:hover .dropdown-content {
     height: 420px;
   }
   
+  .cube-face {
+    border-radius: 16px !important; /* Ensure rounded corners on tablet */
+  }
+  
   .cube-face.front {
     transform: translateZ(210px);
   }
@@ -1028,6 +1048,11 @@ nav ul li.dropdown:hover .dropdown-content {
     max-height: 315px;
     margin: 1.5rem auto 1rem auto;
   }
+  
+  .cube-face {
+    border-radius: 16px !important; /* Ensure rounded corners on mobile */
+  }
+  
   .role-content h2 {
     font-size: 1.2rem; /* Slightly larger for bigger cube */
   }
