@@ -916,14 +916,19 @@ nav ul li.dropdown:hover .dropdown-content {
         padding: 0.25rem 0.25rem;
         margin: 0;
         margin-bottom: 1rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     #interactive-banner {
         padding: 0;
         margin: 0;
         margin-bottom: 1rem;
-        height: 160vw; /* 2 times cube size */
+        height: 128vw; /* 80% of previous height */
         overflow: hidden;
+        position: relative;
     }
 
     /* Commented out - using new media query for phones instead
@@ -974,7 +979,12 @@ nav ul li.dropdown:hover .dropdown-content {
 
     .timeline-navigation {
         gap: 1rem;
-        margin-top: 0.5rem;
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        margin: 0;
         padding: 0 0.5rem;
     }
 
@@ -998,102 +1008,81 @@ nav ul li.dropdown:hover .dropdown-content {
 
 /* Media query for phones/small screens */
 @media (max-width: 600px) {
-  /* 1. Resize/scale down the 3D cube */
+  /* 1. Enlarge cube to 80% of mobile screen width */
   .cube-container {
-    /* Option 1: explicitly smaller dimensions */
-    width: 200px;
-    height: 200px;
-    /* Center it and add spacing from nav/text */
-    margin: 2rem auto 2rem auto;
-    /* Ensure it's not covering other content */
+    width: var(--cube-size-mobile); /* 80vw */
+    height: var(--cube-size-mobile); /* 80vw */
+    margin: 1rem auto;
     position: relative !important;
-    /* Option 2: scale down instead of setting fixed size */
-    transform: scale(0.8);
-    transform-origin: top center;
+    transform: scale(1); /* No scaling needed since we're using 80vw */
+    transform-origin: center;
   }
   .cube-container .cube-face {
-    /* If using explicit dimensions, ensure faces match container */
-    width: 200px;
-    height: 200px;
-    /* Update transforms for smaller cube */
-    transform: translateZ(100px);
+    width: var(--cube-size-mobile);
+    height: var(--cube-size-mobile);
   }
   
-  .cube-container .cube-face.front { transform: translateZ(100px); }
-  .cube-container .cube-face.back { transform: rotateY(180deg) translateZ(100px); }
-  .cube-container .cube-face.right { transform: rotateY(90deg) translateZ(100px); }
-  .cube-container .cube-face.left { transform: rotateY(-90deg) translateZ(100px); }
-  .cube-container .cube-face.top { transform: rotateX(90deg) translateZ(100px); }
-  .cube-container .cube-face.bottom { transform: rotateX(-90deg) translateZ(100px); }
+  .cube-container .cube-face.front { transform: translateZ(calc(var(--cube-size-mobile) / 2)); }
+  .cube-container .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+  .cube-container .cube-face.right { transform: rotateY(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+  .cube-container .cube-face.left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+  .cube-container .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+  .cube-container .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
 
   /* 2. Ensure nav bar is on top of the cube */
   nav {
     position: relative;
-    z-index: 9999;  /* high value to overlay the cube */
-  }
-  
-  /* Add spacing to the interactive banner section */
-  #interactive-banner {
-    margin-top: 0;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    height: 160vw; /* 2 times cube size */
-    overflow: hidden;
-  }
-
-  /* 3. Ensure hero text and indicators appear above cube */
-  .hero-intro, /* e.g., class for intro text section */
-  .timeline-navigation { /* class for the Current/Transitioning/Future label container */
-    position: relative;
     z-index: 9999;
   }
-
-  /* Add some spacing so indicators aren't overlapped by the cube */
-  .timeline-navigation {
-    margin-top: 1rem;
-    text-align: center;  /* center the labels under the cube */
-  }
   
-  /* Ensure the cube wrapper doesn't interfere */
-  .cube-wrapper {
+  /* 3. Reduce banner height to 80% of current height */
+  #interactive-banner {
+    margin-top: 0;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    height: 128vw; /* 80% of 160vw (previous height) */
+    overflow: hidden;
     position: relative;
-    z-index: 1;
-    padding-top: 0; /* Removed since we have large margins */
   }
-  
-  /* Add padding to the banner container on mobile */
+
   .banner-container {
-    padding-top: 2rem;
+    padding: 0.25rem;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Move timeline buttons to bottom of banner */
+  .timeline-navigation {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    margin: 0;
+    text-align: center;
   }
   
   /* Make sure the interaction hint is visible */
   .interaction-hint {
     position: relative;
-    z-index: 10;
+    z-index: 100;
     margin-top: 1rem;
   }
   
-  /* Adjust text sizes for smaller cube */
+  /* Adjust text sizes for larger cube */
   .cube-container .role-content h2 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
   
   .cube-container .time-indicator {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
   
   .cube-container .role-description {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     padding: 0 0.5rem;
-  }
-  
-  /* Ensure main content has proper spacing from cube */
-  .main-content {
-    margin-top: 0; /* Reset since cube has bottom margin */
-  }
-  
-  /* Timeline navigation spacing */
-  .timeline-navigation {
-    margin-bottom: 1rem; /* Add space below timeline buttons */
   }
 }
