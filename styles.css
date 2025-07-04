@@ -871,7 +871,7 @@ nav ul li.dropdown:hover .dropdown-content {
 /* Mobile Responsiveness for 3D Banner */
 @media screen and (max-width: 768px) {
     .banner-container {
-        padding: 1rem 0.5rem;
+        padding: 0.5rem 0.5rem;
         margin: 0;
     }
 
@@ -913,15 +913,17 @@ nav ul li.dropdown:hover .dropdown-content {
 
 @media screen and (max-width: 480px) {
     .banner-container {
-        padding: 0.5rem 0.25rem;
+        padding: 0.25rem 0.25rem;
         margin: 0;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
     }
 
     #interactive-banner {
         padding: 0;
         margin: 0;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
+        height: 160vw; /* 2 times cube size */
+        overflow: hidden;
     }
 
     /* Commented out - using new media query for phones instead
@@ -1033,8 +1035,10 @@ nav ul li.dropdown:hover .dropdown-content {
   /* Add spacing to the interactive banner section */
   #interactive-banner {
     margin-top: 0;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    height: 160vw; /* 2 times cube size */
+    overflow: hidden;
   }
 
   /* 3. Ensure hero text and indicators appear above cube */
@@ -1090,6 +1094,6 @@ nav ul li.dropdown:hover .dropdown-content {
   
   /* Timeline navigation spacing */
   .timeline-navigation {
-    margin-bottom: 100px; /* Add space below timeline buttons */
+    margin-bottom: 1rem; /* Add space below timeline buttons */
   }
 }
