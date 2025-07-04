@@ -390,7 +390,7 @@ nav ul li.dropdown:hover .dropdown-content {
 /* Mobile Responsiveness - Mobile phones */
 @media screen and (max-width: 480px) {
     :root {
-        --cube-size-mobile: 80vw;
+        --cube-size-mobile: 64vw; /* 80% of 80vw */
     }
     
     nav {
@@ -926,101 +926,23 @@ nav ul li.dropdown:hover .dropdown-content {
         justify-content: space-between;
     }
 
-    #interactive-banner {
-        padding: 0;
-        margin: 0;
-        margin-bottom: 1rem;
-        height: 128vw; /* 80% of previous height */
-        overflow: hidden;
-        position: relative;
-    }
+    /* Note: Banner and cube styling moved to consolidated 600px media query */
 
-    /* Commented out - using new media query for phones instead
-    .cube-container {
-        width: var(--cube-size-mobile);
-        height: var(--cube-size-mobile);
-        margin: 0 auto;
-        perspective: 600px;
-        margin-bottom: 2rem;
-        overflow: visible;
-        position: relative;
-        transform: scale(0.6);
-        margin-top: 80px;
-        z-index: 0;
-    } */
 
-    .cube-face {
-        width: var(--cube-size-mobile);
-        height: var(--cube-size-mobile);
-        border-radius: 16px;
-    }
-
-    .cube-face.front { transform: translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.right { transform: rotateY(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-
-    .role-content {
-        padding: 0.5rem;
-    }
-
-    .role-content h2 {
-        font-size: 1.5rem;
-        margin-bottom: 0.25rem;
-    }
-
-    .time-indicator {
-        font-size: 0.9rem;
-        margin-bottom: 0.25rem;
-    }
-
-    .role-description {
-        font-size: 0.85rem;
-        line-height: 1.3;
-    }
-
-    .timeline-navigation {
-        gap: 1rem;
-        position: absolute;
-        bottom: 1rem;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 9999;
-        margin: 0;
-        padding: 0 0.5rem;
-    }
-
-    .timeline-btn {
-        padding: 0.5rem;
-    }
-
-    .timeline-label {
-        font-size: 0.8rem;
-    }
-
-    .interaction-hint {
-        position: relative;
-        bottom: auto;
-        margin-top: 1rem;
-        font-size: 0.75rem;
-        padding: 6px 12px;
-        display: inline-block;
-    }
 }
 
-/* Media query for phones/small screens */
+/* Consolidated mobile media query - replaces overlapping 480px and 600px queries */
 @media (max-width: 600px) {
-  /* 1. Enlarge cube to 80% of mobile screen width */
+  /* Mobile cube styling */
   .cube-container {
-    width: var(--cube-size-mobile); /* 80vw */
-    height: var(--cube-size-mobile); /* 80vw */
+    width: var(--cube-size-mobile); /* 64vw (80% of original) */
+    height: var(--cube-size-mobile); /* 64vw (80% of original) */
     margin: 1rem auto;
     position: relative !important;
-    transform: scale(1); /* No scaling needed since we're using 80vw */
+    transform: scale(1);
     transform-origin: center;
   }
+  
   .cube-container .cube-face {
     width: var(--cube-size-mobile);
     height: var(--cube-size-mobile);
@@ -1033,18 +955,18 @@ nav ul li.dropdown:hover .dropdown-content {
   .cube-container .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
   .cube-container .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
 
-  /* 2. Ensure nav bar is on top of the cube */
+  /* Navigation */
   nav {
     position: relative;
     z-index: 9999;
   }
   
-  /* 3. Reduce banner height to 80% of current height */
+  /* Banner styling */
   #interactive-banner {
     margin-top: 0;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    height: 128vw; /* 80% of 160vw (previous height) */
+    height: 102vw; /* Adjusted for smaller cube (80% of 128vw) */
     overflow: hidden;
     position: relative;
   }
@@ -1052,13 +974,14 @@ nav ul li.dropdown:hover .dropdown-content {
   .banner-container {
     padding: 0.25rem;
     margin: 0;
+    margin-bottom: 1rem;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 
-  /* Move timeline buttons to bottom of banner */
+  /* Timeline navigation */
   .timeline-navigation {
     position: absolute;
     bottom: 1rem;
@@ -1066,27 +989,54 @@ nav ul li.dropdown:hover .dropdown-content {
     transform: translateX(-50%);
     z-index: 9999;
     margin: 0;
+    gap: 1rem;
+    padding: 0 0.5rem;
     text-align: center;
   }
   
-  /* Make sure the interaction hint is visible */
-  .interaction-hint {
-    position: relative;
-    z-index: 100;
-    margin-top: 1rem;
+  .timeline-btn {
+    padding: 0.5rem;
+  }
+
+  .timeline-label {
+    font-size: 0.8rem;
   }
   
-  /* Adjust text sizes for larger cube */
+  /* Interaction hint */
+  .interaction-hint {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    z-index: 100;
+    margin: 0;
+    font-size: 0.75rem;
+    padding: 8px 12px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 240, 255, 0.9));
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(153, 102, 204, 0.2);
+    border: 1px solid rgba(153, 102, 204, 0.3);
+    white-space: nowrap;
+  }
+  
+  /* Text sizing for mobile cube */
+  .cube-container .role-content {
+    padding: 0.5rem;
+  }
+  
   .cube-container .role-content h2 {
     font-size: 1.4rem;
+    margin-bottom: 0.25rem;
   }
   
   .cube-container .time-indicator {
     font-size: 0.9rem;
+    margin-bottom: 0.25rem;
   }
   
   .cube-container .role-description {
     font-size: 0.85rem;
+    line-height: 1.3;
     padding: 0 0.5rem;
   }
 }
