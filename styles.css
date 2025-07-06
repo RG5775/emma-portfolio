@@ -105,7 +105,7 @@ body {
     --font-size-xxl: clamp(2rem, 5vw, 3.5rem);
     
     /* Responsive cube sizes */
-    --cube-size-mobile: min(80vw, 280px);
+    --cube-size-mobile: min(70vw, 280px);
     --cube-size-tablet: min(60vw, 350px);
     --cube-size-desktop: 400px;
 }
@@ -1555,7 +1555,7 @@ nav ul li.dropdown:hover .dropdown-content {
         margin: 0;
     }
     
-    /* Consistent cube sizing for ALL mobile devices */
+    /* Consistent cube sizing for ALL mobile devices with safety constraints */
     .cube-container {
         width: var(--cube-size-mobile) !important;
         height: var(--cube-size-mobile) !important;
@@ -1563,20 +1563,26 @@ nav ul li.dropdown:hover .dropdown-content {
         perspective: 600px !important;
         position: relative !important;
         overflow: visible !important;
+        /* Safety constraints to prevent oversized cubes */
+        max-width: min(90vw, 280px) !important;
+        max-height: min(90vw, 280px) !important;
     }
     
     .cube-face {
         width: var(--cube-size-mobile) !important;
         height: var(--cube-size-mobile) !important;
         border-radius: 16px !important;
+        /* Safety constraints for cube faces */
+        max-width: min(90vw, 280px) !important;
+        max-height: min(90vw, 280px) !important;
     }
     
-    .cube-face.front { transform: translateZ(calc(var(--cube-size-mobile) / 2)) !important; }
-    .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-mobile) / 2)) !important; }
-    .cube-face.right { transform: rotateY(90deg) translateZ(calc(var(--cube-size-mobile) / 2)) !important; }
-    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)) !important; }
-    .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-mobile) / 2)) !important; }
-    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)) !important; }
+    .cube-face.front { transform: translateZ(calc(min(var(--cube-size-mobile), min(90vw, 280px)) / 2)) !important; }
+    .cube-face.back { transform: rotateY(180deg) translateZ(calc(min(var(--cube-size-mobile), min(90vw, 280px)) / 2)) !important; }
+    .cube-face.right { transform: rotateY(90deg) translateZ(calc(min(var(--cube-size-mobile), min(90vw, 280px)) / 2)) !important; }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(min(var(--cube-size-mobile), min(90vw, 280px)) / 2)) !important; }
+    .cube-face.top { transform: rotateX(90deg) translateZ(calc(min(var(--cube-size-mobile), min(90vw, 280px)) / 2)) !important; }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(min(var(--cube-size-mobile), min(90vw, 280px)) / 2)) !important; }
     
     /* Consistent text sizing */
     .role-content {
@@ -1670,6 +1676,27 @@ nav ul li.dropdown:hover .dropdown-content {
     }
 }
 
+/* Large mobile screens (iPhone 16 Pro Max, etc.) */
+@media screen and (max-width: 480px) and (min-width: 430px) {
+    :root {
+        --cube-size-mobile: min(60vw, 250px);
+    }
+    
+    .cube-container {
+        max-width: 250px !important;
+        max-height: 250px !important;
+        width: min(60vw, 250px) !important;
+        height: min(60vw, 250px) !important;
+    }
+    
+    .cube-face {
+        max-width: 250px !important;
+        max-height: 250px !important;
+        width: min(60vw, 250px) !important;
+        height: min(60vw, 250px) !important;
+    }
+}
+
 /* Very small screens (older phones) */
 @media screen and (max-width: 320px) {
     :root {
@@ -1689,14 +1716,89 @@ nav ul li.dropdown:hover .dropdown-content {
     }
 }
 
+/* Chrome browser specific fixes for mobile */
+@media screen and (max-width: 480px) {
+    @supports (-webkit-appearance: none) {
+        .cube-container {
+            /* Force smaller size on Chrome mobile */
+            width: min(var(--cube-size-mobile), 70vw, 270px) !important;
+            height: min(var(--cube-size-mobile), 70vw, 270px) !important;
+            max-width: 270px !important;
+            max-height: 270px !important;
+        }
+        
+        .cube-face {
+            width: min(var(--cube-size-mobile), 70vw, 270px) !important;
+            height: min(var(--cube-size-mobile), 70vw, 270px) !important;
+            max-width: 270px !important;
+            max-height: 270px !important;
+        }
+    }
+}
+
+/* Emergency constraint for any oversized cubes on mobile */
+@media screen and (max-width: 480px) {
+    .cube-container {
+        /* Absolute maximum constraints - no cube should be larger than this */
+        max-width: 280px !important;
+        max-height: 280px !important;
+        width: min(var(--cube-size-mobile), 75vw, 280px) !important;
+        height: min(var(--cube-size-mobile), 75vw, 280px) !important;
+    }
+    
+    .cube-face {
+        max-width: 280px !important;
+        max-height: 280px !important;
+        width: min(var(--cube-size-mobile), 75vw, 280px) !important;
+        height: min(var(--cube-size-mobile), 75vw, 280px) !important;
+    }
+    
+    /* Update transforms to use the constrained size */
+    .cube-face.front { transform: translateZ(calc(min(var(--cube-size-mobile), 75vw, 280px) / 2)) !important; }
+    .cube-face.back { transform: rotateY(180deg) translateZ(calc(min(var(--cube-size-mobile), 75vw, 280px) / 2)) !important; }
+    .cube-face.right { transform: rotateY(90deg) translateZ(calc(min(var(--cube-size-mobile), 75vw, 280px) / 2)) !important; }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(min(var(--cube-size-mobile), 75vw, 280px) / 2)) !important; }
+    .cube-face.top { transform: rotateX(90deg) translateZ(calc(min(var(--cube-size-mobile), 75vw, 280px) / 2)) !important; }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(min(var(--cube-size-mobile), 75vw, 280px) / 2)) !important; }
+}
+
 /* =============================================================================
    DEVICE-SPECIFIC OPTIMIZATIONS
    ============================================================================= */
 
-/* iPhone and similar devices */
+/* iPhone 16 and large mobile devices */
+@media screen and (max-width: 430px) and (min-width: 390px) {
+    :root {
+        --cube-size-mobile: min(65vw, 260px);
+    }
+    
+    .cube-container {
+        width: var(--cube-size-mobile) !important;
+        height: var(--cube-size-mobile) !important;
+        margin: 0 auto var(--spacing-xl) auto !important;
+        max-width: 260px !important;
+        max-height: 260px !important;
+    }
+    
+    .cube-face {
+        width: var(--cube-size-mobile) !important;
+        height: var(--cube-size-mobile) !important;
+        max-width: 260px !important;
+        max-height: 260px !important;
+    }
+    
+    .cube-face.front { transform: translateZ(calc(var(--cube-size-mobile) / 2)) !important; }
+    .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-mobile) / 2)) !important; }
+    .cube-face.right { transform: rotateY(90deg) translateZ(calc(var(--cube-size-mobile) / 2)) !important; }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)) !important; }
+    .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-mobile) / 2)) !important; }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)) !important; }
+}
+
+/* iPhone 14/15 and similar devices */
 @media screen and (max-width: 414px) and (min-width: 375px) {
     :root {
-        --cube-size-mobile: min(75vw, 280px);
+        --cube-size-mobile: min(68vw, 270px);
     }
 }
 
