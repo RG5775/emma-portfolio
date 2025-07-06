@@ -7684,6 +7684,23 @@ a.anchor-link {
             display: none !important;
         }
         
+        /* Hide pip install cells and their outputs */
+        .jp-Cell:has(.highlight:contains("!pip install")) {
+            display: none !important;
+        }
+        
+        /* Alternative approach for hiding pip install cells */
+        div[id*="cell-id=edfb9b6e-16e0-4a06-91e4-6fb2e3b406b5"],
+        div[id*="cell-id=d66b6b69-827a-458a-8cca-580214026821"],
+        div[id*="cell-id=28221217-4034-40a0-9f17-3fece4b27830"] {
+            display: none !important;
+        }
+        
+        /* Hide the SQL cell with syntax error (duplicate FROM clause) */
+        div[id*="cell-id=ca2cb8da-b0fa-4da5-b3d5-fddb45a72401"] {
+            display: none !important;
+        }
+        
         @media screen and (max-width: 768px) {
             .portfolio-header {
                 padding: 1.5rem 1rem;
@@ -7751,7 +7768,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span> 
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span> 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s2">"C:\Users\emma1\OneDrive\文档\Jieren LI\Project\eCommerce\eCommerce\2019-Nov.csv"</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s2">"data/eCommerce/2019-Nov.csv"</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -7883,28 +7900,28 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Requirement already satisfied: ipython-sql in c:\users\emma1\anaconda3\lib\site-packages (0.5.0)
-Requirement already satisfied: prettytable in c:\users\emma1\anaconda3\lib\site-packages (from ipython-sql) (3.16.0)
-Requirement already satisfied: ipython in c:\users\emma1\anaconda3\lib\site-packages (from ipython-sql) (8.30.0)
-Requirement already satisfied: sqlalchemy&gt;=2.0 in c:\users\emma1\anaconda3\lib\site-packages (from ipython-sql) (2.0.39)
-Requirement already satisfied: sqlparse in c:\users\emma1\anaconda3\lib\site-packages (from ipython-sql) (0.5.3)
-Requirement already satisfied: six in c:\users\emma1\anaconda3\lib\site-packages (from ipython-sql) (1.17.0)
-Requirement already satisfied: ipython-genutils in c:\users\emma1\anaconda3\lib\site-packages (from ipython-sql) (0.2.0)
-Requirement already satisfied: greenlet!=0.4.17 in c:\users\emma1\anaconda3\lib\site-packages (from sqlalchemy&gt;=2.0-&gt;ipython-sql) (3.1.1)
-Requirement already satisfied: typing-extensions&gt;=4.6.0 in c:\users\emma1\anaconda3\lib\site-packages (from sqlalchemy&gt;=2.0-&gt;ipython-sql) (4.12.2)
-Requirement already satisfied: decorator in c:\users\emma1\anaconda3\lib\site-packages (from ipython-&gt;ipython-sql) (5.1.1)
-Requirement already satisfied: jedi&gt;=0.16 in c:\users\emma1\anaconda3\lib\site-packages (from ipython-&gt;ipython-sql) (0.19.2)
-Requirement already satisfied: matplotlib-inline in c:\users\emma1\anaconda3\lib\site-packages (from ipython-&gt;ipython-sql) (0.1.6)
-Requirement already satisfied: prompt-toolkit&lt;3.1.0,&gt;=3.0.41 in c:\users\emma1\anaconda3\lib\site-packages (from ipython-&gt;ipython-sql) (3.0.43)
-Requirement already satisfied: pygments&gt;=2.4.0 in c:\users\emma1\anaconda3\lib\site-packages (from ipython-&gt;ipython-sql) (2.19.1)
-Requirement already satisfied: stack-data in c:\users\emma1\anaconda3\lib\site-packages (from ipython-&gt;ipython-sql) (0.2.0)
-Requirement already satisfied: traitlets&gt;=5.13.0 in c:\users\emma1\anaconda3\lib\site-packages (from ipython-&gt;ipython-sql) (5.14.3)
-Requirement already satisfied: colorama in c:\users\emma1\anaconda3\lib\site-packages (from ipython-&gt;ipython-sql) (0.4.6)
-Requirement already satisfied: wcwidth in c:\users\emma1\anaconda3\lib\site-packages (from prompt-toolkit&lt;3.1.0,&gt;=3.0.41-&gt;ipython-&gt;ipython-sql) (0.2.5)
-Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.4 in c:\users\emma1\anaconda3\lib\site-packages (from jedi&gt;=0.16-&gt;ipython-&gt;ipython-sql) (0.8.4)
-Requirement already satisfied: executing in c:\users\emma1\anaconda3\lib\site-packages (from stack-data-&gt;ipython-&gt;ipython-sql) (0.8.3)
-Requirement already satisfied: asttokens in c:\users\emma1\anaconda3\lib\site-packages (from stack-data-&gt;ipython-&gt;ipython-sql) (3.0.0)
-Requirement already satisfied: pure-eval in c:\users\emma1\anaconda3\lib\site-packages (from stack-data-&gt;ipython-&gt;ipython-sql) (0.2.2)
+<pre>Requirement already satisfied: ipython-sql in c:\users\[user]\anaconda3\lib\site-packages (0.5.0)
+Requirement already satisfied: prettytable in c:\users\[user]\anaconda3\lib\site-packages (from ipython-sql) (3.16.0)
+Requirement already satisfied: ipython in c:\users\[user]\anaconda3\lib\site-packages (from ipython-sql) (8.30.0)
+Requirement already satisfied: sqlalchemy&gt;=2.0 in c:\users\[user]\anaconda3\lib\site-packages (from ipython-sql) (2.0.39)
+Requirement already satisfied: sqlparse in c:\users\[user]\anaconda3\lib\site-packages (from ipython-sql) (0.5.3)
+Requirement already satisfied: six in c:\users\[user]\anaconda3\lib\site-packages (from ipython-sql) (1.17.0)
+Requirement already satisfied: ipython-genutils in c:\users\[user]\anaconda3\lib\site-packages (from ipython-sql) (0.2.0)
+Requirement already satisfied: greenlet!=0.4.17 in c:\users\[user]\anaconda3\lib\site-packages (from sqlalchemy&gt;=2.0-&gt;ipython-sql) (3.1.1)
+Requirement already satisfied: typing-extensions&gt;=4.6.0 in c:\users\[user]\anaconda3\lib\site-packages (from sqlalchemy&gt;=2.0-&gt;ipython-sql) (4.12.2)
+Requirement already satisfied: decorator in c:\users\[user]\anaconda3\lib\site-packages (from ipython-&gt;ipython-sql) (5.1.1)
+Requirement already satisfied: jedi&gt;=0.16 in c:\users\[user]\anaconda3\lib\site-packages (from ipython-&gt;ipython-sql) (0.19.2)
+Requirement already satisfied: matplotlib-inline in c:\users\[user]\anaconda3\lib\site-packages (from ipython-&gt;ipython-sql) (0.1.6)
+Requirement already satisfied: prompt-toolkit&lt;3.1.0,&gt;=3.0.41 in c:\users\[user]\anaconda3\lib\site-packages (from ipython-&gt;ipython-sql) (3.0.43)
+Requirement already satisfied: pygments&gt;=2.4.0 in c:\users\[user]\anaconda3\lib\site-packages (from ipython-&gt;ipython-sql) (2.19.1)
+Requirement already satisfied: stack-data in c:\users\[user]\anaconda3\lib\site-packages (from ipython-&gt;ipython-sql) (0.2.0)
+Requirement already satisfied: traitlets&gt;=5.13.0 in c:\users\[user]\anaconda3\lib\site-packages (from ipython-&gt;ipython-sql) (5.14.3)
+Requirement already satisfied: colorama in c:\users\[user]\anaconda3\lib\site-packages (from ipython-&gt;ipython-sql) (0.4.6)
+Requirement already satisfied: wcwidth in c:\users\[user]\anaconda3\lib\site-packages (from prompt-toolkit&lt;3.1.0,&gt;=3.0.41-&gt;ipython-&gt;ipython-sql) (0.2.5)
+Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.4 in c:\users\[user]\anaconda3\lib\site-packages (from jedi&gt;=0.16-&gt;ipython-&gt;ipython-sql) (0.8.4)
+Requirement already satisfied: executing in c:\users\[user]\anaconda3\lib\site-packages (from stack-data-&gt;ipython-&gt;ipython-sql) (0.8.3)
+Requirement already satisfied: asttokens in c:\users\[user]\anaconda3\lib\site-packages (from stack-data-&gt;ipython-&gt;ipython-sql) (3.0.0)
+Requirement already satisfied: pure-eval in c:\users\[user]\anaconda3\lib\site-packages (from stack-data-&gt;ipython-&gt;ipython-sql) (0.2.2)
 </pre>
 </div>
 </div>
@@ -7931,9 +7948,9 @@ Requirement already satisfied: pure-eval in c:\users\emma1\anaconda3\lib\site-pa
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Requirement already satisfied: sqlalchemy in c:\users\emma1\anaconda3\lib\site-packages (2.0.39)
-Requirement already satisfied: greenlet!=0.4.17 in c:\users\emma1\anaconda3\lib\site-packages (from sqlalchemy) (3.1.1)
-Requirement already satisfied: typing-extensions&gt;=4.6.0 in c:\users\emma1\anaconda3\lib\site-packages (from sqlalchemy) (4.12.2)
+<pre>Requirement already satisfied: sqlalchemy in c:\users\[user]\anaconda3\lib\site-packages (2.0.39)
+Requirement already satisfied: greenlet!=0.4.17 in c:\users\[user]\anaconda3\lib\site-packages (from sqlalchemy) (3.1.1)
+Requirement already satisfied: typing-extensions&gt;=4.6.0 in c:\users\[user]\anaconda3\lib\site-packages (from sqlalchemy) (4.12.2)
 </pre>
 </div>
 </div>
@@ -7960,7 +7977,7 @@ Requirement already satisfied: typing-extensions&gt;=4.6.0 in c:\users\emma1\ana
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Requirement already satisfied: psycopg2-binary in c:\users\emma1\anaconda3\lib\site-packages (2.9.10)
+<pre>Requirement already satisfied: psycopg2-binary in c:\users\[user]\anaconda3\lib\site-packages (2.9.10)
 </pre>
 </div>
 </div>
@@ -7990,7 +8007,7 @@ Requirement already satisfied: typing-extensions&gt;=4.6.0 in c:\users\emma1\ana
 <div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">sql</span> postgresql://postgres:1130@localhost:5432/eCommerce_behavior_data_from_multi_category_store
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">sql</span> postgresql://[database_connection_masked]
 </pre></div>
 </div>
 </div>
@@ -8017,7 +8034,7 @@ Requirement already satisfied: typing-extensions&gt;=4.6.0 in c:\users\emma1\ana
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre> * postgresql://postgres:***@localhost:5432/eCommerce_behavior_data_from_multi_category_store
+<pre> * postgresql://[database_connection_masked]
 2 rows affected.
 </pre>
 </div>
@@ -8122,7 +8139,7 @@ Requirement already satisfied: typing-extensions&gt;=4.6.0 in c:\users\emma1\ana
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre> * postgresql://postgres:***@localhost:5432/eCommerce_behavior_data_from_multi_category_store
+<pre> * postgresql://[database_connection_masked]
 1 rows affected.
 </pre>
 </div>
@@ -8202,7 +8219,7 @@ Requirement already satisfied: typing-extensions&gt;=4.6.0 in c:\users\emma1\ana
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre> * postgresql://postgres:***@localhost:5432/eCommerce_behavior_data_from_multi_category_store
+<pre> * postgresql://[database_connection_masked]
 (psycopg2.errors.SyntaxError) syntax error at or near "FROM"
 LINE 4: FROM ecommerce_2019_nov
         ^
@@ -8256,7 +8273,7 @@ FROM ecommerce_2019_nov]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre> * postgresql://postgres:***@localhost:5432/eCommerce_behavior_data_from_multi_category_store
+<pre> * postgresql://[database_connection_masked]
 1 rows affected.
 </pre>
 </div>
@@ -8336,7 +8353,7 @@ FROM ecommerce_2019_nov]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre> * postgresql://postgres:***@localhost:5432/eCommerce_behavior_data_from_multi_category_store
+<pre> * postgresql://[database_connection_masked]
 1 rows affected.
 </pre>
 </div>
@@ -8442,7 +8459,7 @@ FROM ecommerce_2019_nov]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre> * postgresql://postgres:***@localhost:5432/eCommerce_behavior_data_from_multi_category_store
+<pre> * postgresql://[database_connection_masked]
 1 rows affected.
 </pre>
 </div>
@@ -8533,7 +8550,7 @@ FROM ecommerce_2019_nov]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre> * postgresql://postgres:***@localhost:5432/eCommerce_behavior_data_from_multi_category_store
+<pre> * postgresql://[database_connection_masked]
 7 rows affected.
 </pre>
 </div>
@@ -8647,7 +8664,7 @@ FROM ecommerce_2019_nov]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre> * postgresql://postgres:***@localhost:5432/eCommerce_behavior_data_from_multi_category_store
+<pre> * postgresql://[database_connection_masked]
 24 rows affected.
 </pre>
 </div>
@@ -8847,7 +8864,7 @@ FROM ecommerce_2019_nov]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre> * postgresql://postgres:***@localhost:5432/eCommerce_behavior_data_from_multi_category_store
+<pre> * postgresql://[database_connection_masked]
 4202 rows affected.
 </pre>
 </div>
@@ -8994,7 +9011,7 @@ FROM ecommerce_2019_nov]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre> * postgresql://postgres:***@localhost:5432/eCommerce_behavior_data_from_multi_category_store
+<pre> * postgresql://[database_connection_masked]
 4202 rows affected.
 </pre>
 </div>

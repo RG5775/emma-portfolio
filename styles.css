@@ -196,6 +196,120 @@ header p {
     opacity: 0.9;
 }
 
+/* Portfolio Header Styling - Consistent across all pages */
+.portfolio-header {
+    background: linear-gradient(135deg, #C8A2C8 0%, #9966CC 100%);
+    color: #f5f0ff;
+    padding: 2rem 1rem;
+    text-align: center;
+    position: relative;
+    z-index: 100;
+}
+
+.portfolio-header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.5rem;
+    margin: 0;
+    color: #f5f0ff;
+    font-weight: 700;
+}
+
+.portfolio-header p {
+    font-size: 1.2rem;
+    color: #f5f0ff;
+    margin-top: 0.5rem;
+    opacity: 0.9;
+}
+
+/* Portfolio Navigation - Alternative styling for notebook pages */
+.portfolio-nav {
+    background-color: #f5f0ff;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.portfolio-nav ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0.5rem 0;
+    list-style: none;
+}
+
+.portfolio-nav ul li {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+}
+
+.portfolio-nav ul li a {
+    color: #1a1a1a;
+    padding: 1rem 1.5rem;
+    display: block;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+    border-radius: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+}
+
+.portfolio-nav ul li a:hover {
+    color: #9966cc;
+}
+
+.portfolio-nav .dropdown {
+    position: relative;
+}
+
+.portfolio-nav .dropdown-content {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    min-width: 200px;
+    z-index: 1001;
+    background-color: #f5f0ff;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 0 0 8px 8px;
+    padding: 0.5rem 0;
+}
+
+.portfolio-nav .dropdown-content a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: #1a1a1a;
+    text-align: left;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    border-bottom: 1px solid #eee;
+    background: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+.portfolio-nav .dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.portfolio-nav .dropdown-content a:hover {
+    background-color: #e8e0f2;
+    color: #9966cc;
+}
+
+.portfolio-nav .dropdown:hover .dropdown-content {
+    display: block;
+}
+
 nav {
     background-color: var(--secondary-color);
     border-bottom: 1px solid #eee;
@@ -481,6 +595,35 @@ nav ul li .dropdown-content a:hover {
 }
 nav ul li.dropdown:hover .dropdown-content {
     display: block;
+}
+
+/* Portfolio Header Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    .portfolio-header {
+        padding: 1.5rem 1rem;
+    }
+    
+    .portfolio-header h1 {
+        font-size: 2rem;
+    }
+    
+    .portfolio-nav ul {
+        flex-direction: column;
+    }
+    
+    .portfolio-nav ul li {
+        width: 100%;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .portfolio-nav ul li:last-child {
+        border-bottom: none;
+    }
+    
+    .portfolio-nav ul li a {
+        padding: 1rem;
+        text-align: center;
+    }
 }
 
 /* Mobile Responsiveness - Tablets and small laptops */
