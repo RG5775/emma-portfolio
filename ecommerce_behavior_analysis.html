@@ -95,7 +95,7 @@
 <body>
     <header>
         <h1>eCommerce Behavior Analysis</h1>
-        <p>Data Visualization | Customer Insights</p>
+        <p>PostgreSQL | Customer Insights</p>
     </header>
 
     <nav>
@@ -114,51 +114,35 @@
 
 
 
-    <section class="sql-analysis-showcase" style="background: #f8f9fb; padding: 3rem 2rem; margin: 0;">
+    <section class="sql-analysis-showcase" style="background: var(--secondary-color); padding: 3rem 2rem; margin: 0;">
         <div style="max-width: 1200px; margin: 0 auto;">
             <h2 style="text-align: center; margin-bottom: 2rem; color: var(--primary-color);">
                 <span style="font-size: 2rem; margin-right: 0.5rem;">🔍</span>
-                SQL Analysis Deep Dive
+                SQL Analysis
             </h2>
             <p style="text-align: center; font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto 3rem auto;">
-                Explore the technical SQL queries and methodologies used to extract actionable insights from the eCommerce behavior dataset. 
+                Public eCommerce behavior dataset sourced from from a large multi-category online store. 
                 This analysis demonstrates advanced SQL techniques including CTEs, window functions, and complex aggregations.
             </p>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-                <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
-                    <h3 style="color: var(--accent-color); margin-bottom: 1rem;">📈 Brand Performance Analysis</h3>
-                    <p style="margin-bottom: 1rem; color: #555;">Analyzed view-to-purchase conversion rates across 4,202 brands using advanced SQL aggregations.</p>
-                    <ul style="color: #666; margin-left: 1rem;">
-                        <li>CTE for session-level behavior tracking</li>
-                        <li>Conditional aggregations with CASE statements</li>
-                        <li>Conversion rate calculations with NULLIF</li>
-                    </ul>
-                </div>
-                
-                <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
-                    <h3 style="color: var(--accent-color); margin-bottom: 1rem;">🛒 Customer Journey Mapping</h3>
-                    <p style="margin-bottom: 1rem; color: #555;">Tracked user sessions from initial view through purchase completion.</p>
-                    <ul style="color: #666; margin-left: 1rem;">
-                        <li>Session-based event tracking</li>
-                        <li>Multi-step funnel analysis</li>
-                        <li>Behavioral pattern identification</li>
-                    </ul>
-                </div>
-                
-                <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
-                    <h3 style="color: var(--accent-color); margin-bottom: 1rem;">💾 Database Architecture</h3>
-                    <p style="margin-bottom: 1rem; color: #555;">PostgreSQL database with optimized queries for large-scale eCommerce data.</p>
-                    <ul style="color: #666; margin-left: 1rem;">
-                        <li>Cleaned and normalized data structure</li>
-                        <li>Efficient indexing strategies</li>
-                        <li>Scalable query performance</li>
-                    </ul>
-                </div>
-            </div>
+        
             
             <div style="background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-bottom: 2rem;">
                 <h3 style="text-align: center; margin-bottom: 2rem; color: var(--primary-color);">Featured SQL Query: Brand Conversion Analysis</h3>
+                
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <a href="eCommerce.html" 
+                       style="display: inline-block; background: var(--accent-color); color: white; padding: 1rem 2rem; 
+                              text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s ease;
+                              box-shadow: 0 4px 15px rgba(153, 102, 204, 0.3);"
+                       onmouseover="this.style.background='#8b5fbf'; this.style.transform='translateY(-2px)'"
+                       onmouseout="this.style.background='var(--accent-color)'; this.style.transform='translateY(0)'">
+                        📓 View Complete SQL Analysis Notebook
+                    </a>
+                    <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                        Access the full Jupyter notebook with all SQL queries, data explorations, and detailed analysis
+                    </p>
+                </div>
+                
                 <div style="background: #1e1e1e; color: #d4d4d4; padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', 'Monaco', monospace; font-size: 0.9rem; line-height: 1.4;">
 <pre style="margin: 0; white-space: pre-wrap;"><span style="color: #569cd6;">WITH</span> brand_view_purchase <span style="color: #569cd6;">AS</span> (
     <span style="color: #569cd6;">SELECT</span>
@@ -185,20 +169,6 @@
                         identifying which brands drive the highest view-to-purchase conversions within the same user session.
                     </p>
                 </div>
-            </div>
-            
-            <div style="text-align: center;">
-                <a href="eCommerce.html" 
-                   style="display: inline-block; background: var(--accent-color); color: white; padding: 1rem 2rem; 
-                          text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s ease;
-                          box-shadow: 0 4px 15px rgba(153, 102, 204, 0.3);"
-                   onmouseover="this.style.background='#8b5fbf'; this.style.transform='translateY(-2px)'"
-                   onmouseout="this.style.background='var(--accent-color)'; this.style.transform='translateY(0)'">
-                    📓 View Complete SQL Analysis Notebook
-                </a>
-                <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
-                    Access the full Jupyter notebook with all SQL queries, data explorations, and detailed analysis
-                </p>
             </div>
         </div>
     </section>
