@@ -1242,6 +1242,68 @@ nav ul li.dropdown:hover .dropdown-content {
     opacity: 0;
 }
 
+/* Global rule to hide interaction hint during cube rotation */
+.cube-container.rotating .interaction-hint,
+.cube-container:active .interaction-hint,
+.cube:active ~ .interaction-hint {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* Hide interaction hint on touch devices during interaction */
+@media (hover: none) and (pointer: coarse) {
+    .cube-container.dragging .interaction-hint,
+    .cube-container:active .interaction-hint {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transition: opacity 0.1s ease, visibility 0.1s ease !important;
+    }
+}
+
+/* 
+   To enable interaction hint hiding during cube rotation, add this JavaScript to your HTML:
+   
+   <script>
+   const cubeContainer = document.querySelector('.cube-container');
+   const cube = document.querySelector('.cube');
+   
+   let isRotating = false;
+   let rotationTimeout;
+   
+   function startRotation() {
+       isRotating = true;
+       cubeContainer.classList.add('rotating');
+       clearTimeout(rotationTimeout);
+   }
+   
+   function stopRotation() {
+       rotationTimeout = setTimeout(() => {
+           isRotating = false;
+           cubeContainer.classList.remove('rotating');
+       }, 500);
+   }
+   
+   // Mouse events
+   cube.addEventListener('mousedown', startRotation);
+   document.addEventListener('mouseup', stopRotation);
+   document.addEventListener('mousemove', (e) => {
+       if (e.buttons === 1 && isRotating) {
+           startRotation();
+       }
+   });
+   
+   // Touch events
+   cube.addEventListener('touchstart', startRotation);
+   document.addEventListener('touchend', stopRotation);
+   document.addEventListener('touchmove', (e) => {
+       if (isRotating) {
+           startRotation();
+       }
+   });
+   </script>
+*/
+
 .timeline-navigation {
     display: flex;
     justify-content: center;
@@ -1316,8 +1378,9 @@ nav ul li.dropdown:hover .dropdown-content {
 /* Mobile Responsiveness for 3D Banner */
 @media screen and (max-width: 768px) {
     .banner-container {
-        padding: 1rem 0.5rem;
+        padding: 1rem 0.5rem 6rem 0.5rem;
         margin: 0;
+        position: relative;
     }
 
     .cube-container {
@@ -1346,19 +1409,25 @@ nav ul li.dropdown:hover .dropdown-content {
     .timeline-navigation {
         gap: 1.5rem;
         margin-top: 1rem;
+        position: absolute;
+        bottom: 2rem;
+        left: 0;
+        right: 0;
     }
 }
 
 @media screen and (max-width: 480px) {
     .banner-container {
-        padding: 2rem 1rem;
+        padding: 2rem 1rem 6rem 1rem;
         margin: 0;
         text-align: center;
+        position: relative;
     }
 
     #interactive-banner {
-        padding: 1rem 0;
+        padding: 1rem 0 4rem 0;
         margin: 0;
+        position: relative;
     }
 
     .cube-container {
@@ -1400,6 +1469,10 @@ nav ul li.dropdown:hover .dropdown-content {
         margin-top: 2rem;
         padding: 0 1rem;
         justify-content: center;
+        position: absolute;
+        bottom: 2rem;
+        left: 0;
+        right: 0;
     }
 
     .timeline-btn {
@@ -1428,31 +1501,19 @@ nav ul li.dropdown:hover .dropdown-content {
         transform: none;
         z-index: 100;
         white-space: nowrap;
-        border-radius: 25px;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 240, 255, 0.9));
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        color: var(--primary-color);
-        box-shadow: 0 8px 20px rgba(153, 102, 204, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+        background: rgba(153, 102, 204, 0.9);
+        color: white;
+        box-shadow: 0 4px 12px rgba(153, 102, 204, 0.3);
         opacity: 0.8;
-        transition: all 0.3s ease;
-        border: 1px solid rgba(153, 102, 204, 0.2);
+        transition: opacity 0.3s ease;
+        border: 1px solid rgba(153, 102, 204, 0.8);
         font-weight: 500;
         pointer-events: none;
     }
 
     .interaction-hint::before {
-        content: '';
-        position: absolute;
-        left: -8px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 0;
-        height: 0;
-        border-top: 8px solid transparent;
-        border-bottom: 8px solid transparent;
-        border-right: 8px solid rgba(255, 255, 255, 0.8);
-        filter: drop-shadow(-1px 0 1px rgba(153, 102, 204, 0.1));
+        display: none;
     }
 }
 
@@ -1522,17 +1583,15 @@ nav ul li.dropdown:hover .dropdown-content {
     position: relative;
     z-index: 100;
     margin-top: 1rem;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 240, 255, 0.9));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    color: var(--primary-color);
-    box-shadow: 0 8px 20px rgba(153, 102, 204, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: rgba(153, 102, 204, 0.9);
+    color: white;
+    box-shadow: 0 4px 12px rgba(153, 102, 204, 0.3);
     opacity: 0.8;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(153, 102, 204, 0.2);
+    transition: opacity 0.3s ease;
+    border: 1px solid rgba(153, 102, 204, 0.8);
     font-weight: 500;
     pointer-events: none;
-    border-radius: 25px;
+    border-radius: 20px;
     padding: var(--spacing-sm) var(--spacing-md);
   }
   
@@ -1558,6 +1617,12 @@ nav ul li.dropdown:hover .dropdown-content {
   /* Timeline navigation spacing */
   .timeline-navigation {
     margin-bottom: 100px; /* Add space below timeline buttons */
+  }
+  
+  /* Hide interaction hint during cube rotation */
+  .cube-container.rotating .interaction-hint {
+    opacity: 0 !important;
+    visibility: hidden !important;
   }
 }
 
@@ -1591,8 +1656,9 @@ nav ul li.dropdown:hover .dropdown-content {
     }
     
     .banner-container {
-        padding: var(--spacing-xl) var(--spacing-md);
+        padding: var(--spacing-xl) var(--spacing-md) calc(var(--spacing-xl) * 3) var(--spacing-md);
         text-align: center;
+        position: relative;
     }
     
     .timeline-navigation {
@@ -1676,9 +1742,10 @@ nav ul li.dropdown:hover .dropdown-content {
     
     /* Consistent banner container */
     .banner-container {
-        padding: var(--spacing-xl) var(--spacing-md);
+        padding: var(--spacing-xl) var(--spacing-md) calc(var(--spacing-xl) * 3) var(--spacing-md);
         margin: 0;
         text-align: center;
+        position: relative;
     }
     
     #interactive-banner {
@@ -1708,7 +1775,13 @@ nav ul li.dropdown:hover .dropdown-content {
         max-height: min(90vw, 280px) !important;
     }
     
-
+    /* Fix cube face positioning for consistent mobile experience */
+    .cube-face.front { transform: translateZ(140px) !important; }
+    .cube-face.back { transform: rotateY(180deg) translateZ(140px) !important; }
+    .cube-face.right { transform: rotateY(90deg) translateZ(140px) !important; }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(140px) !important; }
+    .cube-face.top { transform: rotateX(90deg) translateZ(140px) !important; }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(140px) !important; }
     
     /* Consistent text sizing */
     .role-content {
@@ -1738,6 +1811,10 @@ nav ul li.dropdown:hover .dropdown-content {
         padding: 0 var(--spacing-md);
         justify-content: center;
         flex-wrap: wrap;
+        position: absolute;
+        bottom: 2rem;
+        left: 0;
+        right: 0;
     }
     
     .timeline-btn {
@@ -1756,7 +1833,7 @@ nav ul li.dropdown:hover .dropdown-content {
         font-weight: 600;
     }
     
-    /* Consistent interaction hint */
+    /* Simplified interaction hint for mobile */
     .interaction-hint {
         display: block !important;
         position: absolute !important;
@@ -1767,33 +1844,28 @@ nav ul li.dropdown:hover .dropdown-content {
         transform: none !important;
         font-size: var(--font-size-sm) !important;
         padding: var(--spacing-sm) var(--spacing-md) !important;
-        border-radius: 25px !important;
+        border-radius: 20px !important;
         white-space: nowrap !important;
         z-index: 100 !important;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 240, 255, 0.9)) !important;
-        backdrop-filter: blur(10px) !important;
-        -webkit-backdrop-filter: blur(10px) !important;
-        color: var(--primary-color) !important;
-        box-shadow: 0 8px 20px rgba(153, 102, 204, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        background: rgba(153, 102, 204, 0.9) !important;
+        color: white !important;
+        box-shadow: 0 4px 12px rgba(153, 102, 204, 0.3) !important;
         opacity: 0.8 !important;
-        transition: all 0.3s ease !important;
-        border: 1px solid rgba(153, 102, 204, 0.2) !important;
+        transition: opacity 0.3s ease !important;
+        border: 1px solid rgba(153, 102, 204, 0.8) !important;
         font-weight: 500 !important;
         pointer-events: none !important;
     }
     
+    /* Remove arrow pointer on mobile */
     .interaction-hint::before {
-        content: '' !important;
-        position: absolute !important;
-        left: -8px !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        width: 0 !important;
-        height: 0 !important;
-        border-top: 8px solid transparent !important;
-        border-bottom: 8px solid transparent !important;
-        border-right: 8px solid rgba(255, 255, 255, 0.8) !important;
-        filter: drop-shadow(-1px 0 1px rgba(153, 102, 204, 0.1)) !important;
+        display: none !important;
+    }
+    
+    /* Hide interaction hint during cube rotation */
+    .cube-container.rotating .interaction-hint {
+        opacity: 0 !important;
+        visibility: hidden !important;
     }
     
     /* Consistent main content */
@@ -1827,6 +1899,14 @@ nav ul li.dropdown:hover .dropdown-content {
         width: min(60vw, 250px) !important;
         height: min(60vw, 250px) !important;
     }
+    
+    /* Adjust translateZ for 250px cube size */
+    .cube-face.front { transform: translateZ(125px) !important; }
+    .cube-face.back { transform: rotateY(180deg) translateZ(125px) !important; }
+    .cube-face.right { transform: rotateY(90deg) translateZ(125px) !important; }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(125px) !important; }
+    .cube-face.top { transform: rotateX(90deg) translateZ(125px) !important; }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(125px) !important; }
 }
 
 /* Very small screens (older phones) */
@@ -1862,6 +1942,14 @@ nav ul li.dropdown:hover .dropdown-content {
             max-width: 270px !important;
             max-height: 270px !important;
         }
+        
+        /* Adjust translateZ for 270px cube size */
+        .cube-face.front { transform: translateZ(135px) !important; }
+        .cube-face.back { transform: rotateY(180deg) translateZ(135px) !important; }
+        .cube-face.right { transform: rotateY(90deg) translateZ(135px) !important; }
+        .cube-face.left { transform: rotateY(-90deg) translateZ(135px) !important; }
+        .cube-face.top { transform: rotateX(90deg) translateZ(135px) !important; }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(135px) !important; }
     }
 }
 
@@ -1882,7 +1970,13 @@ nav ul li.dropdown:hover .dropdown-content {
         height: min(var(--cube-size-mobile), 75vw, 280px) !important;
     }
     
-
+    /* Ensure translateZ matches 280px cube size */
+    .cube-face.front { transform: translateZ(140px) !important; }
+    .cube-face.back { transform: rotateY(180deg) translateZ(140px) !important; }
+    .cube-face.right { transform: rotateY(90deg) translateZ(140px) !important; }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(140px) !important; }
+    .cube-face.top { transform: rotateX(90deg) translateZ(140px) !important; }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(140px) !important; }
 }
 
 /* =============================================================================
@@ -1907,7 +2001,13 @@ nav ul li.dropdown:hover .dropdown-content {
         max-height: 260px !important;
     }
     
-
+    /* Adjust translateZ for 260px cube size */
+    .cube-face.front { transform: translateZ(130px) !important; }
+    .cube-face.back { transform: rotateY(180deg) translateZ(130px) !important; }
+    .cube-face.right { transform: rotateY(90deg) translateZ(130px) !important; }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(130px) !important; }
+    .cube-face.top { transform: rotateX(90deg) translateZ(130px) !important; }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(130px) !important; }
 }
 
 /* iPhone 14/15 and similar devices */
@@ -1921,6 +2021,14 @@ nav ul li.dropdown:hover .dropdown-content {
         width: 270px;
         height: 270px;
     }
+    
+    /* Adjust translateZ for 270px cube size */
+    .cube-face.front { transform: translateZ(135px) !important; }
+    .cube-face.back { transform: rotateY(180deg) translateZ(135px) !important; }
+    .cube-face.right { transform: rotateY(90deg) translateZ(135px) !important; }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(135px) !important; }
+    .cube-face.top { transform: rotateX(90deg) translateZ(135px) !important; }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(135px) !important; }
 }
 
 /* Landscape orientation adjustments */
