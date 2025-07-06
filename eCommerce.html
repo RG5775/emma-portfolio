@@ -7644,7 +7644,7 @@ a.anchor-link {
             background: #f5f0ff;
             padding: 2rem;
             margin: 0 -1rem 2rem -1rem;
-            border-radius: 8px;
+            border-radius: 8px 8px 0 0;
             text-align: center;
         }
         
@@ -7699,6 +7699,11 @@ a.anchor-link {
         /* Hide the SQL cell with syntax error (duplicate FROM clause) */
         div[id*="cell-id=ca2cb8da-b0fa-4da5-b3d5-fddb45a72401"] {
             display: none !important;
+        }
+        
+        /* Override Jupyter notebook background to match portfolio theme */
+        body.jp-Notebook {
+            background: #f5f0ff !important;
         }
         
         @media screen and (max-width: 768px) {
