@@ -30,127 +30,66 @@
             font-size: 14px;
             font-weight: 600;
         }
-        .dashboard-outer {
-            width: 100%;
-            max-width: 1400px;
-            min-height: 600px;
-            margin: 40px auto 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: none;
-            box-shadow: none;
-            border: none;
-            padding: 0 1rem;
-        }
-        .powerbi-iframe {
-            width: 100%;
-            max-width: 1300px;
-            height: 800px;
-            border: none;
-            display: block;
-        }
         main {
             padding: 2rem 2rem 4rem 2rem;
             max-width: 800px;
             margin: 0 auto;
-        }
-        .dashboard-highlight {
-            margin: 3rem auto 2rem auto;
-            max-width: 1400px;
-            text-align: center;
-        }
-        .dashboard-icon {
-            font-size: 2.2rem;
-            vertical-align: middle;
-            margin-right: 0.5rem;
-        }
-        .dashboard-desc {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            margin-bottom: 2rem;
-            font-weight: 600;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(40px);}
             to { opacity: 1; transform: none;}
         }
 
-        /* Mobile Responsiveness for Dashboard */
-                 @media screen and (max-width: 768px) {
-             .dashboard-outer {
-                 margin: 20px auto 0 auto;
-                 padding: 0 0.5rem;
-                 min-height: 400px;
-             }
-             .powerbi-iframe {
-                 height: 600px;
-             }
-             .dashboard-highlight {
-                 margin: 2rem auto 1rem auto;
-                 padding: 0 1rem;
-             }
-             .dashboard-desc {
-                 font-size: 1.1rem;
-                 margin-bottom: 1.5rem;
-             }
-             .dashboard-icon {
-                 font-size: 2rem;
-             }
-             main {
-                 padding: 2rem 1rem 3rem 1rem;
-             }
-         }
+        
 
-                 @media screen and (max-width: 480px) {
-             .dashboard-outer {
-                 margin: 15px auto 0 auto;
-                 padding: 0 0.25rem;
-                 min-height: 300px;
-             }
-             .powerbi-iframe {
-                 height: 500px;
-             }
-             .dashboard-highlight {
-                 margin: 1.5rem auto 1rem auto;
-                 padding: 0 0.5rem;
-             }
-             .dashboard-highlight h2 {
-                 font-size: 1.8rem;
-                 line-height: 1.3;
-             }
-             .dashboard-desc {
-                 font-size: 1rem;
-                 margin-bottom: 1rem;
-             }
-             .dashboard-icon {
-                 font-size: 1.8rem;
-                 margin-right: 0.3rem;
-             }
-             main {
-                 padding: 1.5rem 1rem 2.5rem 1rem;
-             }
-         }
+        /* Mobile Responsiveness for SQL Analysis Section */
+        @media screen and (max-width: 768px) {
+            .sql-analysis-showcase {
+                padding: 2rem 1rem !important;
+            }
+            .sql-analysis-showcase > div {
+                padding: 0 !important;
+            }
+            .sql-analysis-showcase h2 {
+                font-size: 1.8rem !important;
+            }
+            .sql-analysis-showcase > div > div:first-of-type {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+            .sql-analysis-showcase pre {
+                font-size: 0.8rem !important;
+                overflow-x: auto;
+            }
+        }
 
-                 @media screen and (max-width: 320px) {
-             .dashboard-outer {
-                 margin: 10px auto 0 auto;
-                 padding: 0;
-                 min-height: 250px;
-             }
-             .powerbi-iframe {
-                 height: 400px;
-             }
-             .dashboard-highlight h2 {
-                 font-size: 1.6rem;
-             }
-             .dashboard-desc {
-                 font-size: 0.95rem;
-             }
-             main {
-                 padding: 1rem 0.8rem 2rem 0.8rem;
-             }
-         }
+        @media screen and (max-width: 480px) {
+            .sql-analysis-showcase {
+                padding: 1.5rem 0.5rem !important;
+            }
+            .sql-analysis-showcase h2 {
+                font-size: 1.6rem !important;
+                margin-bottom: 1rem !important;
+            }
+            .sql-analysis-showcase p {
+                font-size: 1rem !important;
+                margin-bottom: 2rem !important;
+            }
+            .sql-analysis-showcase h3 {
+                font-size: 1.1rem !important;
+            }
+            .sql-analysis-showcase > div > div:nth-of-type(2) {
+                padding: 1.5rem !important;
+            }
+            .sql-analysis-showcase pre {
+                font-size: 0.75rem !important;
+                padding: 1rem !important;
+            }
+            .sql-analysis-showcase a {
+                padding: 0.8rem 1.5rem !important;
+                font-size: 0.9rem !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -173,17 +112,94 @@
         </ul>
     </nav>
 
-    <section class="dashboard-highlight">
-        <h2><span class="dashboard-icon">📊</span> Interactive Data Dashboard</h2>
-        <p class="dashboard-desc">Explore customer behavior patterns across multi-category eCommerce platforms through this comprehensive analysis dashboard.</p>
-        <div class="dashboard-outer">
-            <iframe 
-                title="eCommerce_Behavior_Dashboard" 
-                src="https://app.powerbi.com/view?r=eyJrIjoiZjhhMTcwOTUtODQ5NS00ODZlLWFlMWItMmU0NTA3YjcxMGYxIiwidCI6ImU0ODc5YmVmLTk2NTEtNGE4Ni04YzQwLWJmNDZmZTY0ZDc4MiJ9" 
-                frameborder="0" 
-                allowFullScreen="true"
-                class="powerbi-iframe">
-            </iframe>
+
+
+    <section class="sql-analysis-showcase" style="background: #f8f9fb; padding: 3rem 2rem; margin: 0;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--primary-color);">
+                <span style="font-size: 2rem; margin-right: 0.5rem;">🔍</span>
+                SQL Analysis Deep Dive
+            </h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto 3rem auto;">
+                Explore the technical SQL queries and methodologies used to extract actionable insights from the eCommerce behavior dataset. 
+                This analysis demonstrates advanced SQL techniques including CTEs, window functions, and complex aggregations.
+            </p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
+                    <h3 style="color: var(--accent-color); margin-bottom: 1rem;">📈 Brand Performance Analysis</h3>
+                    <p style="margin-bottom: 1rem; color: #555;">Analyzed view-to-purchase conversion rates across 4,202 brands using advanced SQL aggregations.</p>
+                    <ul style="color: #666; margin-left: 1rem;">
+                        <li>CTE for session-level behavior tracking</li>
+                        <li>Conditional aggregations with CASE statements</li>
+                        <li>Conversion rate calculations with NULLIF</li>
+                    </ul>
+                </div>
+                
+                <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
+                    <h3 style="color: var(--accent-color); margin-bottom: 1rem;">🛒 Customer Journey Mapping</h3>
+                    <p style="margin-bottom: 1rem; color: #555;">Tracked user sessions from initial view through purchase completion.</p>
+                    <ul style="color: #666; margin-left: 1rem;">
+                        <li>Session-based event tracking</li>
+                        <li>Multi-step funnel analysis</li>
+                        <li>Behavioral pattern identification</li>
+                    </ul>
+                </div>
+                
+                <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
+                    <h3 style="color: var(--accent-color); margin-bottom: 1rem;">💾 Database Architecture</h3>
+                    <p style="margin-bottom: 1rem; color: #555;">PostgreSQL database with optimized queries for large-scale eCommerce data.</p>
+                    <ul style="color: #666; margin-left: 1rem;">
+                        <li>Cleaned and normalized data structure</li>
+                        <li>Efficient indexing strategies</li>
+                        <li>Scalable query performance</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+                <h3 style="text-align: center; margin-bottom: 2rem; color: var(--primary-color);">Featured SQL Query: Brand Conversion Analysis</h3>
+                <div style="background: #1e1e1e; color: #d4d4d4; padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', 'Monaco', monospace; font-size: 0.9rem; line-height: 1.4;">
+<pre style="margin: 0; white-space: pre-wrap;"><span style="color: #569cd6;">WITH</span> brand_view_purchase <span style="color: #569cd6;">AS</span> (
+    <span style="color: #569cd6;">SELECT</span>
+        brand,
+        user_session,
+        <span style="color: #4fc1ff;">MAX</span>(<span style="color: #569cd6;">CASE WHEN</span> event_type = <span style="color: #ce9178;">'view'</span> <span style="color: #569cd6;">THEN</span> <span style="color: #b5cea8;">1</span> <span style="color: #569cd6;">ELSE</span> <span style="color: #b5cea8;">0</span> <span style="color: #569cd6;">END</span>) <span style="color: #569cd6;">AS</span> viewed,
+        <span style="color: #4fc1ff;">MAX</span>(<span style="color: #569cd6;">CASE WHEN</span> event_type = <span style="color: #ce9178;">'purchase'</span> <span style="color: #569cd6;">THEN</span> <span style="color: #b5cea8;">1</span> <span style="color: #569cd6;">ELSE</span> <span style="color: #b5cea8;">0</span> <span style="color: #569cd6;">END</span>) <span style="color: #569cd6;">AS</span> purchased
+    <span style="color: #569cd6;">FROM</span> cleaned_data
+    <span style="color: #569cd6;">GROUP BY</span> brand, user_session
+)
+
+<span style="color: #569cd6;">SELECT</span> 
+    brand,
+    <span style="color: #4fc1ff;">COUNT</span>(user_session) <span style="color: #569cd6;">FILTER</span> (<span style="color: #569cd6;">WHERE</span> viewed = <span style="color: #b5cea8;">1</span>) <span style="color: #569cd6;">AS</span> product_view,
+    <span style="color: #4fc1ff;">ROUND</span>(<span style="color: #b5cea8;">100.00</span> * <span style="color: #4fc1ff;">COUNT</span>(user_session) <span style="color: #569cd6;">FILTER</span> (<span style="color: #569cd6;">WHERE</span> purchased = <span style="color: #b5cea8;">1</span>) / 
+          <span style="color: #4fc1ff;">NULLIF</span>(<span style="color: #4fc1ff;">COUNT</span>(user_session) <span style="color: #569cd6;">FILTER</span> (<span style="color: #569cd6;">WHERE</span> viewed = <span style="color: #b5cea8;">1</span>), <span style="color: #b5cea8;">0</span>), <span style="color: #b5cea8;">2</span>) <span style="color: #569cd6;">AS</span> view_to_purchase_conversion
+<span style="color: #569cd6;">FROM</span> brand_view_purchase
+<span style="color: #569cd6;">GROUP BY</span> brand
+<span style="color: #569cd6;">ORDER BY</span> view_to_purchase_conversion <span style="color: #569cd6;">DESC</span>;</pre>
+                </div>
+                <div style="margin-top: 1.5rem; padding: 1rem; background: #f0f9ff; border-left: 4px solid var(--accent-color); border-radius: 0 8px 8px 0;">
+                    <p style="margin: 0; color: #555; font-weight: 500;">
+                        <strong>Query Insight:</strong> This CTE-based query analyzes conversion rates across 4,202 brands, 
+                        identifying which brands drive the highest view-to-purchase conversions within the same user session.
+                    </p>
+                </div>
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="eCommerce.html" 
+                   style="display: inline-block; background: var(--accent-color); color: white; padding: 1rem 2rem; 
+                          text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s ease;
+                          box-shadow: 0 4px 15px rgba(153, 102, 204, 0.3);"
+                   onmouseover="this.style.background='#8b5fbf'; this.style.transform='translateY(-2px)'"
+                   onmouseout="this.style.background='var(--accent-color)'; this.style.transform='translateY(0)'">
+                    📓 View Complete SQL Analysis Notebook
+                </a>
+                <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                    Access the full Jupyter notebook with all SQL queries, data explorations, and detailed analysis
+                </p>
+            </div>
         </div>
     </section>
 

@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>eCommerce</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>eCommerce SQL Analysis | Jieren LI Portfolio</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7509,8 +7509,234 @@ a.anchor-link {
   }
 </style>
 <!-- End of mermaid configuration --></head>
+<head>
+    <!-- Portfolio Integration Styles -->
+    <style>
+        /* Portfolio Header & Navigation Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .portfolio-header {
+            background: linear-gradient(135deg, #C8A2C8 0%, #9966CC 100%);
+            color: #f5f0ff;
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .portfolio-header h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.5rem;
+            margin: 0;
+            color: #f5f0ff;
+            font-weight: 700;
+        }
+        
+        .portfolio-header p {
+            font-size: 1.2rem;
+            color: #f5f0ff;
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .portfolio-nav {
+            background-color: #f5f0ff;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .portfolio-nav ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0.5rem 0;
+            list-style: none;
+        }
+        
+        .portfolio-nav ul li {
+            flex: 1;
+            min-width: 0;
+            text-align: center;
+        }
+        
+        .portfolio-nav ul li a {
+            color: #1a1a1a;
+            padding: 1rem 1.5rem;
+            display: block;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            border-radius: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-decoration: none;
+        }
+        
+        .portfolio-nav ul li a:hover {
+            color: #9966cc;
+        }
+        
+        .portfolio-nav .dropdown {
+            position: relative;
+        }
+        
+        .portfolio-nav .dropdown-content {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            min-width: 200px;
+            z-index: 1001;
+            background-color: #f5f0ff;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0 0 8px 8px;
+            padding: 0.5rem 0;
+        }
+        
+        .portfolio-nav .dropdown-content a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: #1a1a1a;
+            text-align: left;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            border-bottom: 1px solid #eee;
+            background: none;
+            transition: background 0.2s, color 0.2s;
+        }
+        
+        .portfolio-nav .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .portfolio-nav .dropdown-content a:hover {
+            background-color: #e8e0f2;
+            color: #9966cc;
+        }
+        
+        .portfolio-nav .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .notebook-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .notebook-intro {
+            background: #f8f9fb;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .notebook-intro h2 {
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        
+        .notebook-intro p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .back-link {
+            display: inline-block;
+            background: #9966cc;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(153, 102, 204, 0.3);
+        }
+        
+        .back-link:hover {
+            background: #8b5fbf;
+            transform: translateY(-2px);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .portfolio-header {
+                padding: 1.5rem 1rem;
+            }
+            .portfolio-header h1 {
+                font-size: 2rem;
+            }
+            .portfolio-nav ul {
+                flex-direction: column;
+            }
+            .portfolio-nav ul li {
+                width: 100%;
+                border-bottom: 1px solid #eee;
+            }
+            .portfolio-nav ul li:last-child {
+                border-bottom: none;
+            }
+            .notebook-container {
+                margin: 1rem auto;
+                padding: 0 0.5rem;
+            }
+            .notebook-intro {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<main><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a9d7e8b5-c941-4028-ae3e-7b59e0c8dde0">
+    <header class="portfolio-header">
+        <h1>SQL Analysis Notebook</h1>
+        <p>eCommerce Behavior Data | PostgreSQL Analysis</p>
+    </header>
+
+    <nav class="portfolio-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+                <a href="skills_and_projects.html" class="dropbtn">My Work</a>
+                <div class="dropdown-content">
+                    <a href="walmart_sales_analysis.html">Walmart Sales Analysis</a>
+                    <a href="ecommerce_behavior_analysis.html">eCommerce Behavior Analysis</a>
+                </div>
+            </li>
+            <li><a href="about.html">About Me</a></li>
+        </ul>
+    </nav>
+
+    <div class="notebook-container">
+        <div class="notebook-intro">
+            <h2>🔍 Advanced SQL Analysis: eCommerce Customer Behavior</h2>
+            <p>This interactive notebook showcases comprehensive SQL analysis of eCommerce behavior data using PostgreSQL. 
+               Explore advanced techniques including CTEs, window functions, conditional aggregations, and conversion analysis 
+               across 4,202+ brands and customer sessions.</p>
+            <a href="ecommerce_behavior_analysis.html" class="back-link">← Back to Project Overview</a>
+        </div>
+
+        <main><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a9d7e8b5-c941-4028-ae3e-7b59e0c8dde0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8884,6 +9110,11 @@ FROM ecommerce_2019_nov]
 </div>
 </div>
 </div>
-</main>
+        </main>
+    </div>
+    
+    <footer style="text-align: center; padding: 2rem; background-color: #e8e0f2; color: #888; font-size: 0.9rem; margin-top: 3rem;">
+        <p>&copy; 2025 Jieren LI - SQL Analysis Portfolio</p>
+    </footer>
 </body>
 </html>
