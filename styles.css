@@ -993,15 +993,30 @@ nav ul li.dropdown:hover .dropdown-content {
     }
 
     .interaction-hint {
-        position: relative;
-        bottom: auto;
-        left: 0;
-        right: auto;
-        margin-top: 1rem;
+        position: absolute;
+        bottom: -40px;
+        right: -10px;
+        left: auto;
+        margin-top: 0;
         font-size: 0.75rem;
         padding: 6px 12px;
         display: inline-block;
         transform: none;
+        z-index: 10;
+    }
+
+    .interaction-hint::before {
+        content: '';
+        position: absolute;
+        right: 50%;
+        top: -8px;
+        transform: translateX(50%) rotate(45deg);
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid rgba(255, 255, 255, 0.8);
+        filter: drop-shadow(0 -1px 1px rgba(153, 102, 204, 0.1));
     }
 }
 
@@ -1019,6 +1034,8 @@ nav ul li.dropdown:hover .dropdown-content {
     /* Option 2: scale down instead of setting fixed size */
     transform: scale(0.8);
     transform-origin: top center;
+    /* Ensure interaction hint positioning works */
+    overflow: visible;
   }
   .cube-container .cube-face {
     /* If using explicit dimensions, ensure faces match container */
