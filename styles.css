@@ -105,8 +105,8 @@ body {
     --font-size-xxl: clamp(2rem, 5vw, 3.5rem);
     
     /* Responsive cube sizes */
-    --cube-size-mobile: min(70vw, 280px);
-    --cube-size-tablet: min(60vw, 350px);
+    --cube-size-mobile: 280px;
+    --cube-size-tablet: 350px;
     --cube-size-desktop: 400px;
 }
 
@@ -547,9 +547,6 @@ nav ul li.dropdown:hover .dropdown-content {
 
 /* Mobile Responsiveness - Mobile phones */
 @media screen and (max-width: 480px) {
-    :root {
-        --cube-size-mobile: 80vw;
-    }
     
     nav {
         position: sticky;
@@ -710,25 +707,18 @@ nav ul li.dropdown:hover .dropdown-content {
     }
 
     .cube-container {
-        width: var(--cube-size-mobile);
-        height: var(--cube-size-mobile);
+        width: 280px;
+        height: 280px;
         margin: 0 auto 0.5rem auto;
         perspective: 600px;
         margin-bottom: 4rem;
     }
 
     .cube-face {
-        width: var(--cube-size-mobile);
-        height: var(--cube-size-mobile);
+        width: 280px;
+        height: 280px;
         border-radius: 16px;
     }
-
-    .cube-face.front { transform: translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.right { transform: rotateY(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
 }
 
 /* iPhone 11 and similar devices */
@@ -852,46 +842,46 @@ nav ul li.dropdown:hover .dropdown-content {
 }
 
 /* Tablet responsive cube */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) and (min-width: 481px) {
     .cube-container {
-        width: var(--cube-size-tablet);
-        height: var(--cube-size-tablet);
+        width: 350px;
+        height: 350px;
         perspective: 800px;
     }
     
     .cube-face {
-        width: var(--cube-size-tablet);
-        height: var(--cube-size-tablet);
+        width: 350px;
+        height: 350px;
     }
     
-    .cube-face.front { transform: translateZ(calc(var(--cube-size-tablet) / 2)); }
-    .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-tablet) / 2)); }
-    .cube-face.right { transform: rotateY(90deg) translateZ(calc(var(--cube-size-tablet) / 2)); }
-    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size-tablet) / 2)); }
-    .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-tablet) / 2)); }
-    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-tablet) / 2)); }
+    .cube-face.front { transform: translateZ(175px); }
+    .cube-face.back { transform: rotateY(180deg) translateZ(175px); }
+    .cube-face.right { transform: rotateY(90deg) translateZ(175px); }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(175px); }
+    .cube-face.top { transform: rotateX(90deg) translateZ(175px); }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(175px); }
 }
 
 /* Mobile responsive cube */
 @media screen and (max-width: 480px) {
     .cube-container {
-        width: var(--cube-size-mobile);
-        height: var(--cube-size-mobile);
+        width: 280px;
+        height: 280px;
         perspective: 600px;
         margin: 0 auto var(--spacing-xl) auto;
     }
     
     .cube-face {
-        width: var(--cube-size-mobile);
-        height: var(--cube-size-mobile);
+        width: 280px;
+        height: 280px;
     }
     
-    .cube-face.front { transform: translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.right { transform: rotateY(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
-    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)); }
+    .cube-face.front { transform: translateZ(140px); }
+    .cube-face.back { transform: rotateY(180deg) translateZ(140px); }
+    .cube-face.right { transform: rotateY(90deg) translateZ(140px); }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(140px); }
+    .cube-face.top { transform: rotateX(90deg) translateZ(140px); }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(140px); }
 }
 
 .cube {
@@ -1197,13 +1187,6 @@ nav ul li.dropdown:hover .dropdown-content {
         border-radius: 0;
     }
 
-    .cube-face.front { transform: translateZ(150px); }
-    .cube-face.back { transform: rotateY(180deg) translateZ(150px); }
-    .cube-face.right { transform: rotateY(90deg) translateZ(150px); }
-    .cube-face.left { transform: rotateY(-90deg) translateZ(150px); }
-    .cube-face.top { transform: rotateX(90deg) translateZ(150px); }
-    .cube-face.bottom { transform: rotateX(-90deg) translateZ(150px); }
-
     .role-content h2 {
         font-size: 1.8rem;
     }
@@ -1249,13 +1232,6 @@ nav ul li.dropdown:hover .dropdown-content {
         height: 280px;
         border-radius: 16px;
     }
-
-    .cube-face.front { transform: translateZ(140px); }
-    .cube-face.back { transform: rotateY(180deg) translateZ(140px); }
-    .cube-face.right { transform: rotateY(90deg) translateZ(140px); }
-    .cube-face.left { transform: rotateY(-90deg) translateZ(140px); }
-    .cube-face.top { transform: rotateX(90deg) translateZ(140px); }
-    .cube-face.bottom { transform: rotateX(-90deg) translateZ(140px); }
 
     .role-content {
         padding: 1rem;
@@ -1359,13 +1335,6 @@ nav ul li.dropdown:hover .dropdown-content {
     /* Update transforms for smaller cube */
     border-radius: 16px;
   }
-  
-  .cube-container .cube-face.front { transform: translateZ(140px); }
-  .cube-container .cube-face.back { transform: rotateY(180deg) translateZ(140px); }
-  .cube-container .cube-face.right { transform: rotateY(90deg) translateZ(140px); }
-  .cube-container .cube-face.left { transform: rotateY(-90deg) translateZ(140px); }
-  .cube-container .cube-face.top { transform: rotateX(90deg) translateZ(140px); }
-  .cube-container .cube-face.bottom { transform: rotateX(-90deg) translateZ(140px); }
 
   /* 2. Ensure nav bar is on top of the cube */
   nav {
@@ -1596,12 +1565,7 @@ nav ul li.dropdown:hover .dropdown-content {
         max-height: min(90vw, 280px) !important;
     }
     
-    .cube-face.front { transform: translateZ(calc(min(var(--cube-size-mobile), min(90vw, 280px)) / 2)) !important; }
-    .cube-face.back { transform: rotateY(180deg) translateZ(calc(min(var(--cube-size-mobile), min(90vw, 280px)) / 2)) !important; }
-    .cube-face.right { transform: rotateY(90deg) translateZ(calc(min(var(--cube-size-mobile), min(90vw, 280px)) / 2)) !important; }
-    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(min(var(--cube-size-mobile), min(90vw, 280px)) / 2)) !important; }
-    .cube-face.top { transform: rotateX(90deg) translateZ(calc(min(var(--cube-size-mobile), min(90vw, 280px)) / 2)) !important; }
-    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(min(var(--cube-size-mobile), min(90vw, 280px)) / 2)) !important; }
+
     
     /* Consistent text sizing */
     .role-content {
@@ -1706,9 +1670,6 @@ nav ul li.dropdown:hover .dropdown-content {
 
 /* Large mobile screens (iPhone 16 Pro Max, etc.) */
 @media screen and (max-width: 480px) and (min-width: 430px) {
-    :root {
-        --cube-size-mobile: min(60vw, 250px);
-    }
     
     .cube-container {
         max-width: 250px !important;
@@ -1727,9 +1688,6 @@ nav ul li.dropdown:hover .dropdown-content {
 
 /* Very small screens (older phones) */
 @media screen and (max-width: 320px) {
-    :root {
-        --cube-size-mobile: min(85vw, 260px);
-    }
     
     .role-content h2 {
         font-size: clamp(1.3rem, 5vw, 1.6rem);
@@ -1781,13 +1739,7 @@ nav ul li.dropdown:hover .dropdown-content {
         height: min(var(--cube-size-mobile), 75vw, 280px) !important;
     }
     
-    /* Update transforms to use the constrained size */
-    .cube-face.front { transform: translateZ(calc(min(var(--cube-size-mobile), 75vw, 280px) / 2)) !important; }
-    .cube-face.back { transform: rotateY(180deg) translateZ(calc(min(var(--cube-size-mobile), 75vw, 280px) / 2)) !important; }
-    .cube-face.right { transform: rotateY(90deg) translateZ(calc(min(var(--cube-size-mobile), 75vw, 280px) / 2)) !important; }
-    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(min(var(--cube-size-mobile), 75vw, 280px) / 2)) !important; }
-    .cube-face.top { transform: rotateX(90deg) translateZ(calc(min(var(--cube-size-mobile), 75vw, 280px) / 2)) !important; }
-    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(min(var(--cube-size-mobile), 75vw, 280px) / 2)) !important; }
+
 }
 
 /* =============================================================================
@@ -1796,9 +1748,6 @@ nav ul li.dropdown:hover .dropdown-content {
 
 /* iPhone 16 and large mobile devices */
 @media screen and (max-width: 430px) and (min-width: 390px) {
-    :root {
-        --cube-size-mobile: min(65vw, 260px);
-    }
     
     .cube-container {
         width: var(--cube-size-mobile) !important;
@@ -1815,18 +1764,19 @@ nav ul li.dropdown:hover .dropdown-content {
         max-height: 260px !important;
     }
     
-    .cube-face.front { transform: translateZ(calc(var(--cube-size-mobile) / 2)) !important; }
-    .cube-face.back { transform: rotateY(180deg) translateZ(calc(var(--cube-size-mobile) / 2)) !important; }
-    .cube-face.right { transform: rotateY(90deg) translateZ(calc(var(--cube-size-mobile) / 2)) !important; }
-    .cube-face.left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)) !important; }
-    .cube-face.top { transform: rotateX(90deg) translateZ(calc(var(--cube-size-mobile) / 2)) !important; }
-    .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size-mobile) / 2)) !important; }
+
 }
 
 /* iPhone 14/15 and similar devices */
 @media screen and (max-width: 414px) and (min-width: 375px) {
-    :root {
-        --cube-size-mobile: min(68vw, 270px);
+    .cube-container {
+        width: 270px;
+        height: 270px;
+    }
+    
+    .cube-face {
+        width: 270px;
+        height: 270px;
     }
 }
 
@@ -1845,13 +1795,13 @@ nav ul li.dropdown:hover .dropdown-content {
     }
     
     .cube-container {
-        width: min(50vh, var(--cube-size-mobile));
-        height: min(50vh, var(--cube-size-mobile));
+        width: min(50vh, 280px);
+        height: min(50vh, 280px);
     }
     
     .cube-face {
-        width: min(50vh, var(--cube-size-mobile));
-        height: min(50vh, var(--cube-size-mobile));
+        width: min(50vh, 280px);
+        height: min(50vh, 280px);
     }
 }
 
