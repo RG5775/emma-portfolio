@@ -995,10 +995,13 @@ nav ul li.dropdown:hover .dropdown-content {
     .interaction-hint {
         position: relative;
         bottom: auto;
+        left: 0;
+        right: auto;
         margin-top: 1rem;
         font-size: 0.75rem;
         padding: 6px 12px;
         display: inline-block;
+        transform: none;
     }
 }
 
