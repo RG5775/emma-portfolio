@@ -32,6 +32,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize
     updateDisplay();
+    
+    // Set appropriate interaction hint text based on device
+    if (interactionHint) {
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 480;
+        const hintText = isMobile ? 
+            '<span>👆 Touch and drag</span>' : 
+            '<span>🖱️ Click and drag</span>';
+        interactionHint.innerHTML = hintText;
+    }
+    
     console.log('3D Cube initialized successfully');
     
     // Timeline button functionality
@@ -209,4 +219,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Stop auto-rotate on user interaction
     cubeContainer.addEventListener('mousedown', stopAutoRotateDemo);
     cubeContainer.addEventListener('touchstart', stopAutoRotateDemo);
+    
+    // Update interaction hint text on window resize
+    window.addEventListener('resize', function() {
+        if (interactionHint) {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 480;
+            const hintText = isMobile ? 
+                '<span>👆 Touch and drag</span>' : 
+                '<span>🖱️ Click and drag</span>';
+            interactionHint.innerHTML = hintText;
+        }
+    });
 }); 
