@@ -869,6 +869,13 @@ nav ul li.dropdown:hover .dropdown-content {
     opacity: 1;
 }
 
+/* Move timeline buttons down by 4rem on web/desktop only */
+@media screen and (min-width: 769px) {
+    .timeline-navigation {
+        margin-top: 8rem;
+    }
+}
+
 /* Mobile Responsiveness for 3D Banner */
 @media screen and (max-width: 768px) {
     .banner-container {
@@ -916,13 +923,13 @@ nav ul li.dropdown:hover .dropdown-content {
     .banner-container {
         padding: 0.5rem 0.25rem;
         margin: 0;
-        margin-bottom: 2rem;
+        margin-bottom: 0.5rem;
     }
 
     #interactive-banner {
         padding: 0;
         margin: 0;
-        margin-bottom: 2rem;
+        margin-bottom: 0.5rem;
     }
 
     /* Commented out - using new media query for phones instead
