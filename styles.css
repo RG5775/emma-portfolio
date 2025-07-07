@@ -852,7 +852,7 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-container {
         width: 280px;
         height: 280px;
-        margin: 1.3rem auto 0.5rem auto;
+        margin: 1.3rem auto 2.5rem auto;
         perspective: 600px;
         margin-bottom: 4rem;
     }
@@ -929,7 +929,7 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-container {
         width: 260px;
         height: 260px;
-        margin: 1.3rem auto 0 auto;
+        margin: 1.3rem auto 2rem auto;
         perspective: 700px;
     }
     
