@@ -953,17 +953,17 @@ nav ul li.dropdown:hover .dropdown-content {
     margin: 0;
     background: linear-gradient(135deg, #f5f0ff 0%, #e8e0f2 100%);
     perspective: 1000px;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
     z-index: 0;
     padding-top: 100px;
-    padding-bottom: 120px; /* Increased from 25px to 120px for more space */
+    padding-bottom: 80px;
 }
 
 .banner-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 4rem 2rem;
+    padding: 4rem 2rem 6rem 2rem;
     text-align: center;
     position: relative;
     z-index: 1;
@@ -973,7 +973,7 @@ nav ul li.dropdown:hover .dropdown-content {
     position: relative;
     width: var(--cube-size-desktop);
     height: var(--cube-size-desktop);
-    margin: 2rem auto 4rem auto; /* Increased bottom margin from 3rem to 4rem and added consistent top margin */
+    margin: 2rem auto 6rem auto; /* Increased bottom margin by 2rem for more space from buttons */
     perspective: 1000px;
     z-index: 2;
     touch-action: manipulation;
@@ -990,7 +990,7 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-container {
         width: 350px;
         height: 350px;
-        margin: 1.3rem auto 0 auto;
+        margin: 1.3rem auto 2rem auto;
         perspective: 800px;
     }
     
@@ -1013,7 +1013,7 @@ nav ul li.dropdown:hover .dropdown-content {
         width: 280px;
         height: 280px;
         perspective: 600px;
-        margin: 1.3rem auto var(--spacing-xl) auto;
+        margin: 1.3rem auto 4rem auto;
     }
     
     .cube-face {
@@ -1311,10 +1311,9 @@ nav ul li.dropdown:hover .dropdown-content {
     justify-content: center;
     align-items: center;
     gap: var(--spacing-xxl);
-    margin-top: 0;
     z-index: 15;
     position: absolute;
-    bottom: 2rem;
+    bottom: 0;
     left: 0;
     right: 0;
     flex-wrap: wrap;
@@ -1375,7 +1374,7 @@ nav ul li.dropdown:hover .dropdown-content {
 /* Desktop spacing */
 @media screen and (min-width: 769px) {
     .timeline-navigation {
-        bottom: 3rem;
+        bottom: -2rem;
         gap: var(--spacing-xxl);
     }
 }
@@ -1389,7 +1388,7 @@ nav ul li.dropdown:hover .dropdown-content {
     }
 
     .cube-container {
-        margin: 2rem auto 3rem auto; /* Better centering and spacing */
+        margin: 2rem auto 5rem auto; /* Better centering and spacing */
     }
 
     .cube-face {
@@ -1413,9 +1412,8 @@ nav ul li.dropdown:hover .dropdown-content {
 
     .timeline-navigation {
         gap: 1.5rem;
-        margin-top: 0;
         position: absolute;
-        bottom: 1.5rem;
+        bottom: 0;
         left: 0;
         right: 0;
     }
@@ -1430,7 +1428,7 @@ nav ul li.dropdown:hover .dropdown-content {
     }
 
     #interactive-banner {
-        padding: 1rem 0 5rem 0; /* Increased bottom padding */
+        padding: 1rem 0 2rem 0;
         margin: 0;
         position: relative;
     }
@@ -1438,7 +1436,7 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-container {
         width: 280px;
         height: 280px;
-        margin: 1.5rem auto 2.5rem auto; /* Better centering and spacing */
+        margin: 1.5rem auto 4.5rem auto; /* Better centering and spacing */
         perspective: 800px;
         position: relative;
         overflow: visible;
@@ -1471,11 +1469,10 @@ nav ul li.dropdown:hover .dropdown-content {
 
     .timeline-navigation {
         gap: 2rem;
-        margin-top: 0;
         padding: 0 1rem;
         justify-content: center;
         position: absolute;
-        bottom: 1.5rem;
+        bottom: 0;
         left: 0;
         right: 0;
     }
@@ -1748,7 +1745,7 @@ nav ul li.dropdown:hover .dropdown-content {
     
     /* Consistent banner container */
     .banner-container {
-        padding: var(--spacing-xl) var(--spacing-md) calc(var(--spacing-xl) * 3) var(--spacing-md);
+        padding: var(--spacing-xl) var(--spacing-md) 6rem var(--spacing-md);
         margin: 0;
         text-align: center;
         position: relative;
@@ -1763,7 +1760,7 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-container {
         width: var(--cube-size-mobile) !important;
         height: var(--cube-size-mobile) !important;
-        margin: calc(var(--spacing-xl) * 1.3) auto var(--spacing-xl) auto !important;
+        margin: calc(var(--spacing-xl) * 1.3) auto calc(var(--spacing-xl) + 2rem) auto !important;
         perspective: 600px !important;
         position: relative !important;
         overflow: visible !important;
@@ -1813,12 +1810,11 @@ nav ul li.dropdown:hover .dropdown-content {
     /* Consistent timeline navigation */
     .timeline-navigation {
         gap: var(--spacing-lg);
-        margin-top: var(--spacing-xl);
         padding: 0 var(--spacing-md);
         justify-content: center;
         flex-wrap: wrap;
         position: absolute;
-        bottom: 2rem;
+        bottom: 0;
         left: 0;
         right: 0;
     }
@@ -1995,7 +1991,7 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-container {
         width: var(--cube-size-mobile) !important;
         height: var(--cube-size-mobile) !important;
-        margin: calc(var(--spacing-xl) * 1.3) auto var(--spacing-xl) auto !important;
+        margin: calc(var(--spacing-xl) * 1.3) auto calc(var(--spacing-xl) + 2rem) auto !important;
         max-width: 260px !important;
         max-height: 260px !important;
     }
@@ -2021,7 +2017,7 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-container {
         width: 270px;
         height: 270px;
-        margin: 1.3rem auto 0 auto;
+        margin: 1.3rem auto 2rem auto;
     }
     
     .cube-face {
@@ -2055,7 +2051,7 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-container {
         width: min(50vh, 280px);
         height: min(50vh, 280px);
-        margin: 1.3rem auto 0 auto;
+        margin: 1.3rem auto 2rem auto;
     }
     
     .cube-face {
