@@ -852,7 +852,7 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-container {
         width: 280px;
         height: 280px;
-        margin: 1.3rem auto 2.5rem auto;
+        margin: 3rem auto 2.5rem auto;
         perspective: 600px;
         margin-bottom: 4rem;
     }
@@ -869,7 +869,7 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-container {
         width: 280px;
         height: 280px;
-        margin: 1.95rem auto 2rem auto;
+        margin: 3rem auto 2rem auto;
         perspective: 800px;
     }
     
@@ -929,7 +929,7 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-container {
         width: 260px;
         height: 260px;
-        margin: 1.3rem auto 2rem auto;
+        margin: 3rem auto 2rem auto;
         perspective: 700px;
     }
     
@@ -1013,7 +1013,7 @@ nav ul li.dropdown:hover .dropdown-content {
         width: 280px;
         height: 280px;
         perspective: 600px;
-        margin: 1.3rem auto 4rem auto;
+        margin: 3rem auto 4rem auto;
     }
     
     .cube-face {
@@ -1436,7 +1436,7 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-container {
         width: 280px;
         height: 280px;
-        margin: 1.5rem auto 4.5rem auto; /* Better centering and spacing */
+        margin: 3rem auto 4.5rem auto; /* Better centering and spacing */
         perspective: 800px;
         position: relative;
         overflow: visible;
@@ -1527,7 +1527,7 @@ nav ul li.dropdown:hover .dropdown-content {
     width: 280px;
     height: 280px;
     /* Center it and add spacing from nav/text */
-    margin: 2.6rem auto 2rem auto;
+    margin: 3rem auto 2rem auto;
     /* Ensure it's not covering other content */
     position: relative !important;
     /* Ensure interaction hint positioning works */
@@ -1760,7 +1760,7 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-container {
         width: var(--cube-size-mobile) !important;
         height: var(--cube-size-mobile) !important;
-        margin: calc(var(--spacing-xl) * 1.3) auto calc(var(--spacing-xl) + 2rem) auto !important;
+        margin: 3rem auto calc(var(--spacing-xl) + 2rem) auto !important;
         perspective: 600px !important;
         position: relative !important;
         overflow: visible !important;
@@ -1991,7 +1991,7 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-container {
         width: var(--cube-size-mobile) !important;
         height: var(--cube-size-mobile) !important;
-        margin: calc(var(--spacing-xl) * 1.3) auto calc(var(--spacing-xl) + 2rem) auto !important;
+        margin: 3rem auto calc(var(--spacing-xl) + 2rem) auto !important;
         max-width: 260px !important;
         max-height: 260px !important;
     }
@@ -2017,7 +2017,7 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-container {
         width: 270px;
         height: 270px;
-        margin: 1.3rem auto 2rem auto;
+        margin: 3rem auto 2rem auto;
     }
     
     .cube-face {
@@ -2051,7 +2051,7 @@ nav ul li.dropdown:hover .dropdown-content {
     .cube-container {
         width: min(50vh, 280px);
         height: min(50vh, 280px);
-        margin: 1.3rem auto 2rem auto;
+        margin: 3rem auto 2rem auto;
     }
     
     .cube-face {
