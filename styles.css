@@ -317,6 +317,8 @@ nav {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
 }
 
 nav ul {
@@ -1310,15 +1312,13 @@ nav ul li.dropdown:hover .dropdown-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--spacing-xxl);
-    margin-top: 0; /* Removed margin-top to position at bottom */
+    gap: var(--spacing-lg);
+    margin-top: 0;
     z-index: 15;
-    position: absolute; /* Changed from relative to absolute */
-    bottom: 2rem; /* Position at bottom of banner */
-    left: 0;
-    right: 0;
+    position: relative;
     flex-wrap: wrap;
-    padding: 0 var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-top: 1px solid rgba(238, 238, 238, 0.5);
 }
 
 .timeline-btn {
@@ -1375,8 +1375,8 @@ nav ul li.dropdown:hover .dropdown-content {
 /* Desktop spacing */
 @media screen and (min-width: 769px) {
     .timeline-navigation {
-        bottom: 3rem; /* Position at bottom with more space on desktop */
         gap: var(--spacing-xxl);
+        padding: var(--spacing-md) var(--spacing-lg);
     }
 }
 
@@ -1413,11 +1413,9 @@ nav ul li.dropdown:hover .dropdown-content {
 
     .timeline-navigation {
         gap: 1.5rem;
-        margin-top: 0; /* Removed margin-top */
-        position: absolute;
-        bottom: 1.5rem; /* Position at bottom of banner */
-        left: 0;
-        right: 0;
+        margin-top: 0;
+        position: relative;
+        padding: var(--spacing-sm) var(--spacing-md);
     }
 }
 
@@ -1471,13 +1469,10 @@ nav ul li.dropdown:hover .dropdown-content {
 
     .timeline-navigation {
         gap: 2rem;
-        margin-top: 0; /* Removed margin-top */
-        padding: 0 1rem;
+        margin-top: 0;
+        padding: var(--spacing-sm) var(--spacing-md);
         justify-content: center;
-        position: absolute;
-        bottom: 1.5rem; /* Position at bottom of banner */
-        left: 0;
-        right: 0;
+        position: relative;
     }
 
     .timeline-btn {
@@ -1665,12 +1660,10 @@ nav ul li.dropdown:hover .dropdown-content {
     
     .timeline-navigation {
         gap: var(--spacing-lg);
-        margin-top: 0; /* Removed margin-top */
+        margin-top: 0;
         flex-wrap: wrap;
-        position: absolute;
-        bottom: 2rem; /* Position at bottom of banner */
-        left: 0;
-        right: 0;
+        position: relative;
+        padding: var(--spacing-sm) var(--spacing-md);
     }
     
     .timeline-btn {
@@ -1813,14 +1806,11 @@ nav ul li.dropdown:hover .dropdown-content {
     /* Consistent timeline navigation */
     .timeline-navigation {
         gap: var(--spacing-lg);
-        margin-top: var(--spacing-xl);
-        padding: 0 var(--spacing-md);
+        margin-top: 0;
+        padding: var(--spacing-sm) var(--spacing-md);
         justify-content: center;
         flex-wrap: wrap;
-        position: absolute;
-        bottom: 2rem;
-        left: 0;
-        right: 0;
+        position: relative;
     }
     
     .timeline-btn {
