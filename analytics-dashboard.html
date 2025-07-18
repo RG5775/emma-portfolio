@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Analytics Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+
+        .refresh-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 15px;
+            transition: transform 0.2s;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .chart-title {
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .chart-canvas {
+            max-height: 300px;
+        }
+
+        .data-table {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .table-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-online {
+            background: #2ecc71;
+        }
+
+        .status-offline {
+            background: #e74c3c;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #7f8c8d;
+        }
+
+        .error {
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: #7f8c8d;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Website Analytics Dashboard</h1>
+            <p>Real-time visitor activity tracking and insights</p>
+            <button class="refresh-btn" onclick="refreshData()">🔄 Refresh Data</button>
+        </div>
+
+        <div id="error-container"></div>
+        <div id="loading" class="loading">Loading analytics data...</div>
+
+        <div id="dashboard-content" style="display: none;">
+            <!-- Metrics Cards -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value" id="total-visitors">0</div>
+                    <div class="metric-label">Unique Visitors</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="total-sessions">0</div>
+                    <div class="metric-label">Sessions</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="page-views">0</div>
+                    <div class="metric-label">Page Views</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="avg-time">0s</div>
+                    <div class="metric-label">Avg. Time on Page</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="total-interactions">0</div>
+                    <div class="metric-label">Interactions</div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <h3 class="chart-title">Top Pages</h3>
+                    <canvas id="pages-chart" class="chart-canvas"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3 class="chart-title">Device Types</h3>
+                    <canvas id="devices-chart" class="chart-canvas"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3 class="chart-title">Languages</h3>
+                    <canvas id="languages-chart" class="chart-canvas"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3 class="chart-title">Referrers</h3>
+                    <canvas id="referrers-chart" class="chart-canvas"></canvas>
+                </div>
+            </div>
+
+            <!-- Recent Activity Table -->
+            <div class="data-table">
+                <h3 class="table-title">Recent Activity</h3>
+                <table id="recent-activity-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Event Type</th>
+                            <th>Page</th>
+                            <th>Visitor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-activity-body">
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Sessions Table -->
+            <div class="data-table">
+                <h3 class="table-title">Recent Sessions</h3>
+                <table id="sessions-table">
+                    <thead>
+                        <tr>
+                            <th>Session ID</th>
+                            <th>Visitor</th>
+                            <th>Duration</th>
+                            <th>Pages Visited</th>
+                            <th>Events</th>
+                            <th>Start Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sessions-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="last-updated" id="last-updated"></div>
+    </div>
+
+    <script>
+        let charts = {};
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            refreshData();
+            // Auto-refresh every 30 seconds
+            setInterval(refreshData, 30000);
+        });
+
+        async function refreshData() {
+            try {
+                document.getElementById('loading').style.display = 'block';
+                document.getElementById('error-container').innerHTML = '';
+
+                // Fetch summary data
+                const summaryResponse = await fetch('/api/analytics/summary');
+                const summary = await summaryResponse.json();
+
+                // Fetch sessions data
+                const sessionsResponse = await fetch('/api/analytics/sessions');
+                const sessions = await sessionsResponse.json();
+
+                // Update metrics
+                updateMetrics(summary);
+
+                // Update charts
+                updateCharts(summary);
+
+                // Update tables
+                updateRecentActivity(summary.recentActivity);
+                updateSessions(sessions);
+
+                // Show dashboard
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('dashboard-content').style.display = 'block';
+
+                // Update last updated time
+                document.getElementById('last-updated').textContent = 
+                    `Last updated: ${new Date().toLocaleString()}`;
+
+            } catch (error) {
+                console.error('Error refreshing data:', error);
+                showError('Failed to load analytics data. Please try again.');
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        function updateMetrics(summary) {
+            document.getElementById('total-visitors').textContent = summary.uniqueVisitors;
+            document.getElementById('total-sessions').textContent = summary.uniqueSessions;
+            document.getElementById('page-views').textContent = summary.pageViews;
+            document.getElementById('avg-time').textContent = summary.avgTimePerPage + 's';
+            document.getElementById('total-interactions').textContent = summary.interactions;
+        }
+
+        function updateCharts(summary) {
+            // Top Pages Chart
+            updateChart('pages-chart', 'doughnut', {
+                labels: Object.keys(summary.topPages),
+                datasets: [{
+                    data: Object.values(summary.topPages),
+                    backgroundColor: ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6']
+                }]
+            });
+
+            // Device Types Chart
+            updateChart('devices-chart', 'pie', {
+                labels: Object.keys(summary.deviceTypes),
+                datasets: [{
+                    data: Object.values(summary.deviceTypes),
+                    backgroundColor: ['#3498db', '#e74c3c', '#2ecc71']
+                }]
+            });
+
+            // Languages Chart
+            updateChart('languages-chart', 'bar', {
+                labels: Object.keys(summary.languages),
+                datasets: [{
+                    label: 'Visitors',
+                    data: Object.values(summary.languages),
+                    backgroundColor: '#3498db'
+                }]
+            });
+
+            // Referrers Chart
+            updateChart('referrers-chart', 'horizontalBar', {
+                labels: Object.keys(summary.topReferrers),
+                datasets: [{
+                    label: 'Referrals',
+                    data: Object.values(summary.topReferrers),
+                    backgroundColor: '#2ecc71'
+                }]
+            });
+        }
+
+        function updateChart(canvasId, type, data) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            
+            // Destroy existing chart if it exists
+            if (charts[canvasId]) {
+                charts[canvasId].destroy();
+            }
+
+            charts[canvasId] = new Chart(ctx, {
+                type: type,
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateRecentActivity(activities) {
+            const tbody = document.getElementById('recent-activity-body');
+            tbody.innerHTML = '';
+
+            activities.forEach(activity => {
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td>${new Date(activity.timestamp).toLocaleString()}</td>
+                    <td>${activity.type}</td>
+                    <td>${activity.url}</td>
+                    <td>${activity.visitorId}</td>
+                `;
+            });
+        }
+
+        function updateSessions(sessions) {
+            const tbody = document.getElementById('sessions-body');
+            tbody.innerHTML = '';
+
+            // Sort sessions by start time (most recent first)
+            sessions.sort((a, b) => b.startTime - a.startTime);
+
+            sessions.slice(0, 10).forEach(session => {
+                const row = tbody.insertRow();
+                const duration = Math.round(session.duration / 1000); // Convert to seconds
+                row.innerHTML = `
+                    <td>${session.sessionId.substring(0, 15)}...</td>
+                    <td>${session.visitorId.substring(0, 15)}...</td>
+                    <td>${duration}s</td>
+                    <td>${session.pages.length}</td>
+                    <td>${session.eventCount}</td>
+                    <td>${new Date(session.startTime).toLocaleString()}</td>
+                `;
+            });
+        }
+
+        function showError(message) {
+            const errorContainer = document.getElementById('error-container');
+            errorContainer.innerHTML = `<div class="error">${message}</div>`;
+        }
+    </script>
+</body>
+</html>

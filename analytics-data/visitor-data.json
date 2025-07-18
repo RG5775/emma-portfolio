@@ -1,0 +1,18 @@
+[
+  {
+    "type": "page_view",
+    "visitorId": "test_visitor_123",
+    "sessionId": "test_session_456",
+    "url": "http://localhost:3001/index.html",
+    "path": "/index.html",
+    "title": "Test Page",
+    "referrer": "https://google.com",
+    "timestamp": 1752841117266,
+    "userAgent": "Mozilla/5.0 (Test Browser)",
+    "screenResolution": "1920x1080",
+    "viewportSize": "1200x800",
+    "language": "en-US",
+    "timezone": "America/New_York",
+    "serverTimestamp": "2025-07-18T12:18:37.287Z"
+  }
+]
