@@ -230,4 +230,111 @@ document.addEventListener('DOMContentLoaded', function() {
             interactionHint.innerHTML = hintText;
         }
     });
+});
+
+// Skills Track Scroll Animation Functionality
+let skillsTrackCards = [];
+let scrollProgressBar = null;
+let scrollHint = null;
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Skills Track Scroll Animation
+    initializeSkillsTrackScroll();
+});
+
+function initializeSkillsTrackScroll() {
+    const container = document.querySelector('.skills-track-container');
+    skillsTrackCards = document.querySelectorAll('.skills-track-card');
+    scrollProgressBar = document.querySelector('.skills-track-scroll-bar');
+    scrollHint = document.querySelector('.skills-track-scroll-hint');
+    
+    if (!container || skillsTrackCards.length === 0) return;
+    
+    console.log(`Skills Track Scroll initialized with ${skillsTrackCards.length} tracks`);
+    
+    // Set up intersection observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, {
+        threshold: 0.3,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    // Observe each card
+    skillsTrackCards.forEach(card => {
+        observer.observe(card);
+    });
+    
+    // Set up scroll progress tracking
+    container.addEventListener('scroll', updateScrollProgress);
+    
+    // Hide scroll hint after first scroll
+    let hasScrolled = false;
+    container.addEventListener('scroll', () => {
+        if (!hasScrolled) {
+            hasScrolled = true;
+            if (scrollHint) {
+                scrollHint.classList.add('hidden');
+            }
+        }
+    });
+    
+    // Initialize scroll progress
+    updateScrollProgress();
+}
+
+function updateScrollProgress() {
+    const container = document.querySelector('.skills-track-container');
+    if (!container || !scrollProgressBar) return;
+    
+    const scrollLeft = container.scrollLeft;
+    const maxScrollLeft = container.scrollWidth - container.clientWidth;
+    const progress = maxScrollLeft > 0 ? (scrollLeft / maxScrollLeft) * 100 : 0;
+    
+    scrollProgressBar.style.width = `${progress}%`;
+}
+
+// Smooth scroll to specific card
+function scrollToCard(index) {
+    const container = document.querySelector('.skills-track-container');
+    const targetCard = skillsTrackCards[index];
+    
+    if (!container || !targetCard) return;
+    
+    const cardLeft = targetCard.offsetLeft;
+    const containerLeft = container.offsetLeft;
+    const scrollLeft = cardLeft - containerLeft - (container.clientWidth / 2) + (targetCard.clientWidth / 2);
+    
+    container.scrollTo({
+        left: scrollLeft,
+        behavior: 'smooth'
+    });
+}
+
+// Keyboard navigation for skills track
+document.addEventListener('keydown', function(e) {
+    if (e.target.closest('#skills-track')) {
+        const container = document.querySelector('.skills-track-container');
+        if (!container) return;
+        
+        if (e.key === 'ArrowLeft') {
+            container.scrollBy({
+                left: -400,
+                behavior: 'smooth'
+            });
+            e.preventDefault();
+        } else if (e.key === 'ArrowRight') {
+            container.scrollBy({
+                left: 400,
+                behavior: 'smooth'
+            });
+            e.preventDefault();
+        }
+    }
 }); 
