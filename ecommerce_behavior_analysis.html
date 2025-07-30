@@ -6,6 +6,18 @@
     <title>eCommerce Behavior Analysis</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="images/favicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/@observablehq/stdlib"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot"></script>
+    <script>
+        // Check if Plot.js is loaded
+        window.addEventListener('load', function() {
+            if (typeof Plot !== 'undefined') {
+                console.log('Plot.js loaded successfully');
+            } else {
+                console.error('Plot.js not loaded');
+            }
+        });
+    </script>
     <style>
         .project {
             text-align: center;
@@ -40,11 +52,158 @@
             to { opacity: 1; transform: none;}
         }
 
-        
+        /* Funnel Chart Animations and Interactions */
+        .funnel-chart-container {
+            animation: fadeIn 0.8s ease-out;
+        }
 
-        /* Mobile Responsiveness for SQL Analysis Section */
+        .funnel-bar {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 0% !important;
+            background: linear-gradient(135deg, #9966cc, #C8A2C8) !important;
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        .funnel-bar.animate {
+            transition: width 1.5s ease;
+        }
+
+        /* Ensure all funnel bars show their proportional widths */
+        .funnel-stage:nth-child(1) .funnel-bar {
+            width: 92.85% !important;
+            min-width: 200px !important;
+        }
+        
+        .funnel-stage:nth-child(3) .funnel-bar {
+            width: 5.3% !important;
+            min-width: 160px !important;
+        }
+        
+        .funnel-stage:nth-child(5) .funnel-bar {
+            width: 1.84% !important;
+            min-width: 120px !important;
+        }
+
+        /* Force funnel bars to be visible */
+        .funnel-bar {
+            opacity: 1 !important;
+            background: linear-gradient(135deg, #9966cc, #C8A2C8) !important;
+            border: none !important;
+            outline: none !important;
+        }
+
+        /* Improve text readability for two-line layout */
+        .funnel-content {
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+
+        .funnel-label {
+            margin-bottom: 2px;
+        }
+
+        .funnel-value {
+            font-size: 1.1em;
+        }
+
+        .funnel-bar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(153, 102, 204, 0.3) !important;
+        }
+
+        .funnel-fill {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .funnel-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .funnel-stage:hover .funnel-dropoff {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .funnel-insights {
+            animation: fadeIn 1s ease-out 1.5s both;
+        }
+
+        /* Mobile Responsiveness for Funnel Chart */
         @media screen and (max-width: 768px) {
-            .sql-analysis-showcase {
+            .funnel-chart-container {
+                padding: 1.5rem !important;
+                margin: 1.5rem 0 !important;
+            }
+            
+            .funnel-chart {
+                gap: 1rem !important;
+            }
+            
+            .funnel-bar {
+                height: 50px !important;
+                border-radius: 25px !important;
+            }
+            
+            .funnel-label, .funnel-value {
+                font-size: 0.9rem !important;
+            }
+            
+            .funnel-dropoff {
+                font-size: 0.8rem !important;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .funnel-chart-container {
+                padding: 1rem !important;
+            }
+            
+            .funnel-bar {
+                height: 50px !important;
+                border-radius: 25px !important;
+                min-width: 140px !important;
+            }
+            
+            .funnel-content .funnel-label {
+                font-size: 0.7rem !important;
+                margin-bottom: 1px !important;
+            }
+            
+            .funnel-content .funnel-value {
+                font-size: 0.8rem !important;
+            }
+            
+            .funnel-insights {
+                padding: 1rem !important;
+            }
+            
+            .funnel-insights h5 {
+                font-size: 1rem !important;
+            }
+            
+            .funnel-insights li {
+                font-size: 0.8rem !important;
+            }
+        }
+
+        /* Mobile Responsiveness for Project Overview Section */
+        @media screen and (max-width: 768px) {
+            .project-overview-showcase {
                 padding: 2rem 1rem !important;
             }
             .sql-analysis-showcase > div {
@@ -114,20 +273,482 @@
 
 
 
+    <!-- Business Problem Section -->
+    <section style="background: white; padding: 4rem 2rem; margin: 0;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 2.5rem; font-weight: bold;">
+                    Project Overview
+                </h2>
+                <p style="font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto; line-height: 1.6; text-align: left;">
+                    This project analyses over 42 million user interactions from a multi-category eCommerce store for 7 months to uncover user behaviour. By performing funnel analysis, we identify behavioural indicators such as add-to-cart rates, session engagement, timing of visits, and product interest across purchase journey.
+                </p>
+                <p style="font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto; line-height: 1.6; margin-top: 1rem; text-align: left;">
+                    The study reveals where users drop off in the conversion funnel and what drives successful purchases. Segmentation of new versus returning users highlights how shopping intent and behaviours differ, enabling tailored strategies to improve outcomes for both segments.
+                </p>
+            </div>
+            
+            <div style="text-align: center; margin-bottom: 3rem; padding: 2rem; background: #f8f9ff; border-radius: 12px;">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.3rem; font-weight: bold;">Dataset Overview</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 600px; margin: 0 auto;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--accent-color);">4.2M+</div>
+                        <div style="font-size: 0.9rem; color: #666;">Events Analyzed</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--accent-color);">4,202</div>
+                        <div style="font-size: 0.9rem; color: #666;">Unique Brands</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--accent-color);">1.2M+</div>
+                        <div style="font-size: 0.9rem; color: #666;">Active Customers</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Key Findings Section -->
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 2.5rem; font-weight: bold;">
+                    Key Discoveries
+                </h2>
+                <p style="font-size: 1.1rem; color: #666; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+                    Data-driven insights that reveal significant opportunities for business growth
+                </p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem;">
+                <div style="text-align: center; padding: 2.5rem; background: linear-gradient(145deg, #ffffff, #f8f9ff); border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border: 1px solid rgba(153, 102, 204, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 12px 35px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.08)'">
+                    <div style="background: linear-gradient(135deg, var(--accent-color), #8b5fbf); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto; box-shadow: 0 6px 20px rgba(153, 102, 204, 0.3);">
+                        <svg style="width: 40px; height: 40px; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem; font-weight: bold;">Brand Performance</h3>
+                    <p style="color: #666; font-size: 0.95rem; line-height: 1.6;">
+                        Identified top-performing brands with conversion rates up to 15% higher than average, revealing significant optimization opportunities.
+                    </p>
+                    <div style="margin-top: 1.5rem; padding: 1.2rem; background: linear-gradient(135deg, #f8f9ff, #ffffff); border-radius: 12px; border-left: 4px solid var(--accent-color); box-shadow: 0 4px 15px rgba(153, 102, 204, 0.1);">
+                        <div style="font-size: 1.1rem; font-weight: bold; color: var(--accent-color);">💰 Revenue Impact</div>
+                        <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
+                            Potential 20% increase in revenue
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; padding: 2.5rem; background: linear-gradient(145deg, #ffffff, #f8f9ff); border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border: 1px solid rgba(153, 102, 204, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 12px 35px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.08)'">
+                    <div style="background: linear-gradient(135deg, var(--accent-color), #8b5fbf); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto; box-shadow: 0 6px 20px rgba(153, 102, 204, 0.3);">
+                        <svg style="width: 40px; height: 40px; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem; font-weight: bold;">Shopping Patterns</h3>
+                    <p style="color: #666; font-size: 0.95rem; line-height: 1.6;">
+                        Discovered peak shopping hours (2-4 PM) with 40% higher conversion rates, enabling targeted marketing campaigns.
+                    </p>
+                    <div class="roi-improvement-container" style="margin-top: 1.5rem; padding: 1.2rem; background: linear-gradient(135deg, #f8f9ff, #ffffff); border-radius: 12px; border-left: 4px solid var(--accent-color); box-shadow: 0 4px 15px rgba(153, 102, 204, 0.1); position: relative; cursor: pointer;" onmouseover="showROIChart()" onmouseout="hideROIChart()">
+                        <div style="font-size: 1.1rem; font-weight: bold; color: var(--accent-color);">Purchase by day</div>
+                        <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
+                            Most of the purchase is completed on Sunday.
+                        </div>
+                        <div class="roi-chart-container" id="roiChartContainer" style="position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 1.5rem; margin-top: 0.5rem; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 1000; min-width: 500px; cursor: pointer;">
+                            <h4 style="text-align: center; color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: bold;">Daily Conversion Rates</h4>
+                            <div id="roiChart" style="width: 450px; height: 250px; margin: 0 auto;">
+                                <!-- Static Bar Chart -->
+                                <div class="static-bar-chart" style="display: flex; flex-direction: column; gap: 8px; height: 100%;">
+                                    <!-- Sunday -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="day-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">Sunday</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 100%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">6.89%</div>
+                                    </div>
+                                    
+                                    <!-- Saturday -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="day-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">Saturday</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 90%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">6.20%</div>
+                                    </div>
+                                    
+                                    <!-- Thursday -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="day-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">Thursday</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 86%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">5.93%</div>
+                                    </div>
+                                    
+                                    <!-- Wednesday -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="day-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">Wednesday</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 87%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">5.99%</div>
+                                    </div>
+                                    
+                                    <!-- Monday -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="day-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">Monday</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 87%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">5.97%</div>
+                                    </div>
+                                    
+                                    <!-- Friday -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="day-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">Friday</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 86%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">5.90%</div>
+                                    </div>
+                                    
+                                    <!-- Tuesday -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="day-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">Tuesday</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 84%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">5.79%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Purchase by Hour Block -->
+                    <div class="roi-improvement-container" style="margin-top: 1.5rem; padding: 1.2rem; background: linear-gradient(135deg, #f8f9ff, #ffffff); border-radius: 12px; border-left: 4px solid var(--accent-color); box-shadow: 0 4px 15px rgba(153, 102, 204, 0.1); position: relative; cursor: pointer;" onclick="toggleHourChart()">
+                        <div style="font-size: 1.1rem; font-weight: bold; color: var(--accent-color);">Purchase by hour</div>
+                        <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
+                            Peak shopping hours are between 8-10 AM with highest conversion rates, showing a morning peak pattern.
+                        </div>
+                        <div class="hour-chart-container" id="hourChartContainer" style="position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 1.5rem; margin-top: 0.5rem; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 9999; min-width: 500px; max-height: 600px; overflow-y: auto; cursor: pointer;">
+                            <h4 style="text-align: center; color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: bold;">Hourly Conversion Rates</h4>
+                            <div id="hourChart" style="width: 450px; height: 400px; margin: 0 auto;">
+                                <!-- Static Bar Chart -->
+                                <div class="static-bar-chart" style="display: flex; flex-direction: column; gap: 6px; height: 100%;">
+                                    <!-- 9 AM (Peak) -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">9 AM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 100%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">6.90</div>
+                                    </div>
+                                    
+                                    <!-- 8 AM -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">8 AM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 99%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">6.85</div>
+                                    </div>
+                                    
+                                    <!-- 10 AM -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">10 AM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 99%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">6.83</div>
+                                    </div>
+                                    
+                                    <!-- 7 AM -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">7 AM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 98%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">6.75</div>
+                                    </div>
+                                    
+                                    <!-- 6 AM -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">6 AM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 95%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">6.54</div>
+                                    </div>
+                                    
+                                    <!-- 5 AM -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">5 AM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 92%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">6.32</div>
+                                    </div>
+                                    
+                                    <!-- 12 PM -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">12 PM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 92%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">6.32</div>
+                                    </div>
+                                    
+                                    <!-- 11 AM -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">11 AM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 96%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">6.60</div>
+                                    </div>
+                                    
+                                    <!-- 1 PM -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">1 PM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 85%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">5.87</div>
+                                    </div>
+                                    
+                                    <!-- 2 PM -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">2 PM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 77%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">5.33</div>
+                                    </div>
+                                    
+                                    <!-- 3 PM -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">3 PM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 70%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">4.86</div>
+                                    </div>
+                                    
+                                    <!-- 4 PM -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">4 PM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 66%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">4.57</div>
+                                    </div>
+                                    
+                                    <!-- 5 PM -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">5 PM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 65%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">4.49</div>
+                                    </div>
+                                    
+                                    <!-- 6 PM -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">6 PM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 63%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">4.38</div>
+                                    </div>
+                                    
+                                    <!-- 7 PM -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">7 PM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 67%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">4.65</div>
+                                    </div>
+                                    
+                                    <!-- 8 PM -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">8 PM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 70%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">4.82</div>
+                                    </div>
+                                    
+                                    <!-- 9 PM -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">9 PM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 74%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">5.09</div>
+                                    </div>
+                                    
+                                    <!-- 10 PM -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">10 PM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 74%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">5.09</div>
+                                    </div>
+                                    
+                                    <!-- 11 PM -->
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">11 PM</div>
+                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                            <div class="bar" style="height: 100%; width: 66%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
+                                        </div>
+                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">4.54</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; padding: 2.5rem; background: linear-gradient(145deg, #ffffff, #f8f9ff); border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border: 1px solid rgba(153, 102, 204, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 12px 35px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.08)'">
+                    <div style="background: linear-gradient(135deg, var(--accent-color), #8b5fbf); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto; box-shadow: 0 6px 20px rgba(153, 102, 204, 0.3);">
+                        <svg style="width: 40px; height: 40px; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                        </svg>
+                    </div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem; font-weight: bold;">Customer Journey</h3>
+                    <p style="color: #666; font-size: 0.95rem; line-height: 1.6;">
+                        Mapped customer touchpoints revealing critical drop-off points, with 60% of users abandoning after product views.
+                    </p>
+                    
+                    <!-- Custom Funnel Chart -->
+                    <div class="funnel-chart-container" style="margin: 2rem 0; padding: 2rem; background: linear-gradient(135deg, #f8f9ff, #ffffff); border-radius: 16px; box-shadow: 0 8px 25px rgba(153, 102, 204, 0.1); border: 1px solid rgba(153, 102, 204, 0.1);">
+                        <h4 style="text-align: center; color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.2rem; font-weight: bold;">Conversion Funnel Analysis</h4>
+                        
+                        <div class="funnel-chart" style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem; max-width: 600px; margin: 0 auto;">
+                            <!-- Product Views -->
+                            <div class="funnel-stage" style="width: 100%; text-align: center; position: relative;">
+                                <div class="funnel-bar" style="width: 92.85%; background: linear-gradient(135deg, #9966cc, #C8A2C8); height: 60px; border-radius: 30px; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(153, 102, 204, 0.2); transition: all 0.3s ease; margin: 0 auto;" data-value="92.85">
+                                    <div class="funnel-fill" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; background: linear-gradient(135deg, #9966cc, #C8A2C8); border-radius: 30px; transition: width 1.5s ease;"></div>
+                                    <div class="funnel-content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center; z-index: 2;">
+                                        <div class="funnel-label" style="font-weight: bold; font-size: 1.1rem; margin-bottom: 1px; white-space: nowrap;">Product Views</div>
+                                        <div class="funnel-value" style="font-weight: bold; font-size: 1.2rem;">92.85%</div>
+                                    </div>
+                                </div>
+                                <div class="funnel-dropoff" style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">Base: 100% of visitors, 7.15% of viewer add item into cart without purchase viewing the product</div>
+                            </div>
+                            
+                            <!-- Drop-off Arrow -->
+                            <div class="funnel-arrow" style="width: 2px; height: 30px; background: linear-gradient(to bottom, #9966cc, #C8A2C8); position: relative;">
+                                <div style="position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #C8A2C8;"></div>
+                            </div>
+                            
+                            <!-- Add to Cart -->
+                            <div class="funnel-stage" style="width: 100%; text-align: center; position: relative;">
+                                <div class="funnel-bar" style="width: 5.3%; background: linear-gradient(135deg, #9966cc, #C8A2C8); height: 50px; border-radius: 25px; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(153, 102, 204, 0.2); transition: all 0.3s ease; margin: 0 auto; min-width: 160px;" data-value="5.3">
+                                    <div class="funnel-fill" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; background: linear-gradient(135deg, #9966cc, #C8A2C8); border-radius: 25px; transition: width 1.5s ease 0.3s;"></div>
+                                    <div class="funnel-content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center; z-index: 2;">
+                                        <div class="funnel-label" style="font-weight: bold; font-size: 0.9rem; margin-bottom: 1px;">Add to Cart</div>
+                                        <div class="funnel-value" style="font-weight: bold; font-size: 1rem;">5.3%</div>
+                                    </div>
+                                </div>
+                                <div class="funnel-dropoff" style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">Add-to-cart actions represent 5.3% of total user events, while the conversion rate from product views to cart is 12.6%.</div>
+                            </div>
+                            
+                            <!-- Drop-off Arrow -->
+                            <div class="funnel-arrow" style="width: 2px; height: 30px; background: linear-gradient(to bottom, #9966cc, #C8A2C8); position: relative;">
+                                <div style="position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #C8A2C8;"></div>
+                            </div>
+                            
+                            <!-- Purchase -->
+                            <div class="funnel-stage" style="width: 100%; text-align: center; position: relative;">
+                                <div class="funnel-bar" style="width: 1.84%; background: linear-gradient(135deg, #9966cc, #C8A2C8); height: 40px; border-radius: 20px; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(153, 102, 204, 0.2); transition: all 0.3s ease; margin: 0 auto; min-width: 120px;" data-value="1.84">
+                                    <div class="funnel-fill" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; background: linear-gradient(135deg, #9966cc, #C8A2C8); border-radius: 20px; transition: width 1.5s ease 0.6s;"></div>
+                                    <div class="funnel-content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center; z-index: 2;">
+                                        <div class="funnel-label" style="font-weight: bold; font-size: 0.8rem; margin-bottom: 1px;">Purchase</div>
+                                        <div class="funnel-value" style="font-weight: bold; font-size: 0.9rem;">1.84%</div>
+                                    </div>
+                                </div>
+                                <div class="funnel-dropoff" style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">Although purchases represent only 1.84% of all user activity, nearly half of users who add items to their cart complete the purchase (cart-to-purchase rate: 49.05%).</div>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                    
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section style="background: var(--secondary-color); padding: 4rem 2rem; margin: 0;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 2.5rem; font-weight: bold;">
+                    My Analytical Approach
+                </h2>
+                <p style="font-size: 1.1rem; color: #666; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+                    A systematic approach to transform raw data into actionable business insights
+                </p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem;">
+                <div style="text-align: center; padding: 2rem;">
+                    <svg style="width: 48px; height: 48px; margin: 0 auto 1.5rem auto; color: var(--accent-color);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.2rem; font-weight: bold;">Discover</h3>
+                    <p style="color: #666; font-size: 0.9rem; line-height: 1.5;">
+                        Explored data structure, quality, and relationships using Python and PostgreSQL
+                    </p>
+                </div>
+                
+                <div style="text-align: center; padding: 2rem;">
+                    <svg style="width: 48px; height: 48px; margin: 0 auto 1.5rem auto; color: var(--accent-color);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.2rem; font-weight: bold;">Hypothesize</h3>
+                    <p style="color: #666; font-size: 0.9rem; line-height: 1.5;">
+                        Formed testable hypotheses about customer behavior and conversion patterns
+                    </p>
+                </div>
+                
+                <div style="text-align: center; padding: 2rem;">
+                    <svg style="width: 48px; height: 48px; margin: 0 auto 1.5rem auto; color: var(--accent-color);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.2rem; font-weight: bold;">Analyze</h3>
+                    <p style="color: #666; font-size: 0.9rem; line-height: 1.5;">
+                        Applied advanced SQL techniques to test hypotheses and uncover patterns
+                    </p>
+                </div>
+                
+                <div style="text-align: center; padding: 2rem;">
+                    <svg style="width: 48px; height: 48px; margin: 0 auto 1.5rem auto; color: var(--accent-color);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.2rem; font-weight: bold;">Deliver</h3>
+                    <p style="color: #666; font-size: 0.9rem; line-height: 1.5;">
+                        Synthesized insights into actionable recommendations for business growth
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Technical Showcase Section -->
     <section class="sql-analysis-showcase" style="background: var(--secondary-color); padding: 3rem 2rem; margin: 0;">
         <div style="max-width: 1200px; margin: 0 auto;">
-            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--primary-color);">
-                <span style="font-size: 2rem; margin-right: 0.5rem;">🔍</span>
-                SQL Analysis
+            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 2rem; font-size: 2.2rem;">
+                <span style="font-size: 2rem; margin-right: 0.5rem;">⚡</span>
+                Technical Implementation
             </h2>
-            <p style="text-align: center; font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto 3rem auto;">
-                Public eCommerce behavior dataset sourced from from a large multi-category online store. 
-                This analysis demonstrates advanced SQL techniques including CTEs, window functions, and complex aggregations.
-            </p>
-        
-            
             <div style="background: #f5f0ff; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-bottom: 2rem;">
-                <h3 style="text-align: center; margin-bottom: 2rem; color: var(--primary-color);">Featured SQL Query: Brand Conversion Analysis</h3>
+                <h3 style="text-align: center; margin-bottom: 2rem; color: var(--primary-color);">Featured Analysis: Brand Conversion Optimization</h3>
                 
                 <div style="text-align: center; margin-bottom: 2rem;">
                     <a href="eCommerce.html" 
@@ -136,10 +757,10 @@
                               box-shadow: 0 4px 15px rgba(153, 102, 204, 0.3);"
                        onmouseover="this.style.background='#8b5fbf'; this.style.transform='translateY(-2px)'"
                        onmouseout="this.style.background='var(--accent-color)'; this.style.transform='translateY(0)'">
-                        📓 View Complete SQL Analysis Notebook
+                        📓 View Complete Analysis Notebook
                     </a>
                     <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
-                        Access the full Jupyter notebook with all SQL queries, data explorations, and detailed analysis
+                        Explore the full Jupyter notebook with all SQL queries, data explorations, and detailed analysis
                     </p>
                 </div>
                 
@@ -165,23 +786,48 @@
                 </div>
                 <div style="margin-top: 1.5rem; padding: 1rem; background: #f0f9ff; border-left: 4px solid var(--accent-color); border-radius: 0 8px 8px 0;">
                     <p style="margin: 0; color: #555; font-weight: 500;">
-                        <strong>Query Insight:</strong> This CTE-based query analyzes conversion rates across 4,202 brands, 
+                        <strong>Analysis Insight:</strong> This CTE-based query analyzes conversion rates across 4,202 brands, 
                         identifying which brands drive the highest view-to-purchase conversions within the same user session.
                     </p>
                 </div>
             </div>
+            
+
         </div>
     </section>
 
-    <section class="project" style="background: var(--secondary-color); padding: 3rem 2rem; margin: 0;">
-        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-            <h3>Project Overview</h3>
-            <p style="max-width: 700px; margin: 0 auto 2rem auto; text-align: center;">This project analyzes customer behavior data from a multi-category eCommerce store to understand shopping patterns, customer preferences, and purchasing trends. The analysis provides insights into customer segmentation, product performance, and user journey optimization.</p>
-            <div class="tech-stack" style="justify-content: center; margin-bottom: 2rem;">
-                <span class="tech-tag">Data Analysis</span>
-                <span class="tech-tag">Customer behavior Analytics</span>
-                <span class="tech-tag">SQL</span>
-                <span class="tech-tag">Python</span>
+    <!-- Recommendations Section -->
+    <section style="background: white; padding: 4rem 2rem; margin: 0;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 3rem; font-size: 2.2rem;">
+                <span style="font-size: 2rem; margin-right: 0.5rem;">🚀</span>
+                Strategic Recommendations
+            </h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="background: #fef7ff; padding: 2rem; border-radius: 12px; border: 2px solid var(--accent-color);">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Immediate Actions (0-30 days)</h3>
+                    <ul style="color: #666; line-height: 1.6;">
+                        <li>Implement time-based marketing campaigns during peak hours (2-4 PM)</li>
+                        <li>Prioritize high-converting brands in product recommendations</li>
+                        <li>Add exit-intent popups for cart abandonment reduction</li>
+                    </ul>
+                </div>
+                <div style="background: #fef7ff; padding: 2rem; border-radius: 12px; border: 2px solid var(--accent-color);">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Short-term Initiatives (1-3 months)</h3>
+                    <ul style="color: #666; line-height: 1.6;">
+                        <li>Develop personalized product recommendation engine</li>
+                        <li>Create customer segmentation based on behavior patterns</li>
+                        <li>Implement A/B testing for conversion optimization</li>
+                    </ul>
+                </div>
+                <div style="background: #fef7ff; padding: 2rem; border-radius: 12px; border: 2px solid var(--accent-color);">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Long-term Strategy (3-6 months)</h3>
+                    <ul style="color: #666; line-height: 1.6;">
+                        <li>Build predictive analytics for customer lifetime value</li>
+                        <li>Develop real-time personalization capabilities</li>
+                        <li>Establish continuous optimization framework</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -192,5 +838,102 @@
     <footer>
         <p>&copy; 2025 Jieren LI</p>
     </footer>
+    
+    <!-- Funnel Chart Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const funnelBars = document.querySelectorAll('.funnel-bar');
+            
+            // Ensure bars are visible immediately
+            funnelBars.forEach(bar => {
+                bar.style.display = 'block';
+                bar.style.visibility = 'visible';
+                bar.style.opacity = '1';
+                bar.style.background = 'linear-gradient(135deg, #9966cc, #C8A2C8)';
+            });
+            
+            // Set initial widths to 0
+            funnelBars.forEach(bar => {
+                bar.style.width = '0%';
+            });
+            
+            // Animate bars to their target widths
+            setTimeout(() => {
+                funnelBars.forEach((bar, index) => {
+                    const targetWidth = bar.getAttribute('data-value') + '%';
+                    
+                    setTimeout(() => {
+                        bar.classList.add('animate');
+                        bar.style.width = targetWidth;
+                        // Force the width to be applied
+                        bar.style.setProperty('width', targetWidth, 'important');
+                    }, index * 300);
+                });
+            }, 500);
+        });
+
+        // ROI Chart Functions
+        let roiChart = null;
+
+        function showROIChart() {
+            const container = document.getElementById('roiChartContainer');
+            container.style.opacity = '1';
+            container.style.visibility = 'visible';
+            container.style.display = 'block';
+        }
+
+        function hideROIChart() {
+            const container = document.getElementById('roiChartContainer');
+            container.style.opacity = '0';
+            container.style.visibility = 'hidden';
+        }
+
+        // Hour Chart Functions
+        function showHourChart() {
+            const container = document.getElementById('hourChartContainer');
+            container.style.opacity = '1';
+            container.style.visibility = 'visible';
+            container.style.display = 'block';
+        }
+
+        function hideHourChart() {
+            const container = document.getElementById('hourChartContainer');
+            container.style.opacity = '0';
+            container.style.visibility = 'hidden';
+        }
+
+        // Toggle function for hour chart
+        function toggleHourChart() {
+            const container = document.getElementById('hourChartContainer');
+            const isVisible = container.style.visibility === 'visible';
+            
+            if (isVisible) {
+                hideHourChart();
+            } else {
+                showHourChart();
+            }
+        }
+
+        // Add click event listeners when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // ROI Chart click to close
+            const roiChartContainer = document.getElementById('roiChartContainer');
+            if (roiChartContainer) {
+                roiChartContainer.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    hideROIChart();
+                });
+            }
+
+            // Hour Chart click to close
+            const hourChartContainer = document.getElementById('hourChartContainer');
+            if (hourChartContainer) {
+                hourChartContainer.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    hideHourChart();
+                });
+            }
+        });
+    </script>
 </body>
 </html> 
