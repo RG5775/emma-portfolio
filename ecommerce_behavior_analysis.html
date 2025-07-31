@@ -345,77 +345,79 @@
                     <p style="color: #666; font-size: 0.95rem; line-height: 1.6;">
                         Discovered peak shopping hours (2-4 PM) with 40% higher conversion rates, enabling targeted marketing campaigns.
                     </p>
-                    <div class="roi-improvement-container" style="margin-top: 1.5rem; padding: 1.2rem; background: linear-gradient(135deg, #f8f9ff, #ffffff); border-radius: 12px; border-left: 4px solid var(--accent-color); box-shadow: 0 4px 15px rgba(153, 102, 204, 0.1); position: relative; cursor: pointer;" onmouseover="showROIChart()" onmouseout="hideROIChart()">
+                    <div class="roi-improvement-container" style="margin-top: 1.5rem; padding: 1.2rem; background: linear-gradient(135deg, #f8f9ff, #ffffff); border-radius: 12px; border-left: 4px solid var(--accent-color); box-shadow: 0 4px 15px rgba(153, 102, 204, 0.1); position: relative; cursor: pointer;" onclick="toggleROIChart()">
                         <div style="font-size: 1.1rem; font-weight: bold; color: var(--accent-color);">Purchase by day</div>
                         <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
                             Most of the purchase is completed on Sunday.
                         </div>
-                        <div class="roi-chart-container" id="roiChartContainer" style="position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 1.5rem; margin-top: 0.5rem; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 1000; min-width: 500px; cursor: pointer;">
-                            <h4 style="text-align: center; color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: bold;">Daily Conversion Rates</h4>
-                            <div id="roiChart" style="width: 450px; height: 250px; margin: 0 auto;">
+                        <div class="roi-chart-container" id="roiChartContainer" style="position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 1.5rem; margin-top: 0.5rem; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 1000; min-width: 280px; max-width: 90vw; width: 450px; cursor: pointer;">
+                            <div style="position: relative;">
+                                <button onclick="hideROIChart()" style="position: absolute; top: -10px; right: -10px; background: #ff4757; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 1001;">×</button>
+                                <h4 style="text-align: center; color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: bold;">Daily Conversion Rates</h4>
+                            <div id="roiChart" style="width: 100%; max-width: 450px; height: 250px; margin: 0 auto;">
                                 <!-- Static Bar Chart -->
                                 <div class="static-bar-chart" style="display: flex; flex-direction: column; gap: 8px; height: 100%;">
                                     <!-- Sunday -->
-                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
-                                        <div class="day-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">Sunday</div>
-                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                        <div class="day-label" style="min-width: 60px; width: 80px; font-size: 0.9rem; font-weight: 600; color: #333; flex-shrink: 0;">Sunday</div>
+                                        <div class="bar-container" style="flex: 1; min-width: 120px; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
                                             <div class="bar" style="height: 100%; width: 100%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
                                         </div>
-                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">6.89%</div>
+                                        <div class="value-label" style="min-width: 40px; width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right; flex-shrink: 0;">6.89%</div>
                                     </div>
                                     
                                     <!-- Saturday -->
-                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
-                                        <div class="day-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">Saturday</div>
-                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                        <div class="day-label" style="min-width: 60px; width: 80px; font-size: 0.9rem; font-weight: 600; color: #333; flex-shrink: 0;">Saturday</div>
+                                        <div class="bar-container" style="flex: 1; min-width: 120px; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
                                             <div class="bar" style="height: 100%; width: 90%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
                                         </div>
-                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">6.20%</div>
+                                        <div class="value-label" style="min-width: 40px; width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right; flex-shrink: 0;">6.20%</div>
                                     </div>
                                     
                                     <!-- Thursday -->
-                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
-                                        <div class="day-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">Thursday</div>
-                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                        <div class="day-label" style="min-width: 60px; width: 80px; font-size: 0.9rem; font-weight: 600; color: #333; flex-shrink: 0;">Thursday</div>
+                                        <div class="bar-container" style="flex: 1; min-width: 120px; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
                                             <div class="bar" style="height: 100%; width: 86%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
                                         </div>
-                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">5.93%</div>
+                                        <div class="value-label" style="min-width: 40px; width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right; flex-shrink: 0;">5.93%</div>
                                     </div>
                                     
                                     <!-- Wednesday -->
-                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
-                                        <div class="day-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">Wednesday</div>
-                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                        <div class="day-label" style="min-width: 60px; width: 80px; font-size: 0.9rem; font-weight: 600; color: #333; flex-shrink: 0;">Wednesday</div>
+                                        <div class="bar-container" style="flex: 1; min-width: 120px; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
                                             <div class="bar" style="height: 100%; width: 87%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
                                         </div>
-                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">5.99%</div>
+                                        <div class="value-label" style="min-width: 40px; width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right; flex-shrink: 0;">5.99%</div>
                                     </div>
                                     
                                     <!-- Monday -->
-                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
-                                        <div class="day-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">Monday</div>
-                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                        <div class="day-label" style="min-width: 60px; width: 80px; font-size: 0.9rem; font-weight: 600; color: #333; flex-shrink: 0;">Monday</div>
+                                        <div class="bar-container" style="flex: 1; min-width: 120px; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
                                             <div class="bar" style="height: 100%; width: 87%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
                                         </div>
-                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">5.97%</div>
+                                        <div class="value-label" style="min-width: 40px; width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right; flex-shrink: 0;">5.97%</div>
                                     </div>
                                     
                                     <!-- Friday -->
-                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
-                                        <div class="day-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">Friday</div>
-                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                        <div class="day-label" style="min-width: 60px; width: 80px; font-size: 0.9rem; font-weight: 600; color: #333; flex-shrink: 0;">Friday</div>
+                                        <div class="bar-container" style="flex: 1; min-width: 120px; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
                                             <div class="bar" style="height: 100%; width: 86%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
                                         </div>
-                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">5.90%</div>
+                                        <div class="value-label" style="min-width: 40px; width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right; flex-shrink: 0;">5.90%</div>
                                     </div>
                                     
                                     <!-- Tuesday -->
-                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
-                                        <div class="day-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">Tuesday</div>
-                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                        <div class="day-label" style="min-width: 60px; width: 80px; font-size: 0.9rem; font-weight: 600; color: #333; flex-shrink: 0;">Tuesday</div>
+                                        <div class="bar-container" style="flex: 1; min-width: 120px; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
                                             <div class="bar" style="height: 100%; width: 84%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
                                         </div>
-                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">5.79%</div>
+                                        <div class="value-label" style="min-width: 40px; width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right; flex-shrink: 0;">5.79%</div>
                                     </div>
                                 </div>
                             </div>
@@ -428,36 +430,38 @@
                         <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
                             Peak shopping hours are between 8-10 AM with highest conversion rates, showing a morning peak pattern.
                         </div>
-                        <div class="hour-chart-container" id="hourChartContainer" style="position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 1.5rem; margin-top: 0.5rem; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 9999; min-width: 500px; max-height: 600px; overflow-y: auto; cursor: pointer;">
-                            <h4 style="text-align: center; color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: bold;">Hourly Conversion Rates</h4>
-                            <div id="hourChart" style="width: 450px; height: 400px; margin: 0 auto;">
+                        <div class="hour-chart-container" id="hourChartContainer" style="position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 1.5rem; margin-top: 0.5rem; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 9999; min-width: 280px; max-width: 90vw; width: 450px; max-height: 70vh; overflow-y: auto; cursor: pointer;">
+                            <div style="position: relative;">
+                                <button onclick="hideHourChart()" style="position: absolute; top: -10px; right: -10px; background: #ff4757; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 1001;">×</button>
+                                <h4 style="text-align: center; color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: bold;">Hourly Conversion Rates</h4>
+                            <div id="hourChart" style="width: 100%; max-width: 450px; height: 400px; margin: 0 auto;">
                                 <!-- Static Bar Chart -->
                                 <div class="static-bar-chart" style="display: flex; flex-direction: column; gap: 6px; height: 100%;">
                                     <!-- 9 AM (Peak) -->
-                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
-                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">9 AM</div>
-                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                        <div class="hour-label" style="min-width: 60px; width: 80px; font-size: 0.9rem; font-weight: 600; color: #333; flex-shrink: 0;">9 AM</div>
+                                        <div class="bar-container" style="flex: 1; min-width: 120px; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
                                             <div class="bar" style="height: 100%; width: 100%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
                                         </div>
-                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">6.90</div>
+                                        <div class="value-label" style="min-width: 40px; width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right; flex-shrink: 0;">6.90</div>
                                     </div>
                                     
                                     <!-- 8 AM -->
-                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
-                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">8 AM</div>
-                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                        <div class="hour-label" style="min-width: 60px; width: 80px; font-size: 0.9rem; font-weight: 600; color: #333; flex-shrink: 0;">8 AM</div>
+                                        <div class="bar-container" style="flex: 1; min-width: 120px; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
                                             <div class="bar" style="height: 100%; width: 99%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
                                         </div>
-                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">6.85</div>
+                                        <div class="value-label" style="min-width: 40px; width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right; flex-shrink: 0;">6.85</div>
                                     </div>
                                     
                                     <!-- 10 AM -->
-                                    <div class="bar-row" style="display: flex; align-items: center; gap: 10px;">
-                                        <div class="hour-label" style="width: 80px; font-size: 0.9rem; font-weight: 600; color: #333;">10 AM</div>
-                                        <div class="bar-container" style="flex: 1; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
+                                    <div class="bar-row" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                        <div class="hour-label" style="min-width: 60px; width: 80px; font-size: 0.9rem; font-weight: 600; color: #333; flex-shrink: 0;">10 AM</div>
+                                        <div class="bar-container" style="flex: 1; min-width: 120px; height: 25px; background: #f0f0f0; border-radius: 12px; overflow: hidden;">
                                             <div class="bar" style="height: 100%; width: 99%; background: linear-gradient(90deg, #9966cc, #C8A2C8); border-radius: 12px; transition: width 1s ease;"></div>
                                         </div>
-                                        <div class="value-label" style="width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right;">6.83</div>
+                                        <div class="value-label" style="min-width: 40px; width: 50px; font-size: 0.9rem; font-weight: 600; color: #333; text-align: right; flex-shrink: 0;">6.83</div>
                                     </div>
                                     
                                     <!-- 7 AM -->
@@ -886,6 +890,18 @@
             const container = document.getElementById('roiChartContainer');
             container.style.opacity = '0';
             container.style.visibility = 'hidden';
+        }
+
+        // Toggle function for ROI chart
+        function toggleROIChart() {
+            const container = document.getElementById('roiChartContainer');
+            const isVisible = container.style.visibility === 'visible';
+            
+            if (isVisible) {
+                hideROIChart();
+            } else {
+                showROIChart();
+            }
         }
 
         // Hour Chart Functions
