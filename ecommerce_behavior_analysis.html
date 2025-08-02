@@ -201,6 +201,83 @@
             }
         }
 
+        /* Mobile Responsiveness for Key Discoveries Grid */
+        @media screen and (max-width: 768px) {
+            /* Make the 3-column grid vertical on tablets */
+            div[style*="display: grid"][style*="grid-template-columns: repeat(3, 1fr)"] {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+                max-width: 500px !important;
+            }
+            
+            /* Optimize card padding for tablets */
+            div[style*="padding: 2.5rem"] {
+                padding: 2rem !important;
+            }
+            
+            /* Optimize chart containers for tablets */
+            .roi-chart-container[style*="min-width: 500px"],
+            .hour-chart-container[style*="min-width: 500px"] {
+                min-width: 400px !important;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            /* Make the 3-column grid vertical on mobile */
+            div[style*="display: grid"][style*="grid-template-columns: repeat(3, 1fr)"] {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+                max-width: 100% !important;
+            }
+            
+            /* Optimize card styling for mobile */
+            div[style*="padding: 2.5rem"] {
+                padding: 1.5rem !important;
+            }
+            
+            /* Adjust icon size for mobile */
+            div[style*="width: 80px; height: 80px"] {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            
+            /* Optimize card titles for mobile */
+            h3[style*="font-size: 1.3rem"] {
+                font-size: 1.2rem !important;
+            }
+            
+            /* Optimize interactive chart containers for mobile */
+            .roi-chart-container[style*="min-width: 500px"] {
+                min-width: 300px !important;
+                left: 0 !important;
+                right: 0 !important;
+                transform: none !important;
+                margin: 0.5rem 0 !important;
+                position: relative !important;
+            }
+            
+            .hour-chart-container[style*="min-width: 500px"] {
+                min-width: 300px !important;
+                left: 0 !important;
+                right: 0 !important;
+                transform: none !important;
+                margin: 0.5rem 0 !important;
+                position: relative !important;
+                max-height: 400px !important;
+            }
+            
+            /* Optimize chart content for mobile */
+            #roiChart, #hourChart {
+                width: 280px !important;
+            }
+            
+            /* Improve funnel chart mobile layout */
+            .funnel-chart-container {
+                margin: 1.5rem 0 !important;
+                padding: 1.5rem !important;
+            }
+        }
+
         /* Mobile Responsiveness for Project Overview Section */
         @media screen and (max-width: 768px) {
             .project-overview-showcase {
