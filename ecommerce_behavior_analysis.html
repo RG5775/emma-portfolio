@@ -345,7 +345,7 @@
                     <p style="color: #666; font-size: 0.95rem; line-height: 1.6;">
                         Discovered peak shopping hours (2-4 PM) with 40% higher conversion rates, enabling targeted marketing campaigns.
                     </p>
-                    <div class="roi-improvement-container" style="margin-top: 1.5rem; padding: 1.2rem; background: linear-gradient(135deg, #f8f9ff, #ffffff); border-radius: 12px; border-left: 4px solid var(--accent-color); box-shadow: 0 4px 15px rgba(153, 102, 204, 0.1); position: relative; cursor: pointer;" onmouseover="showROIChart()" onmouseout="hideROIChart()">
+                    <div class="roi-improvement-container" style="margin-top: 1.5rem; padding: 1.2rem; background: linear-gradient(135deg, #f8f9ff, #ffffff); border-radius: 12px; border-left: 4px solid var(--accent-color); box-shadow: 0 4px 15px rgba(153, 102, 204, 0.1); position: relative; cursor: pointer;" onclick="toggleROIChart()">
                         <div style="font-size: 1.1rem; font-weight: bold; color: var(--accent-color);">Purchase by day</div>
                         <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
                             Most of the purchase is completed on Sunday.
@@ -635,7 +635,7 @@
                                     </div>
                                 </div>
                                 <div class="funnel-dropoff" style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">Base: 100% of visitors, 7.15% of viewer add item into cart without purchase viewing the product</div>
-                            </div>
+                            </div>Base: 100% of visitors, 7.15% of viewer add item into cart without viewing the product
                             
                             <!-- Drop-off Arrow -->
                             <div class="funnel-arrow" style="width: 2px; height: 30px; background: linear-gradient(to bottom, #9966cc, #C8A2C8); position: relative;">
@@ -886,6 +886,18 @@
             const container = document.getElementById('roiChartContainer');
             container.style.opacity = '0';
             container.style.visibility = 'hidden';
+        }
+
+        // Toggle function for ROI chart
+        function toggleROIChart() {
+            const container = document.getElementById('roiChartContainer');
+            const isVisible = container.style.visibility === 'visible';
+            
+            if (isVisible) {
+                hideROIChart();
+            } else {
+                showROIChart();
+            }
         }
 
         // Hour Chart Functions
