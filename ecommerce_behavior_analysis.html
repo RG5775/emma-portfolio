@@ -201,197 +201,6 @@
             }
         }
 
-        /* Mobile Responsiveness for Key Discoveries Grid */
-        @media screen and (max-width: 768px) {
-            /* Make the 3-column grid vertical on tablets */
-            div[style*="display: grid"][style*="grid-template-columns: repeat(3, 1fr)"] {
-                grid-template-columns: 1fr !important;
-                gap: 2rem !important;
-                max-width: 600px !important;
-                margin: 0 auto !important;
-            }
-            
-            /* Make the 4-column methodology grid 2x2 on tablets */
-            div[style*="display: grid"][style*="grid-template-columns: repeat(4, 1fr)"] {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 2rem !important;
-            }
-            
-            /* Optimize card padding for tablets */
-            div[style*="padding: 2.5rem"] {
-                padding: 2rem !important;
-            }
-            
-            /* Optimize chart containers for tablets */
-            .roi-chart-container[style*="min-width: 500px"],
-            .hour-chart-container[style*="min-width: 500px"] {
-                min-width: 400px !important;
-                left: 50% !important;
-                transform: translateX(-50%) !important;
-            }
-            
-            /* Improve section title responsiveness */
-            h2[style*="font-size: 2.5rem"] {
-                font-size: 2rem !important;
-            }
-            
-            /* Optimize card hover effects on mobile */
-            div[style*="box-shadow: 0 8px 25px"] {
-                box-shadow: 0 6px 20px rgba(0,0,0,0.08) !important;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            /* Make the 3-column grid vertical on mobile */
-            div[style*="display: grid"][style*="grid-template-columns: repeat(3, 1fr)"] {
-                grid-template-columns: 1fr !important;
-                gap: 1.5rem !important;
-                max-width: 100% !important;
-                padding: 0 1rem !important;
-            }
-            
-            /* Make the 4-column methodology grid vertical on mobile */
-            div[style*="display: grid"][style*="grid-template-columns: repeat(4, 1fr)"] {
-                grid-template-columns: 1fr !important;
-                gap: 1.5rem !important;
-            }
-            
-            /* Optimize card styling for mobile */
-            div[style*="padding: 2.5rem"] {
-                padding: 1.5rem !important;
-                margin: 0 !important;
-            }
-            
-            /* Adjust icon size for mobile */
-            div[style*="width: 80px; height: 80px"] {
-                width: 60px !important;
-                height: 60px !important;
-            }
-            
-            /* Optimize card titles for mobile */
-            h3[style*="font-size: 1.3rem"] {
-                font-size: 1.2rem !important;
-            }
-            
-            /* Optimize section titles for mobile */
-            h2[style*="font-size: 2.5rem"] {
-                font-size: 1.8rem !important;
-                padding: 0 1rem !important;
-            }
-            
-            /* Optimize section descriptions for mobile */
-            p[style*="font-size: 1.1rem"] {
-                font-size: 1rem !important;
-                padding: 0 1rem !important;
-            }
-            
-            /* Optimize interactive chart containers for mobile */
-            .roi-chart-container[style*="min-width: 500px"] {
-                min-width: calc(100vw - 2rem) !important;
-                max-width: 350px !important;
-                left: 50% !important;
-                transform: translateX(-50%) !important;
-                margin: 0.5rem 0 !important;
-                position: absolute !important;
-            }
-            
-            .hour-chart-container[style*="min-width: 500px"] {
-                min-width: calc(100vw - 2rem) !important;
-                max-width: 350px !important;
-                left: 50% !important;
-                transform: translateX(-50%) !important;
-                margin: 0.5rem 0 !important;
-                position: absolute !important;
-                max-height: 400px !important;
-            }
-            
-            /* Optimize chart content for mobile */
-            #roiChart, #hourChart {
-                width: calc(100% - 2rem) !important;
-                max-width: 320px !important;
-                margin: 0 auto !important;
-            }
-            
-            /* Improve funnel chart mobile layout */
-            .funnel-chart-container {
-                margin: 1.5rem 0 !important;
-                padding: 1.5rem 1rem !important;
-            }
-            
-            /* Optimize bar chart elements for mobile */
-            .bar-row {
-                gap: 5px !important;
-            }
-            
-            .day-label, .hour-label {
-                width: 60px !important;
-                font-size: 0.8rem !important;
-            }
-            
-            .value-label {
-                width: 40px !important;
-                font-size: 0.8rem !important;
-            }
-            
-            /* Ensure proper spacing for mobile cards */
-            div[style*="border-radius: 16px"][style*="padding: 2.5rem"] {
-                border-radius: 12px !important;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.08) !important;
-            }
-        }
-
-        /* Extra small mobile devices (320px and below) */
-        @media screen and (max-width: 320px) {
-            /* Further optimize grid for very small screens */
-            div[style*="display: grid"][style*="grid-template-columns: repeat(3, 1fr)"] {
-                padding: 0 0.5rem !important;
-                gap: 1rem !important;
-            }
-            
-            /* Minimize card padding for tiny screens */
-            div[style*="padding: 2.5rem"] {
-                padding: 1rem !important;
-            }
-            
-            /* Further reduce icon sizes */
-            div[style*="width: 80px; height: 80px"] {
-                width: 50px !important;
-                height: 50px !important;
-            }
-            
-            /* Optimize text sizes for tiny screens */
-            h2[style*="font-size: 2.5rem"] {
-                font-size: 1.6rem !important;
-            }
-            
-            h3[style*="font-size: 1.3rem"] {
-                font-size: 1.1rem !important;
-            }
-            
-            /* Optimize chart containers for tiny screens */
-            .roi-chart-container[style*="min-width: 500px"],
-            .hour-chart-container[style*="min-width: 500px"] {
-                min-width: calc(100vw - 1rem) !important;
-                max-width: 300px !important;
-                padding: 1rem !important;
-            }
-            
-            #roiChart, #hourChart {
-                width: calc(100% - 1rem) !important;
-                max-width: 280px !important;
-            }
-            
-            .day-label, .hour-label {
-                width: 50px !important;
-                font-size: 0.7rem !important;
-            }
-            
-            .value-label {
-                width: 35px !important;
-                font-size: 0.7rem !important;
-            }
-        }
-
         /* Mobile Responsiveness for Project Overview Section */
         @media screen and (max-width: 768px) {
             .project-overview-showcase {
@@ -508,7 +317,7 @@
             </div>
             
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem;">
-                <div style="text-align: center; padding: 2.5rem; background: linear-gradient(145deg, #ffffff, #f8f9ff); border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border: 1px solid rgba(153, 102, 204, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 12px 35px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.08)'">
+                <div style="text-align: center; padding: 2.5rem; background: linear-gradient(145deg, #ffffff, #f8f9ff); border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border: 1px solid rgba(153, 102, 204, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div style="background: linear-gradient(135deg, var(--accent-color), #8b5fbf); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto; box-shadow: 0 6px 20px rgba(153, 102, 204, 0.3);">
                         <svg style="width: 40px; height: 40px; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
@@ -526,7 +335,7 @@
                     </div>
                 </div>
                 
-                <div style="text-align: center; padding: 2.5rem; background: linear-gradient(145deg, #ffffff, #f8f9ff); border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border: 1px solid rgba(153, 102, 204, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 12px 35px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.08)'">
+                <div style="text-align: center; padding: 2.5rem; background: linear-gradient(145deg, #ffffff, #f8f9ff); border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border: 1px solid rgba(153, 102, 204, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div style="background: linear-gradient(135deg, var(--accent-color), #8b5fbf); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto; box-shadow: 0 6px 20px rgba(153, 102, 204, 0.3);">
                         <svg style="width: 40px; height: 40px; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -541,7 +350,7 @@
                         <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
                             Most of the purchase is completed on Sunday.
                         </div>
-                        <div class="roi-chart-container" id="roiChartContainer" style="position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 1.5rem; margin-top: 0.5rem; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 1000; min-width: 500px; cursor: pointer;">
+                        <div class="roi-chart-container" id="roiChartContainer" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 1.5rem; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 99999; min-width: 500px; cursor: pointer;">
                             <h4 style="text-align: center; color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: bold;">Daily Conversion Rates</h4>
                             <div id="roiChart" style="width: 450px; height: 250px; margin: 0 auto;">
                                 <!-- Static Bar Chart -->
@@ -619,7 +428,7 @@
                         <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
                             Peak shopping hours are between 8-10 AM with highest conversion rates, showing a morning peak pattern.
                         </div>
-                        <div class="hour-chart-container" id="hourChartContainer" style="position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 1.5rem; margin-top: 0.5rem; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 9999; min-width: 500px; max-height: 600px; overflow-y: auto; cursor: pointer;">
+                        <div class="hour-chart-container" id="hourChartContainer" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 1.5rem; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 99999; min-width: 500px; max-height: 600px; overflow-y: auto; cursor: pointer;">
                             <h4 style="text-align: center; color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: bold;">Hourly Conversion Rates</h4>
                             <div id="hourChart" style="width: 450px; height: 400px; margin: 0 auto;">
                                 <!-- Static Bar Chart -->
@@ -800,7 +609,7 @@
                     </div>
                 </div>
                 
-                <div style="text-align: center; padding: 2.5rem; background: linear-gradient(145deg, #ffffff, #f8f9ff); border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border: 1px solid rgba(153, 102, 204, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 12px 35px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.08)'">
+                <div style="text-align: center; padding: 2.5rem; background: linear-gradient(145deg, #ffffff, #f8f9ff); border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border: 1px solid rgba(153, 102, 204, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div style="background: linear-gradient(135deg, var(--accent-color), #8b5fbf); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto; box-shadow: 0 6px 20px rgba(153, 102, 204, 0.3);">
                         <svg style="width: 40px; height: 40px; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>

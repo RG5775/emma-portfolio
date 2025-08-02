@@ -390,10 +390,10 @@ main {
 section {
     margin: 0;
     background-color: var(--secondary-color);
-    padding: 2rem 1rem;
+    padding: 0;
     border: none;
     box-shadow: none;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
     position: relative;
     z-index: 10;
 }
@@ -661,8 +661,7 @@ nav ul li.dropdown:hover .dropdown-content {
     }
     
     section h2 {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
+        font-size: 2rem;
     }
     
     .certificate-card {
@@ -701,18 +700,16 @@ nav ul li.dropdown:hover .dropdown-content {
     }
     
     header {
-        padding: 1.5rem 1rem;
+        padding: 2rem 1rem;
     }
     
     header h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
         line-height: 1.2;
-        margin-bottom: 0.5rem;
     }
     
     header p {
-        font-size: 0.95rem;
-        margin-bottom: 0;
+        font-size: 1rem;
     }
     
     nav ul li {
@@ -721,9 +718,9 @@ nav ul li.dropdown:hover .dropdown-content {
     }
     
     nav ul li a {
-        padding: 0.8rem 1rem;
+        padding: 1rem;
         border-bottom: 1px solid #eee;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         white-space: nowrap;
         overflow: visible;
         text-align: center;
@@ -748,8 +745,8 @@ nav ul li.dropdown:hover .dropdown-content {
     }
     
     main {
-        padding: 0.5rem 0;
-        margin-top: 0;
+        padding: 2rem 1rem;
+        margin-top: 2rem;
     }
     
     section {
@@ -844,7 +841,6 @@ nav ul li.dropdown:hover .dropdown-content {
     footer {
         padding: 1.5rem 1rem;
         font-size: 0.85rem;
-        margin-top: 1rem;
     }
     
     .banner-container {
@@ -916,47 +912,6 @@ nav ul li.dropdown:hover .dropdown-content {
     .cta-button {
         width: 90%;
         font-size: 0.85rem;
-        padding: 10px 20px;
-        margin: 0.3rem 0;
-    }
-    
-    section {
-        padding: 1.5rem 1rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    #about p {
-        font-size: 0.95rem;
-        line-height: 1.5;
-        margin-bottom: 1.5rem;
-    }
-    
-    #contact {
-        text-align: center;
-    }
-    
-    #contact h2 {
-        font-size: 1.6rem;
-        margin-bottom: 1rem;
-    }
-    
-    #contact p {
-        font-size: 0.9rem;
-        line-height: 1.4;
-    }
-    
-    #contact a {
-        word-break: break-all;
-    }
-    
-    /* Ensure consistent spacing between all sections */
-    body {
-        line-height: 1.4;
-    }
-    
-    /* Improve overall mobile layout flow */
-    .main-content {
-        padding-top: 0;
     }
     
     .certificate-card,
@@ -1466,59 +1421,58 @@ nav ul li.dropdown:hover .dropdown-content {
 
 @media screen and (max-width: 480px) {
     .banner-container {
-        padding: 1rem 1rem 3rem 1rem;
+        padding: 2rem 1rem 6rem 1rem;
         margin: 0;
         text-align: center;
         position: relative;
     }
 
     #interactive-banner {
-        padding: 0.5rem 0 1rem 0;
+        padding: 1rem 0 2rem 0;
         margin: 0;
         position: relative;
-        min-height: auto;
     }
 
     .cube-container {
-        width: 250px;
-        height: 250px;
-        margin: 2rem auto 2rem auto; /* Reduced top and bottom margins */
+        width: 280px;
+        height: 280px;
+        margin: 10rem auto 4.5rem auto; /* Better centering and spacing */
         perspective: 800px;
         position: relative;
         overflow: visible;
     }
 
     .cube-face {
-        width: 250px;
-        height: 250px;
-        border-radius: 12px;
+        width: 280px;
+        height: 280px;
+        border-radius: 16px;
     }
 
     .role-content {
-        padding: 0.8rem;
+        padding: 1rem;
     }
 
     .role-content h2 {
-        font-size: 1.5rem;
-        margin-bottom: 0.3rem;
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
     }
 
     .time-indicator {
-        font-size: 0.85rem;
-        margin-bottom: 0.3rem;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
     }
 
     .role-description {
-        font-size: 0.9rem;
-        line-height: 1.3;
+        font-size: 1rem;
+        line-height: 1.4;
     }
 
     .timeline-navigation {
-        gap: 1.5rem;
+        gap: 2rem;
         padding: 0 1rem;
         justify-content: center;
         position: absolute;
-        bottom: -1rem;
+        bottom: 0;
         left: 0;
         right: 0;
     }
@@ -1539,11 +1493,11 @@ nav ul li.dropdown:hover .dropdown-content {
 
     .interaction-hint {
         position: absolute;
-        bottom: -40px;
-        right: 10px;
+        bottom: -50px;
+        right: -20px;
         left: auto;
         margin-top: 0;
-        font-size: 0.8rem;
+        font-size: var(--font-size-sm);
         padding: var(--spacing-sm) var(--spacing-md);
         display: inline-block;
         transform: none;
@@ -2005,26 +1959,26 @@ nav ul li.dropdown:hover .dropdown-content {
 @media screen and (max-width: 480px) {
     .cube-container {
         /* Absolute maximum constraints - no cube should be larger than this */
-        max-width: 250px !important;
-        max-height: 250px !important;
-        width: min(var(--cube-size-mobile), 70vw, 250px) !important;
-        height: min(var(--cube-size-mobile), 70vw, 250px) !important;
+        max-width: 280px !important;
+        max-height: 280px !important;
+        width: min(var(--cube-size-mobile), 75vw, 280px) !important;
+        height: min(var(--cube-size-mobile), 75vw, 280px) !important;
     }
     
     .cube-face {
-        max-width: 250px !important;
-        max-height: 250px !important;
-        width: min(var(--cube-size-mobile), 70vw, 250px) !important;
-        height: min(var(--cube-size-mobile), 70vw, 250px) !important;
+        max-width: 280px !important;
+        max-height: 280px !important;
+        width: min(var(--cube-size-mobile), 75vw, 280px) !important;
+        height: min(var(--cube-size-mobile), 75vw, 280px) !important;
     }
     
-    /* Ensure translateZ matches 250px cube size */
-    .cube-face.front { transform: translateZ(125px) !important; }
-    .cube-face.back { transform: rotateY(180deg) translateZ(125px) !important; }
-    .cube-face.right { transform: rotateY(90deg) translateZ(125px) !important; }
-    .cube-face.left { transform: rotateY(-90deg) translateZ(125px) !important; }
-    .cube-face.top { transform: rotateX(90deg) translateZ(125px) !important; }
-    .cube-face.bottom { transform: rotateX(-90deg) translateZ(125px) !important; }
+    /* Ensure translateZ matches 280px cube size */
+    .cube-face.front { transform: translateZ(140px) !important; }
+    .cube-face.back { transform: rotateY(180deg) translateZ(140px) !important; }
+    .cube-face.right { transform: rotateY(90deg) translateZ(140px) !important; }
+    .cube-face.left { transform: rotateY(-90deg) translateZ(140px) !important; }
+    .cube-face.top { transform: rotateX(90deg) translateZ(140px) !important; }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(140px) !important; }
 }
 
 /* =============================================================================
